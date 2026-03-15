@@ -12,3 +12,6 @@ diziler_state.json
 movies_state.json
 github_data/*state*.json
 github_data/*.bak
+!github_data/diziler.json
+!github_data/movies.json
+!github_data/dizipal.json
