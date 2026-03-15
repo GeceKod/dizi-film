@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.tmp
+*.bak
+logs/
+diziler.json
+movies.json
+dizipal.json
+diziler_state.json
+movies_state.json
+github_data/*state*.json
+github_data/*.bak

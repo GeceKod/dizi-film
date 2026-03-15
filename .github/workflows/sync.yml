@@ -1,0 +1,88 @@
+name: Scheduled Sync
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/30 * * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Setup Chrome
+        uses: browser-actions/setup-chrome@v1
+
+      - name: Install system packages
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y xvfb
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install seleniumbase curl_cffi beautifulsoup4 requests tmdbsimple
+          python -m seleniumbase install chromedriver
+
+      - name: Prepare folders
+        run: |
+          mkdir -p github_data
+          mkdir -p logs
+
+      - name: Run series sync
+        env:
+          DIZI_DATA_FILE: github_data/diziler.json
+          DIZI_STATE_FILE: github_data/diziler_state.json
+          DIZI_LOG_FILE: logs/dizi_sync.log
+          DIZI_MAX_LIST_PAGES: "2"
+          DIZI_SELENIUM_HEADLESS: "0"
+        run: |
+          xvfb-run --auto-servernum --server-args="-screen 0 1920x1080x24" python -X utf8 main_dizi.py
+
+      - name: Run movie sync
+        env:
+          FILM_DATA_FILE: github_data/movies.json
+          FILM_STATE_FILE: github_data/movies_state.json
+          FILM_LOG_FILE: logs/film_sync.log
+          FILM_MAX_LIST_PAGES: "2"
+          FILM_SELENIUM_HEADLESS: "0"
+        run: |
+          xvfb-run --auto-servernum --server-args="-screen 0 1920x1080x24" python -X utf8 main_film.py
+
+      - name: Merge outputs
+        env:
+          DIZI_DATA_FILE: github_data/diziler.json
+          FILM_DATA_FILE: github_data/movies.json
+          CIKTI_DOSYASI: github_data/dizipal.json
+        run: |
+          python -X utf8 json_birlestir.py
+
+      - name: Commit generated data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add github_data
+          if git diff --cached --quiet; then
+            echo "No data changes to commit."
+          else
+            git commit -m "Auto update github_data"
+            git push
+          fi
+
+      - name: Upload logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: sync-logs
+          path: logs/
