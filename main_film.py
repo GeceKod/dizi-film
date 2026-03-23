@@ -95,7 +95,7 @@ class MovieProcessResult:
 def load_config() -> AppConfig:
     data_file = Path(os.getenv("FILM_DATA_FILE", "movies.json"))
     return AppConfig(
-        base_domain=os.getenv("FILM_BASE_DOMAIN", "https://dizipal.bar").rstrip("/"),
+        base_domain=os.getenv("FILM_BASE_DOMAIN", "https://dizipal.mi").rstrip("/"),
         data_file=data_file,
         state_file=Path(os.getenv("FILM_STATE_FILE", "movies_state.json")),
         log_file=Path(os.getenv("FILM_LOG_FILE", "logs/film_sync.log")),
