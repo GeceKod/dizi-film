@@ -160,7 +160,7 @@ class SeriesProcessResult:
 def load_config() -> AppConfig:
     data_file = Path(os.getenv("DIZI_DATA_FILE", "diziler.json"))
     return AppConfig(
-        base_domain=os.getenv("DIZI_BASE_DOMAIN", "https://dizipal.bar").rstrip("/"),
+        base_domain=os.getenv("DIZI_BASE_DOMAIN", "https://dizipal.mi").rstrip("/"),
         data_file=data_file,
         legacy_data_file=Path(os.getenv("DIZI_LEGACY_DATA_FILE", "diziler_full.json")),
         state_file=Path(os.getenv("DIZI_STATE_FILE", "diziler_state.json")),
