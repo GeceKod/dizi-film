@@ -36,6 +36,7 @@ from main_dizi import (
     resolve_iframe_urls_with_browser,
     save_bootstrap_debug_artifacts,
 )
+from title_localization import resolve_turkish_title
 
 
 DEFAULT_DESCRIPTION = "Aciklama yok."
@@ -403,6 +404,7 @@ def build_tmdb_movie_payload(info: dict[str, Any], platform: str) -> dict[str, A
     release_date = info.get("release_date", "")
     return {
         "title": info.get("title") or "",
+        "original_title": info.get("original_title") or "",
         "description": info.get("overview") or DEFAULT_DESCRIPTION,
         "imdb": str(round(vote_average, 1)) if vote_average else "0.0",
         "imdb_id": external_ids.get("imdb_id", ""),
@@ -512,8 +514,8 @@ def merge_movie_record(
     tmdb_payload: dict[str, Any] | None,
 ) -> dict[str, Any]:
     merged = dict(existing or {})
+    previous_title = str(merged.get("title", "") or "")
     merged["type"] = "film"
-    merged["title"] = item.title
     merged["url"] = item.url
     if item.poster and not is_meaningful_value("poster", merged.get("poster")):
         merged["poster"] = item.poster
@@ -527,7 +529,6 @@ def merge_movie_record(
 
     if tmdb_payload is not None:
         for field in (
-            "title",
             "description",
             "imdb",
             "imdb_id",
@@ -551,6 +552,13 @@ def merge_movie_record(
         merged["description"] = DEFAULT_DESCRIPTION
     if not is_meaningful_value("platform", merged.get("platform")):
         merged["platform"] = DEFAULT_PLATFORM
+
+    merged["title"] = resolve_turkish_title(
+        current_title=previous_title,
+        official_title=(tmdb_payload or {}).get("title", ""),
+        original_title=(tmdb_payload or {}).get("original_title", ""),
+        fallback_title=item.title,
+    )
 
     merged.setdefault("videoUrl", "")
     merged.setdefault("added_date", "")

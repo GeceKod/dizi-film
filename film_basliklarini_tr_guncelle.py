@@ -9,6 +9,8 @@ from pathlib import Path
 
 import requests
 
+from title_localization import resolve_turkish_title
+
 
 TMDB_API_KEY = os.getenv("TMDB_API_KEY", "48ce82f1de91232f542660e99a9d1336")
 TMDB_LANGUAGE = os.getenv("TMDB_LANGUAGE", "tr-TR")
@@ -65,7 +67,7 @@ def get_session() -> requests.Session:
     return session
 
 
-def fetch_tr_title(imdb_id: str) -> str | None:
+def fetch_tmdb_title_data(imdb_id: str) -> dict[str, str]:
     session = get_session()
     url = f"https://api.themoviedb.org/3/find/{imdb_id}"
     params = {
@@ -86,29 +88,32 @@ def fetch_tr_title(imdb_id: str) -> str | None:
             payload = response.json()
             movie_results = payload.get("movie_results") or []
             if not movie_results:
-                return None
-            title = (movie_results[0].get("title") or "").strip()
-            return title or None
+                return {}
+            movie = movie_results[0]
+            return {
+                "title": (movie.get("title") or "").strip(),
+                "original_title": (movie.get("original_title") or "").strip(),
+            }
         except requests.RequestException:
             if attempt == 3:
-                return None
+                return {}
             time.sleep(2 ** attempt)
-    return None
+    return {}
 
 
-def build_title_map(imdb_ids: set[str]) -> tuple[dict[str, str], int]:
-    title_map: dict[str, str] = {}
+def build_tmdb_map(imdb_ids: set[str]) -> tuple[dict[str, dict[str, str]], int]:
+    title_map: dict[str, dict[str, str]] = {}
     missing = 0
     completed = 0
     total = len(imdb_ids)
 
     with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
-        future_map = {executor.submit(fetch_tr_title, imdb_id): imdb_id for imdb_id in sorted(imdb_ids)}
+        future_map = {executor.submit(fetch_tmdb_title_data, imdb_id): imdb_id for imdb_id in sorted(imdb_ids)}
         for future in as_completed(future_map):
             imdb_id = future_map[future]
-            title = future.result()
-            if title:
-                title_map[imdb_id] = title
+            title_data = future.result()
+            if title_data:
+                title_map[imdb_id] = title_data
             else:
                 missing += 1
 
@@ -117,6 +122,32 @@ def build_title_map(imdb_ids: set[str]) -> tuple[dict[str, str], int]:
                 print(f"Ilerleme: {completed}/{total} IMDb kaydi sorgulandi.")
 
     return title_map, missing
+
+
+def build_resolution_map(requests_to_resolve: set[tuple[str, str, str]]) -> dict[tuple[str, str, str], str]:
+    resolved: dict[tuple[str, str, str], str] = {}
+    completed = 0
+    total = len(requests_to_resolve)
+    if not total:
+        return resolved
+
+    with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
+        future_map = {
+            executor.submit(resolve_turkish_title, current_title, official_title, original_title): (
+                current_title,
+                official_title,
+                original_title,
+            )
+            for current_title, official_title, original_title in requests_to_resolve
+        }
+        for future in as_completed(future_map):
+            request_key = future_map[future]
+            resolved[request_key] = future.result()
+            completed += 1
+            if completed % 1000 == 0 or completed == total:
+                print(f"Ilerleme: {completed}/{total} baslik cozuldu.")
+
+    return resolved
 
 
 def main() -> None:
@@ -130,19 +161,41 @@ def main() -> None:
         if imdb_id
     }
 
-    if not imdb_ids:
-        print("Guncellenecek film kaydi bulunamadi.")
-        return
+    if imdb_ids:
+        print(f"Toplam {len(imdb_ids)} benzersiz film IMDb kaydi bulundu.")
+        title_map, missing = build_tmdb_map(imdb_ids)
+    else:
+        print("IMDb kimligi olan film kaydi bulunamadi; yalnizca mevcut basliklar uzerinden islem yapilacak.")
+        title_map, missing = {}, 0
 
-    print(f"Toplam {len(imdb_ids)} benzersiz film IMDb kaydi bulundu.")
-    title_map, missing = build_title_map(imdb_ids)
+    resolution_requests: set[tuple[str, str, str]] = set()
+    for payload in payload_by_path.values():
+        for item in iter_film_records(payload):
+            imdb_id = item.get("imdb_id", "").strip()
+            tmdb_data = title_map.get(imdb_id, {})
+            resolution_requests.add(
+                (
+                    (item.get("title") or "").strip(),
+                    tmdb_data.get("title", ""),
+                    tmdb_data.get("original_title", ""),
+                )
+            )
+
+    print(f"Toplam {len(resolution_requests)} benzersiz baslik kurali cozuluyor.")
+    resolved_map = build_resolution_map(resolution_requests)
 
     total_updates = 0
     for path, payload in payload_by_path.items():
         file_updates = 0
         for item in iter_film_records(payload):
             imdb_id = item.get("imdb_id", "").strip()
-            title = title_map.get(imdb_id)
+            tmdb_data = title_map.get(imdb_id, {})
+            request_key = (
+                (item.get("title") or "").strip(),
+                tmdb_data.get("title", ""),
+                tmdb_data.get("original_title", ""),
+            )
+            title = resolved_map.get(request_key, item.get("title", ""))
             if title and item.get("title") != title:
                 item["title"] = title
                 file_updates += 1
