@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 import os
 from pathlib import Path
+from typing import Any
 
 
 DIZI_DOSYASI = Path(os.getenv("DIZI_DATA_FILE", "diziler.json"))
@@ -43,13 +44,58 @@ def load_json_list(path: Path) -> list[dict]:
     return payload
 
 
+def make_record_key(record: dict[str, Any], fallback_index: int) -> tuple[str, str]:
+    content_type = str(record.get("type", "") or "")
+    imdb_id = str(record.get("imdb_id", "") or "").strip()
+    url = str(record.get("url", "") or "").strip()
+    title = str(record.get("title", "") or "").strip().casefold()
+
+    if imdb_id:
+        return content_type, f"imdb:{imdb_id}"
+    if url:
+        return content_type, f"url:{url}"
+    if title:
+        return content_type, f"title:{title}"
+    return content_type, f"index:{fallback_index}"
+
+
+def merge_lists(existing: list[dict], incoming: list[dict]) -> tuple[list[dict], int, int]:
+    merged: list[dict] = []
+    index_by_key: dict[tuple[str, str], int] = {}
+    replaced = 0
+    added = 0
+
+    for idx, record in enumerate(existing):
+        key = make_record_key(record, idx)
+        if key in index_by_key:
+            merged[index_by_key[key]] = record
+            continue
+        index_by_key[key] = len(merged)
+        merged.append(record)
+
+    for idx, record in enumerate(incoming, start=len(existing)):
+        key = make_record_key(record, idx)
+        existing_index = index_by_key.get(key)
+        if existing_index is not None:
+            merged[existing_index] = record
+            replaced += 1
+        else:
+            index_by_key[key] = len(merged)
+            merged.append(record)
+            added += 1
+
+    return merged, replaced, added
+
+
 def main() -> None:
     print("JSON dosyalari birlestiriliyor...")
     print("-" * 40)
 
     diziler = load_json_list(DIZI_DOSYASI)
     filmler = load_json_list(FILM_DOSYASI)
-    toplam_liste = diziler + filmler
+    mevcut_cikti = load_json_list(CIKTI_DOSYASI)
+    gelen_liste = diziler + filmler
+    toplam_liste, replaced, added = merge_lists(mevcut_cikti, gelen_liste)
 
     if not toplam_liste:
         print("Uyari: Birlestirilecek gecerli veri bulunamadi.")
@@ -66,6 +112,8 @@ def main() -> None:
     print(f"Toplam {len(toplam_liste)} icerik {CIKTI_DOSYASI.name} dosyasina kaydedildi.")
     print(f"Dizi sayisi: {len(diziler)}")
     print(f"Film sayisi: {len(filmler)}")
+    print(f"Mevcut kayitlardan guncellenen: {replaced}")
+    print(f"Yeni eklenen kayit: {added}")
 
 
 if __name__ == "__main__":
