@@ -402,6 +402,7 @@ def build_tmdb_movie_payload(info: dict[str, Any], platform: str) -> dict[str, A
     vote_average = info.get("vote_average", 0.0)
     release_date = info.get("release_date", "")
     return {
+        "title": info.get("title") or "",
         "description": info.get("overview") or DEFAULT_DESCRIPTION,
         "imdb": str(round(vote_average, 1)) if vote_average else "0.0",
         "imdb_id": external_ids.get("imdb_id", ""),
@@ -526,6 +527,7 @@ def merge_movie_record(
 
     if tmdb_payload is not None:
         for field in (
+            "title",
             "description",
             "imdb",
             "imdb_id",
