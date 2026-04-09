@@ -20,14 +20,19 @@ from seleniumbase import SB
 import tmdbsimple as tmdb
 
 from main_dizi import (
+    close_imdb_browser,
     DEFAULT_USER_AGENT,
     FetchPayload,
+    TMDB_CACHE_VERSION,
     TMDB_TITLE_CLEAN_RE,
     atomic_write_json,
+    cache_entry_is_current,
     cache_entry_is_fresh,
     detect_total_pages,
+    extract_tmdb_trailer_url,
     extract_iframe_url,
     fetch_html,
+    get_imdb_trailer_data,
     is_cloudflare_challenge,
     is_within_ttl,
     iso_now,
@@ -147,6 +152,7 @@ def default_state() -> dict[str, Any]:
         "session": {},
         "movies": {},
         "tmdb_cache": {},
+        "imdb_cache": {},
         "run": {},
     }
 
@@ -158,7 +164,7 @@ def normalize_state(raw_state: Any) -> dict[str, Any]:
     for key in ("version",):
         if isinstance(raw_state.get(key), int):
             normalized[key] = raw_state[key]
-    for key in ("session", "movies", "tmdb_cache", "run"):
+    for key in ("session", "movies", "tmdb_cache", "imdb_cache", "run"):
         if isinstance(raw_state.get(key), dict):
             normalized[key] = raw_state[key]
     return normalized
@@ -349,6 +355,7 @@ def record_needs_refresh(record: dict[str, Any] | None) -> bool:
             not record.get("videoUrl"),
             not record.get("poster"),
             not record.get("imdb_id"),
+            not record.get("trailer"),
             record.get("description") in ("", None, DEFAULT_DESCRIPTION),
         )
     )
@@ -394,8 +401,21 @@ def extract_tmdb_platform(provider_payload: dict[str, Any]) -> str:
     return DEFAULT_PLATFORM
 
 
-def build_tmdb_movie_payload(info: dict[str, Any], platform: str) -> dict[str, Any]:
-    videos = info.get("videos", {}).get("results", [])
+def fetch_tmdb_movie_trailer(movie: Any, info: dict[str, Any]) -> str:
+    trailer_url = extract_tmdb_trailer_url(info.get("videos", {}).get("results", []))
+    if trailer_url:
+        return trailer_url
+
+    try:
+        video_payload = movie.videos(language="en-US")
+    except Exception as exc:
+        logger.warning("TMDB film fragmanlari alinamadi (%s): %s", movie.id, exc)
+        return ""
+
+    return extract_tmdb_trailer_url(video_payload.get("results", []))
+
+
+def build_tmdb_movie_payload(info: dict[str, Any], platform: str, trailer_url: str) -> dict[str, Any]:
     credits = info.get("credits", {})
     cast = credits.get("cast", [])
     crew = credits.get("crew", [])
@@ -425,25 +445,28 @@ def build_tmdb_movie_payload(info: dict[str, Any], platform: str) -> dict[str, A
             if info.get("backdrop_path")
             else ""
         ),
-        "trailer": next(
-            (
-                f"https://www.youtube.com/watch?v={video['key']}"
-                for video in videos
-                if video.get("site") == "YouTube"
-                and "trailer" in video.get("type", "").lower()
-                and video.get("key")
-            ),
-            "",
-        ),
+        "trailer": trailer_url,
         "platform": platform or DEFAULT_PLATFORM,
     }
 
 
-def get_tmdb_movie_data(title: str, state: dict[str, Any], config: AppConfig) -> dict[str, Any] | None:
+def get_tmdb_movie_data(
+    title: str,
+    state: dict[str, Any],
+    config: AppConfig,
+    imdb_id: str = "",
+) -> dict[str, Any] | None:
+    normalized_imdb_id = imdb_id.strip()
     cache_key = normalize_tmdb_title(title)
+    if normalized_imdb_id:
+        cache_key = f"{cache_key}|{normalized_imdb_id.casefold()}"
     cache = state.setdefault("tmdb_cache", {})
     cached_entry = cache.get(cache_key)
-    if isinstance(cached_entry, dict) and cache_entry_is_fresh(cached_entry, config):
+    if (
+        isinstance(cached_entry, dict)
+        and cache_entry_is_current(cached_entry)
+        and cache_entry_is_fresh(cached_entry, config)
+    ):
         status = cached_entry.get("status")
         if status == "hit":
             return dict(cached_entry.get("data", {}))
@@ -459,16 +482,38 @@ def get_tmdb_movie_data(title: str, state: dict[str, Any], config: AppConfig) ->
 
     try:
         search_result: dict[str, Any] = {}
-        for query in queries:
-            search_result = search.movie(query=query)
-            if search_result.get("results"):
-                break
+        movie_id = 0
+        if normalized_imdb_id:
+            try:
+                find_result = tmdb.Find(normalized_imdb_id).info(external_source="imdb_id")
+                movie_results = find_result.get("movie_results", [])
+                if movie_results:
+                    movie_id = int(movie_results[0]["id"])
+            except Exception as exc:
+                logger.warning("TMDB IMDb film aramasi hatasi (%s / %s): %s", title, normalized_imdb_id, exc)
 
-        if not search_result.get("results"):
-            cache[cache_key] = {"status": "miss", "cached_at": iso_now(), "data": {}}
+        if not movie_id:
+            for query in queries:
+                search_result = search.movie(query=query)
+                if search_result.get("results"):
+                    break
+
+        if not movie_id and not search_result.get("results"):
+            imdb_payload = get_imdb_trailer_data(normalized_imdb_id, state, config)
+            if isinstance(imdb_payload, dict) and imdb_payload.get("trailer"):
+                cache[cache_key] = {
+                    "version": TMDB_CACHE_VERSION,
+                    "status": "hit",
+                    "cached_at": iso_now(),
+                    "data": imdb_payload,
+                }
+                return dict(imdb_payload)
+
+            cache[cache_key] = {"version": TMDB_CACHE_VERSION, "status": "miss", "cached_at": iso_now(), "data": {}}
             return {}
 
-        movie_id = search_result["results"][0]["id"]
+        if not movie_id:
+            movie_id = search_result["results"][0]["id"]
         movie = tmdb.Movies(movie_id)
         info = movie.info(language="tr", append_to_response="videos,credits,external_ids")
         provider_payload: dict[str, Any] = {}
@@ -477,12 +522,21 @@ def get_tmdb_movie_data(title: str, state: dict[str, Any], config: AppConfig) ->
         except Exception as exc:
             logger.warning("TMDB platform bilgisi alinamadi (%s): %s", title, exc)
 
-        payload = build_tmdb_movie_payload(info, extract_tmdb_platform(provider_payload))
-        cache[cache_key] = {"status": "hit", "cached_at": iso_now(), "data": payload}
+        payload = build_tmdb_movie_payload(
+            info,
+            extract_tmdb_platform(provider_payload),
+            fetch_tmdb_movie_trailer(movie, info),
+        )
+        fallback_imdb_id = normalized_imdb_id or str(payload.get("imdb_id", "")).strip()
+        if not payload.get("trailer") and fallback_imdb_id:
+            imdb_payload = get_imdb_trailer_data(fallback_imdb_id, state, config)
+            if isinstance(imdb_payload, dict) and imdb_payload.get("trailer"):
+                payload["trailer"] = imdb_payload["trailer"]
+        cache[cache_key] = {"version": TMDB_CACHE_VERSION, "status": "hit", "cached_at": iso_now(), "data": payload}
         return dict(payload)
     except Exception as exc:
         logger.warning("TMDB hatasi (%s): %s", title, exc)
-        cache[cache_key] = {"status": "error", "cached_at": iso_now(), "message": str(exc)[:500]}
+        cache[cache_key] = {"version": TMDB_CACHE_VERSION, "status": "error", "cached_at": iso_now(), "message": str(exc)[:500]}
         return None
 
 
@@ -1025,7 +1079,12 @@ def process_movie_item(
         state.setdefault("movies", {})[item.url] = build_movie_state_entry(item.title, site_payload, detail_failures)
         return MovieProcessResult(status="skipped")
 
-    tmdb_payload = get_tmdb_movie_data(item.title, state, config)
+    tmdb_payload = get_tmdb_movie_data(
+        item.title,
+        state,
+        config,
+        imdb_id=(existing_record or {}).get("imdb_id", ""),
+    )
     final_record = merge_movie_record(existing_record, item, site_payload, tmdb_payload)
     if existing_record and movie_records_equal(existing_record, final_record):
         state.setdefault("movies", {})[item.url] = build_movie_state_entry(item.title, site_payload, detail_failures)
@@ -1182,4 +1241,7 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    finally:
+        close_imdb_browser()

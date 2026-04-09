@@ -5,7 +5,7 @@ from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
 from html import unescape
 from pathlib import Path
-from threading import Lock, local
+from threading import Lock, RLock, local
 from typing import Any
 from urllib.parse import parse_qs, urljoin, urlparse
 
@@ -77,6 +77,28 @@ IFRAME_SKIP_EXTENSIONS = (
     ".xml",
     ".txt",
 )
+TMDB_CACHE_VERSION = 3
+TMDB_TV_VIDEO_LANGUAGE_FALLBACK = "tr,en-US,en,null"
+TMDB_TRAILER_TYPE_PRIORITY = {
+    "trailer": 0,
+    "teaser": 1,
+}
+TMDB_TRAILER_LANGUAGE_PRIORITY = {
+    "tr": 0,
+    "en": 1,
+    "": 2,
+}
+IMDB_TITLE_URL_TEMPLATE = "https://www.imdb.com/title/{imdb_id}/"
+IMDB_VIDEO_PAGE_URL_TEMPLATE = "https://www.imdb.com/video/{video_id}/"
+IMDB_TRAILER_LINK_RE = re.compile(
+    r'href="(?P<href>/video/(?:vi\d+)/[^"]*)"[^>]*>.*?Play trailer(?: with sound)?',
+    flags=re.IGNORECASE | re.DOTALL,
+)
+IMDB_TRAILER_ARIA_LINK_RE = re.compile(
+    r'href="(?P<href>/video/(?:vi\d+)/[^"]*)"[^>]*aria-label="[^"]*trailer[^"]*"',
+    flags=re.IGNORECASE | re.DOTALL,
+)
+IMDB_VIDEO_ID_RE = re.compile(r"/video/(?P<video_id>vi\d+)/", flags=re.IGNORECASE)
 
 save_lock = Lock()
 thread_local = local()
@@ -237,6 +259,7 @@ def default_state() -> dict[str, Any]:
         "session": {},
         "series": {},
         "tmdb_cache": {},
+        "imdb_cache": {},
         "run": {},
     }
 
@@ -249,7 +272,7 @@ def normalize_state(raw_state: Any) -> dict[str, Any]:
     if isinstance(raw_state.get("version"), int):
         normalized["version"] = raw_state["version"]
 
-    for key in ("session", "series", "tmdb_cache", "run"):
+    for key in ("session", "series", "tmdb_cache", "imdb_cache", "run"):
         value = raw_state.get(key)
         if isinstance(value, dict):
             normalized[key] = value
@@ -796,6 +819,7 @@ def record_needs_refresh(record: dict[str, Any] | None) -> bool:
             not record.get("episodes"),
             not record.get("poster"),
             not record.get("imdb_id"),
+            not record.get("trailer"),
             record.get("description") in ("", None, DEFAULT_DESCRIPTION),
         )
     )
@@ -841,8 +865,228 @@ def cache_entry_is_fresh(entry: dict[str, Any], config: AppConfig) -> bool:
     return False
 
 
-def build_tmdb_payload(info: dict[str, Any], episode_images: dict[str, str]) -> dict[str, Any]:
-    videos = info.get("videos", {}).get("results", [])
+def cache_entry_is_current(entry: dict[str, Any]) -> bool:
+    try:
+        return int(entry.get("version", 1)) == TMDB_CACHE_VERSION
+    except (TypeError, ValueError):
+        return False
+
+
+def close_imdb_browser() -> None:
+    context = getattr(thread_local, "imdb_browser_context", None)
+    thread_local.imdb_browser_context = None
+    thread_local.imdb_browser = None
+    thread_local.imdb_browser_headless = None
+
+    if context is None:
+        return
+
+    try:
+        context.__exit__(None, None, None)
+    except Exception:
+        return
+
+
+def imdb_browser_is_alive(browser: Any) -> bool:
+    if browser is None:
+        return False
+
+    driver = getattr(browser, "driver", browser)
+    session_id = getattr(driver, "session_id", None)
+    if not session_id:
+        return False
+
+    try:
+        driver.window_handles
+        return True
+    except Exception:
+        return False
+
+
+def get_imdb_browser(headless: bool) -> Any:
+    browser = getattr(thread_local, "imdb_browser", None)
+    browser_headless = getattr(thread_local, "imdb_browser_headless", None)
+    if browser is not None and browser_headless == headless and imdb_browser_is_alive(browser):
+        return browser
+
+    close_imdb_browser()
+    context = SB(uc=True, headless=headless)
+    browser = context.__enter__()
+    thread_local.imdb_browser_context = context
+    thread_local.imdb_browser = browser
+    thread_local.imdb_browser_headless = headless
+    return browser
+
+
+def normalize_imdb_trailer_url(candidate: str) -> str:
+    if not candidate:
+        return ""
+
+    unescaped = unescape(candidate)
+    match = IMDB_VIDEO_ID_RE.search(unescaped)
+    if not match:
+        return ""
+    return IMDB_VIDEO_PAGE_URL_TEMPLATE.format(video_id=match.group("video_id"))
+
+
+def extract_imdb_trailer_url(html: str) -> str:
+    if not html:
+        return ""
+
+    match = IMDB_TRAILER_LINK_RE.search(html)
+    if match:
+        return normalize_imdb_trailer_url(match.group("href"))
+
+    match = IMDB_TRAILER_ARIA_LINK_RE.search(html)
+    if match:
+        return normalize_imdb_trailer_url(match.group("href"))
+
+    return ""
+
+
+def fetch_imdb_trailer_url(imdb_id: str, config: AppConfig) -> str:
+    normalized_imdb_id = imdb_id.strip()
+    if not normalized_imdb_id:
+        return ""
+
+    wait_seconds = max(3, min(6, config.selenium_wait_seconds // 3 or 3))
+    target_url = IMDB_TITLE_URL_TEMPLATE.format(imdb_id=normalized_imdb_id)
+    reconnect_time = max(2, min(4, wait_seconds // 2 or 2))
+    attempts = 2
+
+    for attempt in range(attempts):
+        sb = get_imdb_browser(config.selenium_headless)
+        try:
+            if hasattr(sb, "uc_open_with_reconnect"):
+                sb.uc_open_with_reconnect(target_url, reconnect_time)
+            else:
+                sb.open(target_url)
+
+            deadline = time.time() + wait_seconds
+            last_html = ""
+            while time.time() < deadline:
+                try:
+                    last_html = sb.get_page_source() or ""
+                except Exception:
+                    last_html = ""
+                    close_imdb_browser()
+                    break
+
+                trailer_url = extract_imdb_trailer_url(last_html)
+                if trailer_url:
+                    return trailer_url
+
+                time.sleep(0.5)
+            else:
+                return extract_imdb_trailer_url(last_html)
+        except Exception:
+            close_imdb_browser()
+            if attempt + 1 == attempts:
+                raise
+
+    return ""
+
+
+def get_imdb_trailer_data(
+    imdb_id: str,
+    state: dict[str, Any],
+    config: AppConfig,
+) -> dict[str, Any] | None:
+    normalized_imdb_id = imdb_id.strip()
+    if not normalized_imdb_id:
+        return {}
+
+    cache = state.setdefault("imdb_cache", {})
+    cache_key = normalized_imdb_id.casefold()
+    cached_entry = cache.get(cache_key)
+    if isinstance(cached_entry, dict) and cache_entry_is_fresh(cached_entry, config):
+        status = cached_entry.get("status")
+        if status == "hit":
+            return dict(cached_entry.get("data", {}))
+        if status == "miss":
+            return {}
+        return None
+
+    try:
+        trailer_url = fetch_imdb_trailer_url(normalized_imdb_id, config)
+        if trailer_url:
+            payload = {"trailer": trailer_url}
+            cache[cache_key] = {
+                "status": "hit",
+                "cached_at": iso_now(),
+                "data": payload,
+            }
+            return dict(payload)
+
+        cache[cache_key] = {
+            "status": "miss",
+            "cached_at": iso_now(),
+            "data": {},
+        }
+        return {}
+    except Exception as exc:
+        logger.warning("IMDb hatasi (%s): %s", normalized_imdb_id, exc)
+        cache[cache_key] = {
+            "status": "error",
+            "cached_at": iso_now(),
+            "message": str(exc)[:500],
+        }
+        close_imdb_browser()
+        return None
+
+
+def extract_tmdb_trailer_url(videos: list[dict[str, Any]]) -> str:
+    candidates: list[dict[str, Any]] = []
+    for video in videos:
+        if video.get("site") != "YouTube" or not video.get("key"):
+            continue
+        video_type = str(video.get("type", "")).strip().casefold()
+        if video_type not in TMDB_TRAILER_TYPE_PRIORITY:
+            continue
+        candidates.append(video)
+
+    if not candidates:
+        return ""
+
+    def sort_key(video: dict[str, Any]) -> tuple[int, int, int, int, str]:
+        video_type = str(video.get("type", "")).strip().casefold()
+        language = str(video.get("iso_639_1") or "").strip().casefold()
+        size = video.get("size")
+        normalized_size = size if isinstance(size, int) else 0
+        return (
+            TMDB_TRAILER_TYPE_PRIORITY.get(video_type, len(TMDB_TRAILER_TYPE_PRIORITY)),
+            TMDB_TRAILER_LANGUAGE_PRIORITY.get(language, len(TMDB_TRAILER_LANGUAGE_PRIORITY)),
+            0 if video.get("official") else 1,
+            -normalized_size,
+            str(video.get("published_at") or ""),
+        )
+
+    selected = sorted(candidates, key=sort_key)[0]
+    return f"https://www.youtube.com/watch?v={selected['key']}"
+
+
+def fetch_tmdb_series_trailer(tv: Any, info: dict[str, Any]) -> str:
+    trailer_url = extract_tmdb_trailer_url(info.get("videos", {}).get("results", []))
+    if trailer_url:
+        return trailer_url
+
+    try:
+        video_payload = tv.videos(
+            language="tr",
+            include_video_language=TMDB_TV_VIDEO_LANGUAGE_FALLBACK,
+        )
+    except Exception as exc:
+        logger.warning("TMDB dizi fragmanlari alinamadi (%s): %s", tv.id, exc)
+        return ""
+
+    return extract_tmdb_trailer_url(video_payload.get("results", []))
+
+
+def build_tmdb_payload(
+    info: dict[str, Any],
+    episode_images: dict[str, str],
+    trailer_url: str,
+) -> dict[str, Any]:
     credits = info.get("credits", {}).get("cast", [])
     external_ids = info.get("external_ids", {})
     vote_average = info.get("vote_average", 0.0)
@@ -864,16 +1108,7 @@ def build_tmdb_payload(info: dict[str, Any], episode_images: dict[str, str]) -> 
             else ""
         ),
         "cast": [person["name"] for person in credits[:12] if person.get("name")],
-        "trailer": next(
-            (
-                f"https://www.youtube.com/watch?v={video['key']}"
-                for video in videos
-                if video.get("site") == "YouTube"
-                and "trailer" in video.get("type", "").lower()
-                and video.get("key")
-            ),
-            "",
-        ),
+        "trailer": trailer_url,
         "episode_images": episode_images,
     }
 
@@ -900,12 +1135,24 @@ def fetch_tmdb_episode_images(tv_id: int, info: dict[str, Any]) -> dict[str, str
     return episode_images
 
 
-def get_tmdb_series_data(title: str, state: dict[str, Any], config: AppConfig) -> dict[str, Any] | None:
+def get_tmdb_series_data(
+    title: str,
+    state: dict[str, Any],
+    config: AppConfig,
+    imdb_id: str = "",
+) -> dict[str, Any] | None:
+    normalized_imdb_id = imdb_id.strip()
     cache_key = normalize_tmdb_title(title)
+    if normalized_imdb_id:
+        cache_key = f"{cache_key}|{normalized_imdb_id.casefold()}"
     cache = state.setdefault("tmdb_cache", {})
     cached_entry = cache.get(cache_key)
 
-    if isinstance(cached_entry, dict) and cache_entry_is_fresh(cached_entry, config):
+    if (
+        isinstance(cached_entry, dict)
+        and cache_entry_is_current(cached_entry)
+        and cache_entry_is_fresh(cached_entry, config)
+    ):
         status = cached_entry.get("status")
         if status == "hit":
             return dict(cached_entry.get("data", {}))
@@ -921,25 +1168,58 @@ def get_tmdb_series_data(title: str, state: dict[str, Any], config: AppConfig) -
 
     try:
         search_result: dict[str, Any] = {}
-        for query in queries:
-            search_result = search.tv(query=query)
-            if search_result.get("results"):
-                break
+        tv_id = 0
+        if normalized_imdb_id:
+            try:
+                find_result = tmdb.Find(normalized_imdb_id).info(external_source="imdb_id")
+                tv_results = find_result.get("tv_results", [])
+                if tv_results:
+                    tv_id = int(tv_results[0]["id"])
+            except Exception as exc:
+                logger.warning("TMDB IMDb dizi aramasi hatasi (%s / %s): %s", title, normalized_imdb_id, exc)
 
-        if not search_result.get("results"):
+        if not tv_id:
+            for query in queries:
+                search_result = search.tv(query=query)
+                if search_result.get("results"):
+                    break
+
+        if not tv_id and not search_result.get("results"):
+            imdb_payload = get_imdb_trailer_data(normalized_imdb_id, state, config)
+            if isinstance(imdb_payload, dict) and imdb_payload.get("trailer"):
+                cache[cache_key] = {
+                    "version": TMDB_CACHE_VERSION,
+                    "status": "hit",
+                    "cached_at": iso_now(),
+                    "data": imdb_payload,
+                }
+                return dict(imdb_payload)
+
             cache[cache_key] = {
+                "version": TMDB_CACHE_VERSION,
                 "status": "miss",
                 "cached_at": iso_now(),
                 "data": {},
             }
             return {}
 
-        tv_id = search_result["results"][0]["id"]
+        if not tv_id:
+            tv_id = search_result["results"][0]["id"]
         tv = tmdb.TV(tv_id)
         info = tv.info(language="tr", append_to_response="videos,credits,external_ids")
         episode_images = fetch_tmdb_episode_images(tv_id, info)
-        payload = build_tmdb_payload(info, episode_images)
+        payload = build_tmdb_payload(
+            info,
+            episode_images,
+            fetch_tmdb_series_trailer(tv, info),
+        )
+        fallback_imdb_id = normalized_imdb_id or str(payload.get("imdb_id", "")).strip()
+        if not payload.get("trailer") and fallback_imdb_id:
+            imdb_payload = get_imdb_trailer_data(fallback_imdb_id, state, config)
+            if isinstance(imdb_payload, dict) and imdb_payload.get("trailer"):
+                payload["trailer"] = imdb_payload["trailer"]
         cache[cache_key] = {
+            "version": TMDB_CACHE_VERSION,
             "status": "hit",
             "cached_at": iso_now(),
             "data": payload,
@@ -948,6 +1228,7 @@ def get_tmdb_series_data(title: str, state: dict[str, Any], config: AppConfig) -
     except Exception as exc:
         logger.warning("TMDB hatasi (%s): %s", title, exc)
         cache[cache_key] = {
+            "version": TMDB_CACHE_VERSION,
             "status": "error",
             "cached_at": iso_now(),
             "message": str(exc)[:500],
@@ -1718,7 +1999,12 @@ def process_series_item(
         item.title,
     )
 
-    tmdb_payload = get_tmdb_series_data(item.title, state, config)
+    tmdb_payload = get_tmdb_series_data(
+        item.title,
+        state,
+        config,
+        imdb_id=(existing_record or {}).get("imdb_id", ""),
+    )
     episode_images = {}
     if isinstance(tmdb_payload, dict):
         episode_images = tmdb_payload.pop("episode_images", {})
@@ -1876,7 +2162,12 @@ def main_legacy() -> None:
             item.title,
         )
 
-        tmdb_payload = get_tmdb_series_data(item.title, state, config)
+        tmdb_payload = get_tmdb_series_data(
+            item.title,
+            state,
+            config,
+            imdb_id=(existing_record or {}).get("imdb_id", ""),
+        )
         episode_images = {}
         if isinstance(tmdb_payload, dict):
             episode_images = tmdb_payload.pop("episode_images", {})
@@ -2120,3 +2411,5 @@ if __name__ == "__main__":
         if logger.handlers:
             logger.exception("Beklenmeyen hata ile cikildi: %s", exc)
         raise
+    finally:
+        close_imdb_browser()
