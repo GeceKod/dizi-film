@@ -144819,5 +144819,85 @@
     "cover_image": "https://image.tmdb.org/t/p/original/8Tfys3mDZVp4tNoH2ktm06a0Tau.jpg",
     "trailer": "https://www.youtube.com/watch?v=xFr4vGS9ouo",
     "platform": "Platform Disi"
+  },
+  {
+    "type": "film",
+    "title": "Anlatılmamış: Hapishane Blazerları",
+    "url": "https://dizipal.im/untold-jail-blazers/",
+    "videoUrl": "https://x.ag2m4.cfd/embed-hpodgyytpqw6.html",
+    "added_date": "14 Nisan, 2026",
+    "description": "Aciklama yok.",
+    "imdb": "0.0",
+    "imdb_id": "tt40224401",
+    "year": "2026",
+    "genres": [
+      "Belgesel"
+    ],
+    "cast": [
+      "Rasheed Wallace",
+      "Damon Stoudamire",
+      "Bonzi Wells"
+    ],
+    "director": "Sascha Gardener",
+    "poster": "https://image.tmdb.org/t/p/w500/m0tiJEfi9kIzzzfQGURcVE6sKIC.jpg",
+    "cover_image": "https://image.tmdb.org/t/p/original/gyYTuYSwiqGNaqNomscb6oSZ8Mt.jpg",
+    "trailer": "https://www.youtube.com/watch?v=7l3DK-5Vsmw",
+    "platform": "Platform Disi"
+  },
+  {
+    "type": "film",
+    "title": "Noah Kahan: Beden Dışı",
+    "url": "https://dizipal.im/noah-kahan-out-of-body/",
+    "videoUrl": "https://x.ag2m4.cfd/embed-83vr6f4eqxol.html",
+    "added_date": "14 Nisan, 2026",
+    "description": "Aciklama yok.",
+    "imdb": "10.0",
+    "imdb_id": "tt37172278",
+    "year": "2026",
+    "genres": [
+      "Belgesel",
+      "Müzik"
+    ],
+    "cast": [
+      "Noah Kahan"
+    ],
+    "director": "Nick Sweeney",
+    "poster": "https://image.tmdb.org/t/p/w500/8VtZAonOgK8hae7FwOZCSg7XmCu.jpg",
+    "cover_image": "https://image.tmdb.org/t/p/original/qgQPajFB3gt58dwJX9A13P3rJIQ.jpg",
+    "trailer": "https://www.youtube.com/watch?v=t5kPeQqA-XY",
+    "platform": "Netflix"
+  },
+  {
+    "type": "film",
+    "title": "Hücre 2069",
+    "url": "https://dizipal.im/cille-2069/",
+    "videoUrl": "https://x.ag2m4.cfd/embed-2ofop0kijibm.html",
+    "added_date": "14 Nisan, 2026",
+    "description": "Cille çizgi dizisinin son bölümünde Kayra; Rehzen'e tacı devrettikten 15 sene sonra denizlerden gelen bir kavim İnsanların ve Ezakilerin Dünyasına teknoloji getirmiştir. İnsanları ve Ezakileri teknolojiye bağımlı kıldıktan sonra karşılığını almak isteyen kavim, tüm Cilleleri teslim alacağı son bir şölen tertip eder. Nükleer savaştan sonra enerji kaynakları tükenmiş Dünya'nın son umudu olan Cilleleri kaybetmemek için Kayra ve arkadaşları, 2069 yılında bu kavme karşı büyük bir savaş vermek zorundadır.",
+    "imdb": "0.0",
+    "imdb_id": "tt26217892",
+    "year": "2024",
+    "genres": [
+      "Animasyon"
+    ],
+    "cast": [
+      "Harun Can",
+      "İrem Alnıaçık",
+      "Merih Ermakastar",
+      "İskender Bağcılar",
+      "Alp Ünsal",
+      "Selin Kidil",
+      "Nihan Omuz",
+      "Burçin Artut",
+      "Nilay Cennetkuşu",
+      "Berk Avcı",
+      "Alisan Özkan",
+      "Kubilay Tunçer"
+    ],
+    "director": "Muhammet Musab Gündüz",
+    "poster": "https://image.tmdb.org/t/p/w500/yDuA1KeGEkvMW4VjeXgsgNsp9gT.jpg",
+    "cover_image": "https://dizipal.im/wp-content/uploads/2026/04/yDuA1KeGEkvMW4VjeXgsgNsp9gT.webp",
+    "trailer": "https://www.youtube.com/watch?v=7JzoMhZy9F0",
+    "platform": "Platform Disi"
   }
 ]
