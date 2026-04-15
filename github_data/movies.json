@@ -144899,5 +144899,64 @@
     "cover_image": "https://dizipal.im/wp-content/uploads/2026/04/yDuA1KeGEkvMW4VjeXgsgNsp9gT.webp",
     "trailer": "https://www.youtube.com/watch?v=7JzoMhZy9F0",
     "platform": "Platform Disi"
+  },
+  {
+    "type": "film",
+    "title": "Yol",
+    "url": "https://dizipal.im/the-trail/",
+    "videoUrl": "https://x.ag2m4.cfd/embed-k6tjwfa3fkef.html",
+    "added_date": "15 Nisan, 2026",
+    "description": "Aciklama yok.",
+    "imdb": "2.0",
+    "imdb_id": "tt32056305",
+    "year": "2023",
+    "genres": [
+      "Gerilim"
+    ],
+    "cast": [
+      "Kieran Urquhart",
+      "Suzy Whitefield",
+      "Jim Pope"
+    ],
+    "director": "Joseph Ollman",
+    "poster": "https://image.tmdb.org/t/p/w500/4slSp6ea8GuRXrix3JhhPjLg8Bm.jpg",
+    "cover_image": "https://dizipal.im/wp-content/uploads/2026/04/quKLhY8wdmMiwLkCURVpNUnHYxj.jpg",
+    "trailer": "",
+    "platform": "Platform Disi"
+  },
+  {
+    "type": "film",
+    "title": "Bodrumumdaki Adam",
+    "url": "https://dizipal.im/the-man-in-my-basement/",
+    "videoUrl": "https://x.ag2m4.cfd/embed-n4c0nqi4s4sr.html",
+    "added_date": "15 Nisan, 2026",
+    "description": "Şansı yaver gitmeyen Charles Blakey, bodrum katını gizemli bir yabancıya kiralamayı kabul eder ancak hayal ettiğinden çok daha karanlık bir gücü içeri alıyor olabileceğinden habersizdir.",
+    "imdb": "5.5",
+    "imdb_id": "tt12619462",
+    "year": "2025",
+    "genres": [
+      "Korku",
+      "Gizem",
+      "Gerilim"
+    ],
+    "cast": [
+      "Corey Hawkins",
+      "Willem Dafoe",
+      "Anna Diop",
+      "Jonathan Ajayi",
+      "Gershwyn Eustache Jnr",
+      "Pamela Nomvete",
+      "Tamara Lawrance",
+      "Brian Bovell",
+      "Lizzie Lomas",
+      "Mark Arnold",
+      "Kayla Meikle",
+      "Tim Dewberry"
+    ],
+    "director": "Nadia Latif",
+    "poster": "https://image.tmdb.org/t/p/w500/1zpeH8wOrM8p2TTAmBetwhe2BIx.jpg",
+    "cover_image": "https://image.tmdb.org/t/p/original/xR75PgmIxhS6ChjNUKgz4krC9MR.jpg",
+    "trailer": "https://www.youtube.com/watch?v=TzTBiay8-zk",
+    "platform": "Disney Plus"
   }
 ]
