@@ -144958,5 +144958,69 @@
     "cover_image": "https://image.tmdb.org/t/p/original/xR75PgmIxhS6ChjNUKgz4krC9MR.jpg",
     "trailer": "https://www.youtube.com/watch?v=TzTBiay8-zk",
     "platform": "Disney Plus"
+  },
+  {
+    "type": "film",
+    "title": "Ekmek kızartma makinesi",
+    "url": "https://dizipal.im/toaster/",
+    "videoUrl": "https://x.ag2m4.cfd/embed-c4ndlgm4slco.html",
+    "added_date": "15 Nisan, 2026",
+    "description": "Aciklama yok.",
+    "imdb": "0.0",
+    "imdb_id": "tt2957918",
+    "year": "2001",
+    "genres": [
+      "Komedi"
+    ],
+    "cast": [
+      "Sebastian Shepherd",
+      "Kat Savering",
+      "Nathan Hodges",
+      "Melissa Wintringham",
+      "Peggy Elliott",
+      "Carl Jones",
+      "Kariem Marbury",
+      "Eric Spradling",
+      "Mike Maletic"
+    ],
+    "director": "Mike Maletic",
+    "poster": "https://image.tmdb.org/t/p/w500/ukW2upqg9sJrx6ucsF5REY9qQUc.jpg",
+    "cover_image": "https://dizipal.im/wp-content/uploads/2026/04/cbYyWHc1dL1bfwEJbaMYDYKgWG2.webp",
+    "trailer": "",
+    "platform": "Platform Disi"
+  },
+  {
+    "type": "film",
+    "title": "Toplar Havaya",
+    "url": "https://dizipal.im/balls-up/",
+    "videoUrl": "https://x.ag2m4.cfd/embed-tzv7609kif10.html",
+    "added_date": "15 Nisan, 2026",
+    "description": "Bu uçuk kaçık komedide, pazarlamacılar Brad ve Elijah gemileri yakar ve Dünya Kupası için cesur bir prezervatif sponsorluğu teklifi yaparlar. Brezilya'daki içki dolu kutlamaları küresel bir skandala yol açınca kariyerlerini kurtarmak ve eve sağ salim dönebilmek için öfkeli taraftarlardan, suçlulardan ve güç peşindeki yetkililerden kaçmak zorunda kalırlar.",
+    "imdb": "5.0",
+    "imdb_id": "tt26735622",
+    "year": "2026",
+    "genres": [
+      "Aksiyon",
+      "Komedi"
+    ],
+    "cast": [
+      "Mark Wahlberg",
+      "Paul Walter Hauser",
+      "Sacha Baron Cohen",
+      "Benjamin Bratt",
+      "Luciano Szafir",
+      "Eva De Dominici",
+      "Daniela Melchior",
+      "Molly Shannon",
+      "Chelsey Crisp",
+      "Eric André",
+      "Jackson Tozer",
+      "Henrietta Amevor"
+    ],
+    "director": "Peter Farrelly",
+    "poster": "https://image.tmdb.org/t/p/w500/xwvJ3WzdJ1OCuDoY8LAxBUlQyig.jpg",
+    "cover_image": "https://image.tmdb.org/t/p/original/jRsjWwZzI39bTm44FNhRtiICd9k.jpg",
+    "trailer": "https://www.youtube.com/watch?v=zgzxY4RtxBg",
+    "platform": "Platform Disi"
   }
 ]
