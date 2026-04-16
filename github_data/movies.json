@@ -145022,5 +145022,76 @@
     "cover_image": "https://image.tmdb.org/t/p/original/jRsjWwZzI39bTm44FNhRtiICd9k.jpg",
     "trailer": "https://www.youtube.com/watch?v=zgzxY4RtxBg",
     "platform": "Platform Disi"
+  },
+  {
+    "type": "film",
+    "title": "alt ton",
+    "url": "https://dizipal.im/undertone/",
+    "videoUrl": "https://x.ag2m4.cfd/embed-fmwsoe42i40l.html",
+    "added_date": "16 Nisan, 2026",
+    "description": "Aciklama yok.",
+    "imdb": "6.8",
+    "imdb_id": "tt35892608",
+    "year": "2026",
+    "genres": [
+      "Korku",
+      "Gizem"
+    ],
+    "cast": [
+      "Nina Kiri",
+      "Adam DiMarco",
+      "Michèle Duquet",
+      "Keana Bastidas",
+      "Jeff Yung",
+      "Ryan Turner",
+      "Brian Quintero",
+      "Marisol D’Andrea",
+      "Austin Tuason",
+      "Seled Calderon",
+      "Bianca Nugara",
+      "Jayda Woods"
+    ],
+    "director": "Ian Tuason",
+    "poster": "https://image.tmdb.org/t/p/w500/qDQbFRqpHaRFC2Pg3a8E3mFTxbh.jpg",
+    "cover_image": "https://image.tmdb.org/t/p/original/qXxFWyur7jFkg2aQgENcXuyYeHF.jpg",
+    "trailer": "https://www.youtube.com/watch?v=7SmO6p-shD4",
+    "platform": "Platform Disi"
+  },
+  {
+    "type": "film",
+    "title": "Avatar: Aang, Son Hava Bükücü",
+    "url": "https://dizipal.im/avatar-aang-the-last-airbender/",
+    "videoUrl": "https://x.ag2m4.cfd/embed-wcasu94k9v1a.html",
+    "added_date": "16 Nisan, 2026",
+    "description": "Aciklama yok.",
+    "imdb": "0.0",
+    "imdb_id": "tt18259538",
+    "year": "2026",
+    "genres": [
+      "Aksiyon",
+      "Macera",
+      "Animasyon",
+      "Fantastik",
+      "Aile"
+    ],
+    "cast": [
+      "Eric Nam",
+      "Jessica Matten",
+      "Román Zaragoza",
+      "Dave Bautista",
+      "Steven Yeun",
+      "Dionne Quan",
+      "Taika Waititi",
+      "Geraldine Viswanathan",
+      "Dee Bradley Baker",
+      "Peta Sergeant",
+      "Freida Pinto",
+      "Ke Huy Quan"
+    ],
+    "director": "Lauren Montgomery",
+    "poster": "https://image.tmdb.org/t/p/w500/gPiyTLo5GGwtJl0L8TlaJF9r0KE.jpg",
+    "cover_image": "https://image.tmdb.org/t/p/original/sS3zGYFPcfM5pArVNWl6qLyaSmU.jpg",
+    "trailer": "",
+    "platform": "Platform Disi"
   }
 ]
