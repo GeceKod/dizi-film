@@ -145100,5 +145100,120 @@
     "cover_image": "https://image.tmdb.org/t/p/original/sS3zGYFPcfM5pArVNWl6qLyaSmU.jpg",
     "trailer": "",
     "platform": "Platform Disi"
+  },
+  {
+    "type": "film",
+    "title": "Oda arkadaşları",
+    "url": "https://dizipal.im/roommates/",
+    "videoUrl": "https://x.ag2m4.cfd/embed-c99vft6nlwpg.html",
+    "added_date": "17 Nisan, 2026",
+    "description": "Aciklama yok.",
+    "imdb": "5.0",
+    "imdb_id": "tt37540875",
+    "year": "2026",
+    "genres": [
+      "Komedi"
+    ],
+    "cast": [
+      "Sadie Sandler",
+      "Chloe East",
+      "Billy Bryk",
+      "Sarah Sherman",
+      "Natasha Lyonne",
+      "Nick Kroll",
+      "Aidan Langford",
+      "Carol Kane",
+      "Janeane Garofalo",
+      "Martin Herlihy",
+      "Bella Murphy",
+      "Jaya Harper"
+    ],
+    "director": "Chandler Levack",
+    "poster": "https://image.tmdb.org/t/p/w500/eW1s6omXIfVkTlmKVe9y9Dwwt4u.jpg",
+    "cover_image": "https://image.tmdb.org/t/p/original/uw9tk5NfyvQm9lX35dxsQh15NSL.jpg",
+    "trailer": "https://www.youtube.com/watch?v=PF3dDdeSIVc",
+    "platform": "Platform Disi"
+  },
+  {
+    "type": "film",
+    "title": "Kayıp Kızlar Adası",
+    "url": "https://dizipal.im/the-island-of-lost-girls/",
+    "videoUrl": "https://x.ag2m4.cfd/embed-w0n0pps2xc0l.html",
+    "added_date": "17 Nisan, 2026",
+    "description": "Aciklama yok.",
+    "imdb": "5.3",
+    "imdb_id": "tt21933142",
+    "year": "2024",
+    "genres": [
+      "Aile",
+      "Macera",
+      "Gerilim"
+    ],
+    "cast": [
+      "Avila Schmidt",
+      "Autumn Schmidt",
+      "Scarlet Schmidt"
+    ],
+    "director": "Ann-Marie Schmidt",
+    "poster": "https://image.tmdb.org/t/p/w500/eteV3jMCCXKuUSl4rgjATzu4GuO.jpg",
+    "cover_image": "https://image.tmdb.org/t/p/original/vQT4Y4nbpmlysVi0u99VdIbK8de.jpg",
+    "trailer": "https://www.youtube.com/watch?v=dmOE0q2vDFg",
+    "platform": "Platform Disi"
+  },
+  {
+    "type": "film",
+    "title": "Bir Goril Hikayesi: David Attenborough'un Anlattığı",
+    "url": "https://dizipal.im/a-gorilla-story-told-by-david-attenborough/",
+    "videoUrl": "https://x.ag2m4.cfd/embed-0qfno3gh7v17.html",
+    "added_date": "17 Nisan, 2026",
+    "description": "Aciklama yok.",
+    "imdb": "0.0",
+    "imdb_id": "tt39314348",
+    "year": "2026",
+    "genres": [
+      "Belgesel"
+    ],
+    "cast": [
+      "David Attenborough"
+    ],
+    "director": "James Reed",
+    "poster": "https://image.tmdb.org/t/p/w500/wjVzGYoe23Zko9PoKi97hHky8Jv.jpg",
+    "cover_image": "https://image.tmdb.org/t/p/original/hQFl9Ph7KXcRDc3BbN9mGkNivNh.jpg",
+    "trailer": "https://www.youtube.com/watch?v=u6Qs4W0uwBw",
+    "platform": "Platform Disi"
+  },
+  {
+    "type": "film",
+    "title": "180",
+    "url": "https://dizipal.im/180-2/",
+    "videoUrl": "https://x.ag2m4.cfd/embed-xee89nfbq6jt.html",
+    "added_date": "17 Nisan, 2026",
+    "description": "Aciklama yok.",
+    "imdb": "5.0",
+    "imdb_id": "tt40891145",
+    "year": "2026",
+    "genres": [
+      "Suç",
+      "Dram",
+      "Gerilim"
+    ],
+    "cast": [
+      "Prince Grootboom",
+      "Noxolo Dlamini",
+      "Danica De La Rey",
+      "Warren Masemola",
+      "Desmond Dube",
+      "Fana Mokoena",
+      "Kabelo Thai",
+      "Bongile Mantsai",
+      "Zenobia Kloppers",
+      "Makhaola Ndebele",
+      "Mpiloenhle Sithebe"
+    ],
+    "director": "Alex Yazbek",
+    "poster": "https://image.tmdb.org/t/p/w500/9ISjrhA38HpSSGtfiCk8lpziC3K.jpg",
+    "cover_image": "https://image.tmdb.org/t/p/original/iQSXJs6RbTumcwxMjCedDoK99rx.jpg",
+    "trailer": "",
+    "platform": "Platform Disi"
   }
 ]
