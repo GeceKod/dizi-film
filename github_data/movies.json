@@ -145166,7 +145166,7 @@
     "videoUrl": "https://x.ag2m4.cfd/embed-0qfno3gh7v17.html",
     "added_date": "17 Nisan, 2026",
     "description": "Aciklama yok.",
-    "imdb": "0.0",
+    "imdb": "8.0",
     "imdb_id": "tt39314348",
     "year": "2026",
     "genres": [
@@ -145214,5 +145214,74 @@
     "cover_image": "https://image.tmdb.org/t/p/original/iQSXJs6RbTumcwxMjCedDoK99rx.jpg",
     "trailer": "",
     "platform": "Platform Disi"
+  },
+  {
+    "type": "film",
+    "title": "Soyut Dışavurumcu Bir Dostluğun Anatomisi Veyahut Yan Yana",
+    "url": "https://dizipal.im/soyut-disavurumcu-bir-dostlugun-anatomisi-veyahut-yan-yana/",
+    "videoUrl": "https://x.ag2m4.cfd/embed-q3pajrd437if.html",
+    "added_date": "17 Nisan, 2026",
+    "description": "Geçirdiği kaza sonrası felç kalan zengin bir adam ile ona bakıcılık yapmaya başlayan, hayata farklı bakan bir adamın hikayesidir. Bu iki zıt karakterin ilişkisi, zamanla ikisinin de hayatını değiştiren, sıra dışı ve güçlü bir dostluğa dönüşür. Fransız yapımı Intouchables filminden uyarlandı.",
+    "imdb": "7.4",
+    "imdb_id": "tt37529347",
+    "year": "2025",
+    "genres": [
+      "Dram",
+      "Komedi"
+    ],
+    "cast": [
+      "Haluk Bilginer",
+      "Feyyaz Yiğit",
+      "Hatice Aslan",
+      "Bige Önal",
+      "Şevval Sam",
+      "Meyra Ahsen Temel",
+      "Şirin Öten",
+      "Berke Gündem",
+      "Şafak Topal",
+      "Kubilay Penbeklioğlu",
+      "Berat Çağan",
+      "Ceyla Karadeniz"
+    ],
+    "director": "Mert Baykal",
+    "poster": "https://image.tmdb.org/t/p/w500/hykA5yq9tHCKR7WENSgavrNdFeS.jpg",
+    "cover_image": "https://image.tmdb.org/t/p/original/438YXcPF7bkEjJUEktMn2GocS6Q.jpg",
+    "trailer": "https://www.youtube.com/watch?v=yXJhwf3QlV8",
+    "platform": "Platform Disi"
+  },
+  {
+    "type": "film",
+    "title": "İntikam",
+    "url": "https://dizipal.im/vengeance-2/",
+    "videoUrl": "https://x.ag2m4.cfd/embed-mnsoeljr81de.html",
+    "added_date": "17 Nisan, 2026",
+    "description": "Ben Manalowitz New York’ta yaşayan bir radyo sunucusudur. Genç adamın sevgilisinin öldürülmesi onun için büyük yıkım olur. Kız arkadaşının cinayetinin gizemini çözmeye karar veren Ben, onun başına neler geldiğini araştırmak için yola koyulur.",
+    "imdb": "6.6",
+    "imdb_id": "tt11976532",
+    "year": "2022",
+    "genres": [
+      "Komedi",
+      "Gizem",
+      "Gerilim"
+    ],
+    "cast": [
+      "B. J. Novak",
+      "Boyd Holbrook",
+      "J. Smith-Cameron",
+      "Issa Rae",
+      "Ashton Kutcher",
+      "Lio Tipton",
+      "Dove Cameron",
+      "Isabella Amara",
+      "Eli Bickel",
+      "John Mayer",
+      "Louanne Stephens",
+      "Zach Villa"
+    ],
+    "director": "B. J. Novak",
+    "poster": "https://image.tmdb.org/t/p/w500/sQYnZafrqE2Y9JSloS7kZzkVBes.jpg",
+    "cover_image": "https://image.tmdb.org/t/p/original/jwFBzWabfWpnN9P5YIVVX5W8WUY.jpg",
+    "trailer": "https://www.youtube.com/watch?v=POtgL_2qEHY",
+    "platform": "Apple TV Store"
   }
 ]
