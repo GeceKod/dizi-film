@@ -145283,5 +145283,102 @@
     "cover_image": "https://image.tmdb.org/t/p/original/jwFBzWabfWpnN9P5YIVVX5W8WUY.jpg",
     "trailer": "https://www.youtube.com/watch?v=POtgL_2qEHY",
     "platform": "Apple TV Store"
+  },
+  {
+    "type": "film",
+    "title": "Sonsuz Çerez",
+    "url": "https://dizipal.im/endless-cookie/",
+    "videoUrl": "https://x.ag2m4.cfd/embed-yqrg7o7ljqaa.html",
+    "added_date": "19 Nisan, 2026",
+    "description": "Aciklama yok.",
+    "imdb": "10.0",
+    "imdb_id": "tt34965172",
+    "year": "2025",
+    "genres": [
+      "Belgesel",
+      "Animasyon",
+      "Komedi"
+    ],
+    "cast": [
+      "Seth Scriver",
+      "Peter Scriver",
+      "Kristin Scriver",
+      "Dezray Scriver",
+      "Ada Scriver",
+      "Simone Scriver",
+      "Sterling Scriver",
+      "Sylvester Redhead",
+      "Peirsston Scriver",
+      "Rusty Redhead",
+      "Chris Scriver",
+      "Felice Scriver"
+    ],
+    "director": "Seth Scriver",
+    "poster": "https://image.tmdb.org/t/p/w500/m4QlGRQ8dSXIEPTYvKB54YvMGyE.jpg",
+    "cover_image": "https://image.tmdb.org/t/p/original/7wSdWSscNpeNV0faXUQBJVO4Gyp.jpg",
+    "trailer": "https://www.youtube.com/watch?v=7_vFaQByJwE",
+    "platform": "MUBI"
+  },
+  {
+    "type": "film",
+    "title": "Öldürdüğün Şeyler",
+    "url": "https://dizipal.im/oldurdugun-seyler/",
+    "videoUrl": "https://x.ag2m4.cfd/embed-ckmtqxsg80fj.html",
+    "added_date": "19 Nisan, 2026",
+    "description": "Hasta annesinin ölümü ile sarsılan Ali, babasından intikam almak üzere gizemli bahçıvanıyla kafa kafaya verir. Ancak ailesi ve yetkililer yaşlı adamın ortadan kayboluşunu araştırdıkça Ali eylemlerinin haklılığından şüphe etmeye başlar.",
+    "imdb": "6.1",
+    "imdb_id": "tt32367116",
+    "year": "2025",
+    "genres": [
+      "Gerilim",
+      "Dram"
+    ],
+    "cast": [
+      "Ekin Koç",
+      "Erkan Kolçak Köstendil",
+      "Hazar Ergüçlü",
+      "Selen Kurtaran",
+      "İdil Engindeniz",
+      "Ercan Kesal",
+      "Güliz Şirinyan",
+      "Aysan Sümercan",
+      "Doga Dortdogan",
+      "Serhat Nalbantoğlu",
+      "İpek Türktan",
+      "Sertan Müsellim"
+    ],
+    "director": "Alireza Khatami",
+    "poster": "https://image.tmdb.org/t/p/w500/9ROPs44Z4D3slcsu0lvPzXvtLGF.jpg",
+    "cover_image": "https://image.tmdb.org/t/p/original/81aIon8MEVc22269MqR6tVkt9rx.jpg",
+    "trailer": "https://www.youtube.com/watch?v=EJDh_VvKhi8",
+    "platform": "TV+"
+  },
+  {
+    "type": "film",
+    "title": "Bu İşin Şakası Yok",
+    "url": "https://dizipal.im/bu-isin-sakasi-yok/",
+    "videoUrl": "https://x.ag2m4.cfd/embed-vo9582evcxlf.html",
+    "added_date": "19 Nisan, 2026",
+    "description": "Murat ve Bora, ünlü şovmen Serkan San için çılgın bir kamera şakası çeker. Şaka sırasında biri, çete lideri Sadi, yere yapışır ve kalkamaz. Panikle onu aralarına alıp uzaklaşan ikili, çıkış yolu ararken kendilerini daha büyük bir belanın içinde bulur.",
+    "imdb": "0.0",
+    "imdb_id": "tt39798999",
+    "year": "2026",
+    "genres": [
+      "Komedi"
+    ],
+    "cast": [
+      "Ufuk Özkan",
+      "Ali Rıza Tanyeli",
+      "Alper Saylık",
+      "Alpaslan Özmol",
+      "Deniz Oral",
+      "Selahattin Taşdöğen",
+      "Rüya Coriç"
+    ],
+    "director": "Hasan Doğan",
+    "poster": "https://image.tmdb.org/t/p/w500/3SZuy7WyxKZJj25YvSBSG8rbkKM.jpg",
+    "cover_image": "https://image.tmdb.org/t/p/original/cqL3qdd6r5da48WdgNjHTnzcYZE.jpg",
+    "trailer": "",
+    "platform": "Platform Disi"
   }
 ]
