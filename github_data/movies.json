@@ -145448,5 +145448,40 @@
     "cover_image": "https://image.tmdb.org/t/p/original/9nzfyiYbmTUXWC4B2kwjl4NAlqO.jpg",
     "trailer": "https://www.youtube.com/watch?v=bCS_A0CI1kM",
     "platform": "Netflix"
+  },
+  {
+    "type": "film",
+    "title": "Organ Yolu",
+    "url": "https://dizipal.im/organ-trail/",
+    "videoUrl": "https://x.ag2m4.cfd/embed-3grqxd3ndek3.html",
+    "added_date": "28 Nisan, 2026",
+    "description": "Abigale ve ailesi, Oregon Yolu'nda ilerlerken acımasız bir kovboy çetesinin kurbanı olur. Hayatta kalan tek kişi olarak, dünyadaki tek varlığı olan ailesinin atını kana susamış haydutların pençelerinden kurtarmak için ne gerekiyorsa yapacaktır.",
+    "imdb": "6.1",
+    "imdb_id": "tt18071972",
+    "year": "2023",
+    "genres": [
+      "Korku",
+      "Vahşi Batı",
+      "Dram"
+    ],
+    "cast": [
+      "Zoé De Grand Maison",
+      "Mather Zickel",
+      "Lisa LoCicero",
+      "Olivia Grace Applegate",
+      "Nicholas Logan",
+      "Sam Trammell",
+      "Michael Abbott Jr.",
+      "Jessica Frances Dukes",
+      "Clé Bennett",
+      "Alejandro Akara",
+      "Thomas Lennon",
+      "Lukas Jann"
+    ],
+    "director": "Michael Patrick Jann",
+    "poster": "https://image.tmdb.org/t/p/w500/s9nwiVMOVvnS2Jt6hdy7UHoFSD0.jpg",
+    "cover_image": "https://image.tmdb.org/t/p/original/dE1SUD70ptplI0bKbdQCbbS8RZ0.jpg",
+    "trailer": "https://www.youtube.com/watch?v=dfo2Dr7X_s8",
+    "platform": "TOD TV"
   }
 ]
