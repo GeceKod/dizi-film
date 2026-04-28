@@ -145380,5 +145380,73 @@
     "cover_image": "https://image.tmdb.org/t/p/original/cqL3qdd6r5da48WdgNjHTnzcYZE.jpg",
     "trailer": "",
     "platform": "Platform Disi"
+  },
+  {
+    "type": "film",
+    "title": "Aykut Anhan: Babo'nun Öyküsü",
+    "url": "https://dizipal.im/babo-die-haftbefehl-story/",
+    "videoUrl": "https://x.ag2m4.cfd/embed-zdumn36295wt.html",
+    "added_date": "28 Nisan, 2026",
+    "description": "Aykut Anhan, namıdiğer Haftbefehl, kendi hayatını son derece dürüst bir bakış açısıyla ele alırken onun en yakınındaki kişiler de Alman rap yıldızının öyküsüne tanıklık ediyor.",
+    "imdb": "6.8",
+    "imdb_id": "tt38504137",
+    "year": "2025",
+    "genres": [
+      "Belgesel",
+      "Müzik"
+    ],
+    "cast": [
+      "Aykut Anhan",
+      "Nina Anhan",
+      "Xatar",
+      "Cem Anhan",
+      "Aytac Anhan",
+      "Niko Hüls",
+      "Jan Delay",
+      "Peter Fox",
+      "Marteria",
+      "Liz",
+      "Bausa",
+      "Soufian"
+    ],
+    "director": "Sinan Sevinç",
+    "poster": "https://image.tmdb.org/t/p/w500/xDcNgFDjo4byORStAQ0xfoPXK55.jpg",
+    "cover_image": "https://image.tmdb.org/t/p/original/yUddY9gsx4xFyJ145VFMHRWgZEb.jpg",
+    "trailer": "https://www.youtube.com/watch?v=7_17zRLHE24",
+    "platform": "Netflix"
+  },
+  {
+    "type": "film",
+    "title": "Tepe",
+    "url": "https://dizipal.im/apex/",
+    "videoUrl": "https://x.ag2m4.cfd/embed-70lqiqvizvxx.html",
+    "added_date": "28 Nisan, 2026",
+    "description": "Yas tutan bir kadın, Avustralya'nın vahşi doğasında tek başına maceraya çıkarak sınırlarını zorlar. Ancak kendisini avlamaya niyetli kurnaz bir katilin oyununa sürüklenecektir.",
+    "imdb": "6.5",
+    "imdb_id": "tt16431404",
+    "year": "2026",
+    "genres": [
+      "Gerilim",
+      "Aksiyon"
+    ],
+    "cast": [
+      "Charlize Theron",
+      "Taron Egerton",
+      "Eric Bana",
+      "Caitlin Stasey",
+      "Bessie Holland",
+      "Zachary Garred",
+      "Matt Whelan",
+      "Rob Carlton",
+      "Aaron Pedersen",
+      "Duncan Fellows",
+      "Julia Ohannessian",
+      "Niam Hogan"
+    ],
+    "director": "Baltasar Kormákur",
+    "poster": "https://image.tmdb.org/t/p/w500/gRtchtSLqA7yVtNVI6gqfBlIHa6.jpg",
+    "cover_image": "https://image.tmdb.org/t/p/original/9nzfyiYbmTUXWC4B2kwjl4NAlqO.jpg",
+    "trailer": "https://www.youtube.com/watch?v=bCS_A0CI1kM",
+    "platform": "Netflix"
   }
 ]
