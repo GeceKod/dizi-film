@@ -145483,5 +145483,40 @@
     "cover_image": "https://image.tmdb.org/t/p/original/dE1SUD70ptplI0bKbdQCbbS8RZ0.jpg",
     "trailer": "https://www.youtube.com/watch?v=dfo2Dr7X_s8",
     "platform": "TOD TV"
+  },
+  {
+    "type": "film",
+    "title": "Fildişi Kral",
+    "url": "https://dizipal.im/king-ivory/",
+    "videoUrl": "https://x.ag2m4.cfd/embed-7s89dmje269u.html",
+    "added_date": "1 Mayis, 2026",
+    "description": "Gerçek olaylara dayanır, Fentanil (nam-ı diğer Fildişi Kral), hapishane çetelerinin elindedir. Oklahoma'da polis olan Layne West, 777 Karteli'nin ve liderleri Ramon'un peşindedir. West'in ergenlik çağındaki oğlu Jackʼin fentanil kullanmaya başlaması ve bunun yakınları üzerindeki yıkıcı etkileri davayı kişisel bir meseleye dönüştürür.",
+    "imdb": "6.9",
+    "imdb_id": "tt25147850",
+    "year": "2025",
+    "genres": [
+      "Suç",
+      "Dram",
+      "Gerilim"
+    ],
+    "cast": [
+      "Ben Foster",
+      "Michael Mando",
+      "James Badge Dale",
+      "Graham Greene",
+      "Rory Cochrane",
+      "Melissa Leo",
+      "Ritchie Coster",
+      "George Carroll",
+      "Sam Quartin",
+      "Nikki Dixon",
+      "Ben Hall",
+      "Danny Boy O'Connor"
+    ],
+    "director": "John Swab",
+    "poster": "https://image.tmdb.org/t/p/w500/nZyf8ewIWvtVz5cCdtX30I4mwwD.jpg",
+    "cover_image": "https://image.tmdb.org/t/p/original/gcLFtgUEdbxacgZkLfLnrYw2wXQ.jpg",
+    "trailer": "https://www.youtube.com/watch?v=bC5WoBWImTI",
+    "platform": "Platform Disi"
   }
 ]
