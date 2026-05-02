@@ -145552,5 +145552,72 @@
     "cover_image": "https://image.tmdb.org/t/p/original/vSQSYd2zZTqc0zmHImwWEGGluMI.jpg",
     "trailer": "https://www.youtube.com/watch?v=53C6lYJHUtQ",
     "platform": "Platform Disi"
+  },
+  {
+    "type": "film",
+    "title": "Son-In-Law",
+    "url": "https://dizipal.im/son-in-law/",
+    "videoUrl": "https://x.ag2m4.cfd/embed-kp854okn8eoy.html",
+    "added_date": "2 Mayis, 2026",
+    "description": "Jose Sanchez zorlu bir dönemin ardından etrafa korku salan bir siyasi figür haline gelir. Fakat bu kez ne hafızalara kazınan bıyığı ne de sivri dili onu kurtarmaya yetecektir.",
+    "imdb": "5.5",
+    "imdb_id": "tt40660080",
+    "year": "2026",
+    "genres": [
+      "Komedi",
+      "Dram"
+    ],
+    "cast": [
+      "Adrián Vázquez",
+      "Jero Medina",
+      "David Gaitán",
+      "Verónica Bravo",
+      "Eduardo España",
+      "Rodrigo Virago",
+      "Ianis Guerrero",
+      "Mauro Sánchez Navarro",
+      "Jorge Zárate",
+      "Ian Scott Castillo"
+    ],
+    "director": "Gerardo Naranjo",
+    "poster": "https://image.tmdb.org/t/p/w500/9dZYYIvCPAJbZ0Y0cz0diLds97N.jpg",
+    "cover_image": "https://image.tmdb.org/t/p/original/2rDY49XDhsX2gLoI5jOPxqu6PUm.jpg",
+    "trailer": "",
+    "platform": "Netflix"
+  },
+  {
+    "type": "film",
+    "title": "iyi yol",
+    "url": "https://dizipal.im/buen-camino/",
+    "videoUrl": "https://x.ag2m4.cfd/embed-tga9sudphxhz.html",
+    "added_date": "2 Mayis, 2026",
+    "description": "Checco, zengin bir koltuk üreticisinin konforlu bir yaşam süren tek çocuğu. Lüks villalarda, hizmetçisi, genç Meksikalı sevgilisi, yat tatilleriyle zengin bir hayat yaşıyor. Ancak genç kızı Cristal kaybolduğunda, Roma'da eski eşiyle buluşup baba olmanın sorumluluğuyla tanışır.",
+    "imdb": "6.3",
+    "imdb_id": "tt38350059",
+    "year": "2025",
+    "genres": [
+      "Komedi",
+      "Aile",
+      "Macera"
+    ],
+    "cast": [
+      "Checco Zalone",
+      "Beatriz Arjona",
+      "Letizia Arnò",
+      "Martina Colombari",
+      "Hossein Taheri",
+      "Alfonso Santagata",
+      "Mariana Rodríguez",
+      "Cecilia Gragnani",
+      "Beatrice Abbro",
+      "Maurizio Bousso",
+      "Andrea Cosentino",
+      "Claudia Ferri"
+    ],
+    "director": "Gennaro Nunziante",
+    "poster": "https://image.tmdb.org/t/p/w500/4buulRVfRJcqgkR3AF6ln23TqR6.jpg",
+    "cover_image": "https://image.tmdb.org/t/p/original/qo2VoL7vyDWKvUejikxrdIFUDIa.jpg",
+    "trailer": "https://www.youtube.com/watch?v=fi10nVislwk",
+    "platform": "Netflix"
   }
 ]
