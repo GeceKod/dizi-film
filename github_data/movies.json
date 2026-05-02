@@ -145518,5 +145518,39 @@
     "cover_image": "https://image.tmdb.org/t/p/original/gcLFtgUEdbxacgZkLfLnrYw2wXQ.jpg",
     "trailer": "https://www.youtube.com/watch?v=bC5WoBWImTI",
     "platform": "Platform Disi"
+  },
+  {
+    "type": "film",
+    "title": "“Uğultulu Tepeler”",
+    "url": "https://dizipal.im/ugultulu-tepeler/",
+    "videoUrl": "https://x.ag2m4.cfd/embed-oeewdzqvvlpc.html",
+    "added_date": "2 Mayis, 2026",
+    "description": "Yorkshire bozkırlarında geçen, tutkulu ve fırtınalı bir aşk hikayesi; Heathcliff ve Catherine Earnshaw arasındaki yoğun ve yıkıcı ilişkiyi konu alıyor.",
+    "imdb": "6.5",
+    "imdb_id": "tt32897959",
+    "year": "2026",
+    "genres": [
+      "Romantik",
+      "Dram"
+    ],
+    "cast": [
+      "Margot Robbie",
+      "Jacob Elordi",
+      "Hong Chau",
+      "Alison Oliver",
+      "Shazad Latif",
+      "Martin Clunes",
+      "Ewan Mitchell",
+      "Amy Morgan",
+      "Jessica Knappett",
+      "Charlotte Mellington",
+      "Owen Cooper",
+      "Vy Nguyen"
+    ],
+    "director": "Emerald Fennell",
+    "poster": "https://image.tmdb.org/t/p/w500/tBtungYBSGJZylDnXU6xyqySrex.jpg",
+    "cover_image": "https://image.tmdb.org/t/p/original/vSQSYd2zZTqc0zmHImwWEGGluMI.jpg",
+    "trailer": "https://www.youtube.com/watch?v=53C6lYJHUtQ",
+    "platform": "Platform Disi"
   }
 ]
