@@ -145560,7 +145560,7 @@
     "videoUrl": "https://x.ag2m4.cfd/embed-kp854okn8eoy.html",
     "added_date": "2 Mayis, 2026",
     "description": "Jose Sanchez zorlu bir dönemin ardından etrafa korku salan bir siyasi figür haline gelir. Fakat bu kez ne hafızalara kazınan bıyığı ne de sivri dili onu kurtarmaya yetecektir.",
-    "imdb": "5.4",
+    "imdb": "5.2",
     "imdb_id": "tt40660080",
     "year": "2026",
     "genres": [
@@ -145619,5 +145619,25 @@
     "cover_image": "https://image.tmdb.org/t/p/original/qo2VoL7vyDWKvUejikxrdIFUDIa.jpg",
     "trailer": "https://www.youtube.com/watch?v=fi10nVislwk",
     "platform": "Netflix"
+  },
+  {
+    "type": "film",
+    "title": "Geri sayım: Rousey, Carano'ya Karşı",
+    "url": "https://dizipal.im/countdown-rousey-vs-carano/",
+    "videoUrl": "https://x.ag2m4.cfd/embed-7t8sxtlsgp29.html",
+    "added_date": "6 Mayis, 2026",
+    "description": "Aciklama yok.",
+    "imdb": "0.0",
+    "imdb_id": "",
+    "year": "2026",
+    "genres": [
+      "Belgesel"
+    ],
+    "cast": [],
+    "director": "",
+    "poster": "https://image.tmdb.org/t/p/w500/pVNvbDX9psQhmCvc37A3XKLZjEz.jpg",
+    "cover_image": "https://image.tmdb.org/t/p/original/k69rwfWXSJJzBJSvWdVawjzGLAs.jpg",
+    "trailer": "",
+    "platform": "Platform Disi"
   }
 ]
