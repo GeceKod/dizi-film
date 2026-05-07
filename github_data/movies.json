@@ -145639,5 +145639,38 @@
     "cover_image": "https://image.tmdb.org/t/p/original/k69rwfWXSJJzBJSvWdVawjzGLAs.jpg",
     "trailer": "https://www.imdb.com/video/vi1394133785/",
     "platform": "Platform Disi"
+  },
+  {
+    "type": "film",
+    "title": "Sarah'nın Yağı",
+    "url": "https://dizipal.im/sarahs-oil/",
+    "videoUrl": "https://x.ag2m4.cfd/embed-76dny34ukcjv.html",
+    "added_date": "7 Mayis, 2026",
+    "description": "Aciklama yok.",
+    "imdb": "8.1",
+    "imdb_id": "tt31727267",
+    "year": "2025",
+    "genres": [
+      "Dram"
+    ],
+    "cast": [
+      "Naya Desir-Johnson",
+      "Sonequa Martin-Green",
+      "Zachary Levi",
+      "Garret Dillahunt",
+      "Bridget Regan",
+      "Kenric Green",
+      "Adyan Copes",
+      "Stelio Savante",
+      "Mel Rodriguez",
+      "Jonathan Lipnicki",
+      "Marco Fuller",
+      "Kevin Downes"
+    ],
+    "director": "Cyrus Nowrasteh",
+    "poster": "https://image.tmdb.org/t/p/w500/Av1CK61z33v2OBFLD1yF5rdRxQ1.jpg",
+    "cover_image": "https://image.tmdb.org/t/p/original/43vbVQDJlY7VoY3VPo8MipicxXk.jpg",
+    "trailer": "https://www.youtube.com/watch?v=lcEOKJm_aLY",
+    "platform": "Amazon Prime Video"
   }
 ]
