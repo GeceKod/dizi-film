@@ -145672,5 +145672,70 @@
     "cover_image": "https://image.tmdb.org/t/p/original/43vbVQDJlY7VoY3VPo8MipicxXk.jpg",
     "trailer": "https://www.youtube.com/watch?v=lcEOKJm_aLY",
     "platform": "Amazon Prime Video"
+  },
+  {
+    "type": "film",
+    "title": "No Place to be Single",
+    "url": "https://dizipal.im/no-place-to-be-single/",
+    "videoUrl": "https://x.ag2m4.cfd/embed-ntouyahu5jow.html",
+    "added_date": "8 Mayis, 2026",
+    "description": "Felicia Kingsley'nin çok satan romanından esinlenen hikâyede aşkın tek geçer akçe sayıldığı, Toskana'nın kartpostal güzelliğindeki kasabası Belvedere'de geçiyor...",
+    "imdb": "6.6",
+    "imdb_id": "tt34906817",
+    "year": "2026",
+    "genres": [
+      "Romantik",
+      "Komedi"
+    ],
+    "cast": [
+      "Matilde Gioli",
+      "Cristiano Caccamo",
+      "Amanda Campana",
+      "Sebastiano Pigazzi",
+      "Cecilia Dazzi",
+      "Margherita Rebeggiani",
+      "Marco Cocci",
+      "Bebo Storti"
+    ],
+    "director": "Laura Chiossone",
+    "poster": "https://image.tmdb.org/t/p/w500/jipeG8v1XpQCeqMYDu4q0E3cw2U.jpg",
+    "cover_image": "https://image.tmdb.org/t/p/original/vnuVJGVwuflThtiAAqCuewiqYrw.jpg",
+    "trailer": "https://www.youtube.com/watch?v=oQwCYDTFvBI",
+    "platform": "Amazon Prime Video"
+  },
+  {
+    "type": "film",
+    "title": "Sevgili Suikastçım",
+    "url": "https://dizipal.im/my-dearest-assassin/",
+    "videoUrl": "https://x.ag2m4.cfd/embed-rjnhe4nfubtb.html",
+    "added_date": "8 Mayis, 2026",
+    "description": "Nadir bulunan kan grubu sebebiyle hedef hâline gelen bir kadın, âşık olduğu ölümcül suikastçının kollarında kendini güvende hisseder ve birlikte ölüm kalım savaşı verirler.",
+    "imdb": "8.0",
+    "imdb_id": "tt39749979",
+    "year": "2026",
+    "genres": [
+      "Aksiyon",
+      "Dram",
+      "Romantik"
+    ],
+    "cast": [
+      "พิมพ์ชนก ลือวิเศษไพบูลย์",
+      "ธนภพ ลีรัตนขจร",
+      "ศิวกร อดุลสุทธิกุล",
+      "ชาตโยดม หิรัญยัติ",
+      "ธีรชัย วิมลชัยฤกษ์",
+      "Teerawat Mulvilai",
+      "ชูพงษ์ ช่างปรุง",
+      "เกศริน เอกธวัชกุล",
+      "ชนุดม สุขสถิตย์",
+      "Nikorn Saetang",
+      "Namo Benedict Rebillet",
+      "วิน สกุลแสงประภา"
+    ],
+    "director": "Taweewat Wantha",
+    "poster": "https://image.tmdb.org/t/p/w500/mIVrW1XBTE3ZPN2QfQijafZhHCr.jpg",
+    "cover_image": "https://image.tmdb.org/t/p/original/d1TupF3vMdQ6BhnADkFiNf0ZBOo.jpg",
+    "trailer": "https://www.youtube.com/watch?v=y1Qq_kPL5UU",
+    "platform": "Netflix"
   }
 ]
