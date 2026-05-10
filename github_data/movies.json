@@ -144797,9 +144797,9 @@
     "type": "film",
     "title": "Kurtuluş Projesi",
     "url": "https://dizipal.im/project-hail-mary/",
-    "videoUrl": "https://x.ag2m4.cfd/embed-qs1m1urckfct.html",
-    "added_date": "13 Nisan, 2026",
-    "description": "Fen bilgisi öğretmeni Ryland Grace, evinden ışık yılları uzakta bir uzay gemisinde uyanır, kim olduğuna ya da oraya nasıl geldiğine dair hiçbir şey hatırlamaz. Hafızası yavaş yavaş yerine gelirken, görevini de çözmeye başlar: Güneşin sönmesine neden olan gizemli maddenin sırrını çözmek. Dünyadaki her şeyi yok olmaktan kurtarmak için tüm bilimsel bilgisine ve sıra dışı fikirlerine başvurmak zorundadır... Ancak beklenmedik bir dostluk, bu görevi tek başına yapmak zorunda kalmayacağı anlamına gelecektir.",
+    "videoUrl": "https://x.ag2m4.cfd/embed-xiudwifr92wo.html",
+    "added_date": "10 Mayis, 2026",
+    "description": "Fen bilgisi öğretmeni Ryland Grace, evinden ışık yılları uzakta bir uzay gemisinde uyanır, kim olduğuna ya da oraya nasıl geldiğine dair hiçbir şey hatırlamaz. Hafızası yavaş yavaş yerine gelirken görevini de çözmeye başlar: Güneşin sönmesine neden olan gizemli maddenin sırrını çözmek. Dünyadaki her şeyi yok olmaktan kurtarmak için tüm bilimsel bilgisine ve sıra dışı fikirlerine başvurmak zorundadır. Ancak beklenmedik bir dostluk, bu görevi tek başına yapmak zorunda kalmayacağı anlamına gelecektir.",
     "imdb": "8.2",
     "imdb_id": "tt12042730",
     "year": "2026",
@@ -144809,8 +144809,8 @@
     ],
     "cast": [
       "Ryan Gosling",
-      "James Ortiz",
       "Sandra Hüller",
+      "James Ortiz",
       "Lionel Boyce",
       "Milana Vayntrub",
       "Ken Leung",
@@ -144822,8 +144822,8 @@
       "Alice Brittain"
     ],
     "director": "Phil Lord",
-    "poster": "https://image.tmdb.org/t/p/w500/3Dc2ErTcioeVqBWK4jhmKNe4vhb.jpg",
-    "cover_image": "https://image.tmdb.org/t/p/original/8Tfys3mDZVp4tNoH2ktm06a0Tau.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/yihdXomYb5kTeSivtFndMy5iDmf.jpg",
+    "cover_image": "https://image.tmdb.org/t/p/original/xQRNN12LePQqqIbhP6xP5X212HG.jpg",
     "trailer": "https://www.youtube.com/watch?v=xFr4vGS9ouo",
     "platform": "Platform Disi"
   },
@@ -145736,6 +145736,77 @@
     "poster": "https://image.tmdb.org/t/p/w500/mIVrW1XBTE3ZPN2QfQijafZhHCr.jpg",
     "cover_image": "https://image.tmdb.org/t/p/original/d1TupF3vMdQ6BhnADkFiNf0ZBOo.jpg",
     "trailer": "https://www.youtube.com/watch?v=y1Qq_kPL5UU",
+    "platform": "Netflix"
+  },
+  {
+    "type": "film",
+    "title": "Hoplayanlar",
+    "url": "https://dizipal.im/hoppers/",
+    "videoUrl": "https://x.ag2m4.cfd/embed-53pa0dy3mhcn.html",
+    "added_date": "10 Mayis, 2026",
+    "description": "Hayvansever Mabel, insan bilincini gerçeğe yakın robotik hayvanlara aktarmak için tasarlanmış akıllı yeni bir teknolojiyi kullanır. Bu sayede kunduzlarla iletişim kurar ve hayvanlar dünyasında hayal edebileceğinin ötesinde gizemleri açığa çıkarır.",
+    "imdb": "7.8",
+    "imdb_id": "tt26443616",
+    "year": "2026",
+    "genres": [
+      "Macera",
+      "Animasyon",
+      "Komedi",
+      "Aile",
+      "Bilim-Kurgu"
+    ],
+    "cast": [
+      "Piper Curda",
+      "Bobby Moynihan",
+      "Jon Hamm",
+      "Kathy Najimy",
+      "Dave Franco",
+      "Eduardo Franco",
+      "Aparna Nancherla",
+      "Tom Law",
+      "Sam Richardson",
+      "Melissa Villaseñor",
+      "Isiah Whitlock Jr.",
+      "Steve Purcell"
+    ],
+    "director": "Daniel Chong",
+    "poster": "https://image.tmdb.org/t/p/w500/eYjLQ3ULyr3nWj218Cu7YYU0Z8x.jpg",
+    "cover_image": "https://image.tmdb.org/t/p/original/u53UYu5XG2hNgWGvs3xGhAVzypl.jpg",
+    "trailer": "https://www.youtube.com/watch?v=SSE8jaCE6LA",
+    "platform": "Platform Disi"
+  },
+  {
+    "type": "film",
+    "title": "Olağanüstü Akıllı Yaratıklar",
+    "url": "https://dizipal.im/remarkably-bright-creatures/",
+    "videoUrl": "https://x.ag2m4.cfd/embed-2etpem37x23q.html",
+    "added_date": "10 Mayis, 2026",
+    "description": "Çok satan romandan uyarlanan bu etkileyici dramada dul bir kadın, geceleri çalıştığı küçük kasaba akvaryumunda zeki bir ahtapot ve amaçsızca sürüklenen genç bir adamla bağ kurar.",
+    "imdb": "8.2",
+    "imdb_id": "tt33100314",
+    "year": "2026",
+    "genres": [
+      "Dram",
+      "Gizem"
+    ],
+    "cast": [
+      "Sally Field",
+      "Lewis Pullman",
+      "Colm Meaney",
+      "Joan Chen",
+      "Kathy Baker",
+      "Beth Grant",
+      "Sofia Black-D'Elia",
+      "Brandon McEwan",
+      "Donald Sales",
+      "Mapuana Makia",
+      "Laura Harris",
+      "Anthony Harrison"
+    ],
+    "director": "Olivia Newman",
+    "poster": "https://image.tmdb.org/t/p/w500/ArCaeK8Hhk80IXlvHsQwyZlddl9.jpg",
+    "cover_image": "https://image.tmdb.org/t/p/original/bVGHSe47W6oCQL1Q88pvRAet51A.jpg",
+    "trailer": "https://www.youtube.com/watch?v=b14IFe4an5k",
     "platform": "Netflix"
   }
 ]
