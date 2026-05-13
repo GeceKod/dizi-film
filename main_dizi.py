@@ -21,6 +21,7 @@ from bs4 import BeautifulSoup
 from curl_cffi import requests
 from seleniumbase import SB
 import tmdbsimple as tmdb
+from domain_config import is_dizipal_host, load_base_domain, replace_dizipal_host
 
 
 DEFAULT_DESCRIPTION = "Açıklama yok."
@@ -182,7 +183,7 @@ class SeriesProcessResult:
 def load_config() -> AppConfig:
     data_file = Path(os.getenv("DIZI_DATA_FILE", "diziler.json"))
     return AppConfig(
-        base_domain=os.getenv("DIZI_BASE_DOMAIN", "https://dizipal.im").rstrip("/"),
+        base_domain=load_base_domain("DIZI_BASE_DOMAIN"),
         data_file=data_file,
         legacy_data_file=Path(os.getenv("DIZI_LEGACY_DATA_FILE", "diziler_full.json")),
         state_file=Path(os.getenv("DIZI_STATE_FILE", "diziler_state.json")),
@@ -413,28 +414,10 @@ def fetch_html(url: str, cookies: dict[str, str], user_agent: str, config: AppCo
     return FetchPayload(url=url, status_code=None, error=last_error)
 
 
-def is_dizipal_host(hostname: str) -> bool:
-    normalized = hostname.lower().strip(".")
-    return normalized.startswith("dizipal.") or normalized.startswith("www.dizipal.")
-
-
-def canonicalize_dizipal_url(url: str, base_domain: str) -> str:
-    parsed = urlparse(url)
-    base = urlparse(base_domain)
-    if not parsed.hostname or not base.hostname:
-        return url
-    if not is_dizipal_host(parsed.hostname):
-        return url
-    return parsed._replace(
-        scheme=base.scheme or parsed.scheme or "https",
-        netloc=base.netloc,
-    ).geturl()
-
-
 def normalize_site_url(url: str | None, base_domain: str) -> str:
     if not url:
         return ""
-    return canonicalize_dizipal_url(urljoin(base_domain + "/", url), base_domain)
+    return replace_dizipal_host(urljoin(base_domain + "/", url), base_domain)
 
 
 def is_legacy_embed_url(url: str | None) -> bool:

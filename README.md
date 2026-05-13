@@ -10,6 +10,7 @@ Bu repo iki farkli calisma modunu ayni kod tabaninda tasir:
 - Sadece dizi: `BASLAT_DIZI.bat`
 - Sadece film: `BASLAT_FILM.bat`
 - Uctan uca senkron: `BASLAT_TUM_SENKRON.bat`
+- Domain degisikligi: `dizipal_domain.txt` dosyasini guncelle, sonra `DOMAIN_GUNCELLE.bat` calistir.
 
 ## GitHub tarafi
 
@@ -23,3 +24,5 @@ Bu repo iki farkli calisma modunu ayni kod tabaninda tasir:
 Kok dizindeki `diziler.json`, `movies.json` ve `dizipal.json` lokal tam veri dosyalaridir; repo'ya dahil edilmez. GitHub tarafinda commitlenen ciktilar `github_data/` altindadir.
 
 `videoUrl` alanlari artik embed/iframe adresi degil, ilgili film veya bolumun dogrudan Dizipal sayfa URL'sidir.
+
+Scraper varsayilan domaini `dizipal_domain.txt` dosyasindan okur. Ortam degiskenleri onceliklidir: `DIZI_BASE_DOMAIN`, `FILM_BASE_DOMAIN` veya ortak `DIZIPAL_BASE_DOMAIN`.

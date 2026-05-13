@@ -4,6 +4,7 @@ __pycache__/
 *.pyd
 *.tmp
 *.bak
+*.replacebak
 logs/
 diziler.json
 movies.json

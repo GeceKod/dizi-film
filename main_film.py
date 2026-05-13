@@ -19,6 +19,7 @@ from bs4 import BeautifulSoup
 from seleniumbase import SB
 import tmdbsimple as tmdb
 
+from domain_config import load_base_domain
 from main_dizi import (
     close_imdb_browser,
     DEFAULT_USER_AGENT,
@@ -101,7 +102,7 @@ class MovieProcessResult:
 def load_config() -> AppConfig:
     data_file = Path(os.getenv("FILM_DATA_FILE", "movies.json"))
     return AppConfig(
-        base_domain=os.getenv("FILM_BASE_DOMAIN", "https://dizipal.im").rstrip("/"),
+        base_domain=load_base_domain("FILM_BASE_DOMAIN"),
         data_file=data_file,
         state_file=Path(os.getenv("FILM_STATE_FILE", "movies_state.json")),
         log_file=Path(os.getenv("FILM_LOG_FILE", "logs/film_sync.log")),

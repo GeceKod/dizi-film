@@ -4,13 +4,14 @@ import json
 import os
 from pathlib import Path
 from typing import Any
-from urllib.parse import urljoin, urlparse
+from urllib.parse import urljoin
 
+from domain_config import load_base_domain, replace_dizipal_host
 
 DIZI_DOSYASI = Path(os.getenv("DIZI_DATA_FILE", "diziler.json"))
 FILM_DOSYASI = Path(os.getenv("FILM_DATA_FILE", "movies.json"))
 CIKTI_DOSYASI = Path(os.getenv("CIKTI_DOSYASI", "dizipal.json"))
-BASE_DOMAIN = os.getenv("DIZIPAL_BASE_DOMAIN", "https://dizipal.im").rstrip("/")
+BASE_DOMAIN = load_base_domain()
 
 
 def replace_file(source: Path, target: Path) -> None:
@@ -65,23 +66,10 @@ def load_json_list(path: Path) -> list[dict]:
     return payload
 
 
-def is_dizipal_host(hostname: str) -> bool:
-    normalized = hostname.lower().strip(".")
-    return normalized.startswith("dizipal.") or normalized.startswith("www.dizipal.")
-
-
 def normalize_site_url(url: str | None, base_domain: str = BASE_DOMAIN) -> str:
     if not url:
         return ""
-    normalized = urljoin(base_domain + "/", str(url))
-    parsed = urlparse(normalized)
-    base = urlparse(base_domain)
-    if parsed.hostname and base.hostname and is_dizipal_host(parsed.hostname):
-        normalized = parsed._replace(
-            scheme=base.scheme or parsed.scheme or "https",
-            netloc=base.netloc,
-        ).geturl()
-    return normalized
+    return replace_dizipal_host(urljoin(base_domain + "/", str(url)), base_domain)
 
 
 def normalize_direct_video_urls(record: dict[str, Any]) -> dict[str, Any]:

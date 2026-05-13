@@ -4,10 +4,11 @@ import json
 import os
 from pathlib import Path
 from typing import Any
-from urllib.parse import urljoin, urlparse
+from urllib.parse import urljoin
 
+from domain_config import load_base_domain, replace_dizipal_host
 
-BASE_DOMAIN = os.getenv("DIZIPAL_BASE_DOMAIN", "https://dizipal.im").rstrip("/")
+BASE_DOMAIN = load_base_domain()
 DATA_FILES = (
     Path("github_data/movies.json"),
     Path("github_data/diziler.json"),
@@ -15,23 +16,10 @@ DATA_FILES = (
 )
 
 
-def is_dizipal_host(hostname: str) -> bool:
-    normalized = hostname.lower().strip(".")
-    return normalized.startswith("dizipal.") or normalized.startswith("www.dizipal.")
-
-
 def normalize_site_url(url: str | None, base_domain: str = BASE_DOMAIN) -> str:
     if not url:
         return ""
-    normalized = urljoin(base_domain + "/", str(url))
-    parsed = urlparse(normalized)
-    base = urlparse(base_domain)
-    if parsed.hostname and base.hostname and is_dizipal_host(parsed.hostname):
-        normalized = parsed._replace(
-            scheme=base.scheme or parsed.scheme or "https",
-            netloc=base.netloc,
-        ).geturl()
-    return normalized
+    return replace_dizipal_host(urljoin(base_domain + "/", str(url)), base_domain)
 
 
 def normalize_record(record: dict[str, Any]) -> tuple[dict[str, Any], int]:
