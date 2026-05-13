@@ -145845,5 +145845,31 @@
     "cover_image": "https://image.tmdb.org/t/p/original/qO55CD8tgVL1T4WKn6zYFFiD6lL.jpg",
     "trailer": "https://www.youtube.com/watch?v=uu_Uv600Tu8",
     "platform": "Platform Disi"
+  },
+  {
+    "type": "film",
+    "title": "Otobüs: Bir Fransız Futbol İsyanı",
+    "url": "https://dizipal.im/the-bus-a-french-football-mutiny/",
+    "videoUrl": "https://dizipal.im/the-bus-a-french-football-mutiny/",
+    "added_date": "13 Mayis, 2026",
+    "description": "Aciklama yok.",
+    "imdb": "7.9",
+    "imdb_id": "tt37024319",
+    "year": "2026",
+    "genres": [
+      "Belgesel"
+    ],
+    "cast": [
+      "Raymond Domenech",
+      "Patrice Evra",
+      "Sylvain Wiltord",
+      "Bacary Sagna",
+      "Estelle Denis"
+    ],
+    "director": "Jérôme Fritel",
+    "poster": "https://image.tmdb.org/t/p/w500/sOsS71qbsHDjGkjnOACvz4Pvfee.jpg",
+    "cover_image": "https://image.tmdb.org/t/p/original/dTEbfFiaYupyhgFg9ZC4NpH5p8G.jpg",
+    "trailer": "",
+    "platform": "Platform Disi"
   }
 ]
