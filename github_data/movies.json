@@ -145810,5 +145810,40 @@
     "cover_image": "https://image.tmdb.org/t/p/original/bVGHSe47W6oCQL1Q88pvRAet51A.jpg",
     "trailer": "https://www.youtube.com/watch?v=b14IFe4an5k",
     "platform": "Netflix"
+  },
+  {
+    "type": "film",
+    "title": "The Punisher: One Last Kill",
+    "url": "https://dizipal.im/the-punisher-one-last-kill/",
+    "videoUrl": "https://dizipal.im/the-punisher-one-last-kill/",
+    "added_date": "13 Mayis, 2026",
+    "description": "Frank Castle intikamın ötesinde bir anlam ararken; beklenmedik bir güç onu yeniden savaşın tam ortasına çekiyor.",
+    "imdb": "8.1",
+    "imdb_id": "tt36042156",
+    "year": "2026",
+    "genres": [
+      "Aksiyon",
+      "Dram",
+      "Suç"
+    ],
+    "cast": [
+      "Jon Bernthal",
+      "Deborah Ann Woll",
+      "Jason R. Moore",
+      "Judith Light",
+      "Kelli Barrett",
+      "Andre Royo",
+      "John Douglas Thompson",
+      "Colton Hill",
+      "Nick Koumalatsos",
+      "Addie Bernthal",
+      "Mila Jaymes",
+      "Eduardo Campirano III"
+    ],
+    "director": "Reinaldo Marcus Green",
+    "poster": "https://image.tmdb.org/t/p/w500/jxiUMOqjwbcBp2Gzp2s7mySINAB.jpg",
+    "cover_image": "https://image.tmdb.org/t/p/original/qO55CD8tgVL1T4WKn6zYFFiD6lL.jpg",
+    "trailer": "https://www.youtube.com/watch?v=uu_Uv600Tu8",
+    "platform": "Platform Disi"
   }
 ]
