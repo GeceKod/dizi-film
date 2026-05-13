@@ -21,3 +21,5 @@ Bu repo iki farkli calisma modunu ayni kod tabaninda tasir:
 ## Onemli not
 
 Kok dizindeki `diziler.json`, `movies.json` ve `dizipal.json` lokal tam veri dosyalaridir; repo'ya dahil edilmez. GitHub tarafinda commitlenen ciktilar `github_data/` altindadir.
+
+`videoUrl` alanlari artik embed/iframe adresi degil, ilgili film veya bolumun dogrudan Dizipal sayfa URL'sidir.

@@ -346,11 +346,13 @@ def load_series_database(config: AppConfig) -> list[dict[str, Any]]:
         return []
 
     try:
-        return load_json_list(config.data_file)
+        payload = load_json_list(config.data_file)
+        return [normalize_series_record_urls(record, config.base_domain) for record in payload]
     except (json.JSONDecodeError, OSError, ValueError) as exc:
         logger.error("Ana JSON okunamadi: %s", exc)
         if config.backup_file.exists():
             backup_payload = load_json_list(config.backup_file)
+            backup_payload = [normalize_series_record_urls(record, config.base_domain) for record in backup_payload]
             atomic_write_json(config.data_file, backup_payload)
             logger.warning("Bozuk ana dosya yedekten geri yuklendi: %s", config.backup_file.name)
             return backup_payload
@@ -411,10 +413,71 @@ def fetch_html(url: str, cookies: dict[str, str], user_agent: str, config: AppCo
     return FetchPayload(url=url, status_code=None, error=last_error)
 
 
+def is_dizipal_host(hostname: str) -> bool:
+    normalized = hostname.lower().strip(".")
+    return normalized.startswith("dizipal.") or normalized.startswith("www.dizipal.")
+
+
+def canonicalize_dizipal_url(url: str, base_domain: str) -> str:
+    parsed = urlparse(url)
+    base = urlparse(base_domain)
+    if not parsed.hostname or not base.hostname:
+        return url
+    if not is_dizipal_host(parsed.hostname):
+        return url
+    return parsed._replace(
+        scheme=base.scheme or parsed.scheme or "https",
+        netloc=base.netloc,
+    ).geturl()
+
+
 def normalize_site_url(url: str | None, base_domain: str) -> str:
     if not url:
         return ""
-    return urljoin(base_domain + "/", url)
+    return canonicalize_dizipal_url(urljoin(base_domain + "/", url), base_domain)
+
+
+def is_legacy_embed_url(url: str | None) -> bool:
+    if not url:
+        return False
+    lowered = url.lower()
+    parsed = urlparse(url)
+    hostname = (parsed.hostname or "").lower()
+    path = parsed.path.lower()
+    if hostname and not is_dizipal_host(hostname):
+        return True
+    path_segments = [segment for segment in path.split("/") if segment]
+    return (
+        "iframe.php" in lowered
+        or "embed" in path
+        or any(segment in {"player", "player.php"} for segment in path_segments)
+    )
+
+
+def normalize_series_record_urls(record: dict[str, Any], base_domain: str) -> dict[str, Any]:
+    normalized = dict(record)
+    record_url = normalize_site_url(normalized.get("url", ""), base_domain)
+    if record_url:
+        normalized["url"] = record_url
+
+    episodes: list[Any] = []
+    for episode in normalized.get("episodes", []):
+        if not isinstance(episode, dict):
+            episodes.append(episode)
+            continue
+
+        episode_payload = dict(episode)
+        episode_url = normalize_site_url(episode_payload.get("url", ""), base_domain)
+        if episode_url:
+            episode_payload["url"] = episode_url
+            episode_payload["videoUrl"] = episode_url
+        elif episode_payload.get("videoUrl"):
+            episode_payload["videoUrl"] = normalize_site_url(episode_payload["videoUrl"], base_domain)
+        episodes.append(episode_payload)
+
+    if episodes:
+        normalized["episodes"] = episodes
+    return normalized
 
 
 def unique_preserve_order(values: list[str]) -> list[str]:
@@ -787,7 +850,10 @@ def build_episode_record(
     season_no, episode_no = parse_episode_numbers(episode_url)
     payload = dict(existing or {})
     payload["url"] = episode_url
-    payload["videoUrl"] = video_url or payload.get("videoUrl", "")
+    direct_video_url = video_url or payload.get("videoUrl", "")
+    if is_legacy_embed_url(direct_video_url):
+        direct_video_url = episode_url
+    payload["videoUrl"] = direct_video_url or episode_url
     if season_no and episode_no:
         payload["title"] = f"{series_title} {season_no}. Sezon {episode_no}. Bölüm"
         payload["episode_number"] = f"{episode_no}. Bölüm"
@@ -1691,7 +1757,7 @@ def fetch_series_catalog(series_url: str, session_ctx: SessionContext) -> tuple[
     return payload, failures
 
 
-def fetch_episode_iframe(
+def fetch_episode_direct_url(
     episode_url: str,
     series_title: str,
     cookies: dict[str, str],
@@ -1712,13 +1778,13 @@ def fetch_episode_iframe(
     if soup is None:
         return EpisodeFetchResult(url=episode_url, episode=None, error="Episode HTML parse edilemedi.")
 
-    iframe_url = extract_iframe_url(soup, config.base_domain)
-    if not iframe_url:
-        return EpisodeFetchResult(url=episode_url, episode=None, error="Iframe kaynagi bulunamadi.")
+    direct_url = normalize_site_url(payload.final_url or episode_url, config.base_domain)
+    if not direct_url:
+        return EpisodeFetchResult(url=episode_url, episode=None, error="Bolum URL'si bulunamadi.")
 
     return EpisodeFetchResult(
         url=episode_url,
-        episode=build_episode_record(series_title, episode_url, iframe_url),
+        episode=build_episode_record(series_title, episode_url, direct_url),
     )
 
 
@@ -1730,7 +1796,6 @@ def fetch_missing_episodes(
     fetched: dict[str, dict[str, Any]] = {}
     failures: list[str] = []
     retry_urls: list[str] = []
-    iframe_missing_urls: list[str] = []
 
     if not episode_urls:
         return fetched, failures
@@ -1738,7 +1803,7 @@ def fetch_missing_episodes(
     with ThreadPoolExecutor(max_workers=session_ctx.config.episode_workers) as executor:
         futures = {
             executor.submit(
-                fetch_episode_iframe,
+                fetch_episode_direct_url,
                 url,
                 series_title,
                 session_ctx.cookies,
@@ -1759,15 +1824,13 @@ def fetch_missing_episodes(
                 fetched[result.url] = result.episode
             elif result.session_invalid:
                 retry_urls.append(result.url)
-            elif result.error == "Iframe kaynagi bulunamadi.":
-                iframe_missing_urls.append(result.url)
             else:
                 failures.append(f"{result.url} -> {result.error}")
 
     if retry_urls:
         session_ctx.refresh(f"{len(retry_urls)} bolum sayfasi yeniden istenecek")
         for url in retry_urls:
-            result = fetch_episode_iframe(
+            result = fetch_episode_direct_url(
                 url,
                 series_title,
                 session_ctx.cookies,
@@ -1776,31 +1839,8 @@ def fetch_missing_episodes(
             )
             if result.episode:
                 fetched[result.url] = result.episode
-            elif result.error == "Iframe kaynagi bulunamadi.":
-                iframe_missing_urls.append(url)
             else:
                 failures.append(f"{url} -> {result.error or 'yeniden denemede basarisiz'}")
-
-    if iframe_missing_urls:
-        resolved_iframes = resolve_iframe_urls_with_browser(
-            iframe_missing_urls,
-            base_domain=session_ctx.config.base_domain,
-            wait_seconds=session_ctx.config.selenium_wait_seconds,
-            headless=session_ctx.config.selenium_headless,
-            log_context="bolum",
-            cookies=session_ctx.cookies,
-            log=logger,
-        )
-
-        unresolved_iframes: list[str] = []
-        for url in unique_preserve_order(iframe_missing_urls):
-            iframe_url = resolved_iframes.get(url, "")
-            if iframe_url:
-                fetched[url] = build_episode_record(series_title, url, iframe_url)
-            else:
-                unresolved_iframes.append(url)
-
-        failures.extend(f"{url} -> Selenium iframe kaynagi bulunamadi." for url in unresolved_iframes)
 
     return fetched, failures
 

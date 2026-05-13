@@ -4,11 +4,32 @@ import json
 import os
 from pathlib import Path
 from typing import Any
+from urllib.parse import urljoin, urlparse
 
 
 DIZI_DOSYASI = Path(os.getenv("DIZI_DATA_FILE", "diziler.json"))
 FILM_DOSYASI = Path(os.getenv("FILM_DATA_FILE", "movies.json"))
 CIKTI_DOSYASI = Path(os.getenv("CIKTI_DOSYASI", "dizipal.json"))
+BASE_DOMAIN = os.getenv("DIZIPAL_BASE_DOMAIN", "https://dizipal.im").rstrip("/")
+
+
+def replace_file(source: Path, target: Path) -> None:
+    try:
+        os.replace(source, target)
+        return
+    except PermissionError:
+        backup_path = target.with_suffix(target.suffix + ".replacebak")
+
+    if backup_path.exists():
+        backup_path.unlink()
+    os.replace(target, backup_path)
+    try:
+        os.replace(source, target)
+    except Exception:
+        os.replace(backup_path, target)
+        raise
+    finally:
+        backup_path.unlink(missing_ok=True)
 
 
 def atomic_write_json(path: Path, payload: object) -> None:
@@ -19,7 +40,7 @@ def atomic_write_json(path: Path, payload: object) -> None:
             json.dump(payload, handle, ensure_ascii=False, indent=2)
         with temp_path.open("r", encoding="utf-8") as handle:
             json.load(handle)
-        os.replace(temp_path, path)
+        replace_file(temp_path, path)
     finally:
         if temp_path.exists():
             temp_path.unlink(missing_ok=True)
@@ -44,10 +65,55 @@ def load_json_list(path: Path) -> list[dict]:
     return payload
 
 
+def is_dizipal_host(hostname: str) -> bool:
+    normalized = hostname.lower().strip(".")
+    return normalized.startswith("dizipal.") or normalized.startswith("www.dizipal.")
+
+
+def normalize_site_url(url: str | None, base_domain: str = BASE_DOMAIN) -> str:
+    if not url:
+        return ""
+    normalized = urljoin(base_domain + "/", str(url))
+    parsed = urlparse(normalized)
+    base = urlparse(base_domain)
+    if parsed.hostname and base.hostname and is_dizipal_host(parsed.hostname):
+        normalized = parsed._replace(
+            scheme=base.scheme or parsed.scheme or "https",
+            netloc=base.netloc,
+        ).geturl()
+    return normalized
+
+
+def normalize_direct_video_urls(record: dict[str, Any]) -> dict[str, Any]:
+    payload = dict(record)
+    content_url = normalize_site_url(payload.get("url", ""))
+    if content_url:
+        payload["url"] = content_url
+
+    if payload.get("type") == "film" and content_url:
+        payload["videoUrl"] = content_url
+
+    episodes: list[Any] = []
+    for episode in payload.get("episodes", []):
+        if not isinstance(episode, dict):
+            episodes.append(episode)
+            continue
+        episode_payload = dict(episode)
+        episode_url = normalize_site_url(episode_payload.get("url", ""))
+        if episode_url:
+            episode_payload["url"] = episode_url
+            episode_payload["videoUrl"] = episode_url
+        episodes.append(episode_payload)
+
+    if episodes:
+        payload["episodes"] = episodes
+    return payload
+
+
 def make_record_key(record: dict[str, Any], fallback_index: int) -> tuple[str, str]:
     content_type = str(record.get("type", "") or "")
     imdb_id = str(record.get("imdb_id", "") or "").strip()
-    url = str(record.get("url", "") or "").strip()
+    url = normalize_site_url(str(record.get("url", "") or "").strip())
     title = str(record.get("title", "") or "").strip().casefold()
 
     if imdb_id:
@@ -91,9 +157,9 @@ def main() -> None:
     print("JSON dosyalari birlestiriliyor...")
     print("-" * 40)
 
-    diziler = load_json_list(DIZI_DOSYASI)
-    filmler = load_json_list(FILM_DOSYASI)
-    mevcut_cikti = load_json_list(CIKTI_DOSYASI)
+    diziler = [normalize_direct_video_urls(record) for record in load_json_list(DIZI_DOSYASI)]
+    filmler = [normalize_direct_video_urls(record) for record in load_json_list(FILM_DOSYASI)]
+    mevcut_cikti = [normalize_direct_video_urls(record) for record in load_json_list(CIKTI_DOSYASI)]
     gelen_liste = diziler + filmler
     toplam_liste, replaced, added = merge_lists(mevcut_cikti, gelen_liste)
 

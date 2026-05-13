@@ -13,7 +13,7 @@ import logging
 import os
 import re
 import time
-from urllib.parse import parse_qs, urlparse
+from urllib.parse import urlparse
 
 from bs4 import BeautifulSoup
 from seleniumbase import SB
@@ -34,11 +34,11 @@ from main_dizi import (
     fetch_html,
     get_imdb_trailer_data,
     is_cloudflare_challenge,
+    is_legacy_embed_url,
     is_within_ttl,
     iso_now,
     load_json_list,
     normalize_site_url,
-    resolve_iframe_urls_with_browser,
     save_bootstrap_debug_artifacts,
 )
 from title_localization import resolve_turkish_title
@@ -185,15 +185,28 @@ def load_state(path: Path) -> dict[str, Any]:
         return default_state()
 
 
+def normalize_movie_record_urls(record: dict[str, Any], base_domain: str) -> dict[str, Any]:
+    normalized = dict(record)
+    direct_url = normalize_site_url(normalized.get("url", ""), base_domain)
+    if direct_url:
+        normalized["url"] = direct_url
+        normalized["videoUrl"] = direct_url
+    elif normalized.get("videoUrl"):
+        normalized["videoUrl"] = normalize_site_url(normalized["videoUrl"], base_domain)
+    return normalized
+
+
 def load_movie_database(config: AppConfig) -> list[dict[str, Any]]:
     if not config.data_file.exists():
         return []
     try:
-        return load_json_list(config.data_file)
+        payload = load_json_list(config.data_file)
+        return [normalize_movie_record_urls(record, config.base_domain) for record in payload]
     except (json.JSONDecodeError, OSError, ValueError) as exc:
         logger.error("Ana JSON okunamadi: %s", exc)
         if config.backup_file.exists():
             backup_payload = load_json_list(config.backup_file)
+            backup_payload = [normalize_movie_record_urls(record, config.base_domain) for record in backup_payload]
             atomic_write_json(config.data_file, backup_payload)
             logger.warning("Bozuk ana dosya yedekten geri yuklendi: %s", config.backup_file.name)
             return backup_payload
@@ -283,24 +296,8 @@ def normalize_movie_video_candidate(
     candidate_url: str | None,
     base_domain: str,
 ) -> tuple[str, bool]:
-    normalized_movie_url = normalize_site_url(movie_url, base_domain)
-    normalized_candidate = normalize_site_url(candidate_url or "", base_domain)
-    if not normalized_candidate:
-        return "", True
-
-    lowered = normalized_candidate.lower()
-    parsed = urlparse(normalized_candidate)
-    is_oembed_endpoint = (
-        "/wp-json/oembed/" in parsed.path.lower()
-        or ("oembed" in lowered and "format=xml" in lowered)
-    )
-
-    if is_oembed_endpoint:
-        target_candidates = parse_qs(parsed.query).get("url", [])
-        target_url = normalize_site_url(target_candidates[0], base_domain) if target_candidates else ""
-        return target_url or normalized_movie_url, True
-
-    return normalized_candidate, normalized_candidate == normalized_movie_url
+    direct_url = normalize_site_url(movie_url or candidate_url or "", base_domain)
+    return direct_url, False
 
 
 def extract_movie_added_date(soup: BeautifulSoup) -> str:
@@ -320,16 +317,20 @@ def extract_movie_cover_image(soup: BeautifulSoup, base_domain: str) -> str:
     return ""
 
 
-def parse_movie_detail_soup(soup: BeautifulSoup, base_domain: str) -> dict[str, Any]:
+def parse_movie_detail_soup(
+    soup: BeautifulSoup,
+    base_domain: str,
+    movie_url: str = "",
+) -> dict[str, Any]:
     return {
-        "videoUrl": extract_movie_video_url(soup, base_domain),
+        "videoUrl": normalize_site_url(movie_url, base_domain) if movie_url else "",
         "added_date": extract_movie_added_date(soup),
         "cover_image": extract_movie_cover_image(soup, base_domain),
     }
 
 
-def parse_movie_detail_html(html: str, base_domain: str) -> dict[str, Any]:
-    return parse_movie_detail_soup(BeautifulSoup(html, "html.parser"), base_domain)
+def parse_movie_detail_html(html: str, base_domain: str, movie_url: str = "") -> dict[str, Any]:
+    return parse_movie_detail_soup(BeautifulSoup(html, "html.parser"), base_domain, movie_url)
 
 
 def make_movie_fingerprint(payload: dict[str, Any] | None) -> str:
@@ -353,6 +354,7 @@ def record_needs_refresh(record: dict[str, Any] | None) -> bool:
     return any(
         (
             not record.get("videoUrl"),
+            is_legacy_embed_url(record.get("videoUrl")),
             not record.get("poster"),
             not record.get("imdb_id"),
             not record.get("trailer"),
@@ -925,32 +927,14 @@ def fetch_movie_detail(movie_url: str, session_ctx: SessionContext) -> tuple[dic
     detail_soup = detail_payload.soup()
     if detail_soup is None:
         return None, ["Detay HTML parse edilemedi."]
-    payload = parse_movie_detail_soup(detail_soup, session_ctx.config.base_domain)
-    payload["videoUrl"], should_try_browser = normalize_movie_video_candidate(
-        movie_url,
-        payload.get("videoUrl", ""),
+    payload = parse_movie_detail_soup(
+        detail_soup,
         session_ctx.config.base_domain,
+        detail_payload.final_url or movie_url,
     )
     failures: list[str] = []
-    if not payload.get("videoUrl") or should_try_browser:
-        resolved_iframes = resolve_iframe_urls_with_browser(
-            [movie_url],
-            base_domain=session_ctx.config.base_domain,
-            wait_seconds=session_ctx.config.selenium_wait_seconds,
-            headless=session_ctx.config.selenium_headless,
-            log_context="film",
-            cookies=session_ctx.cookies,
-            log=logger,
-        )
-        resolved_video_url, _ = normalize_movie_video_candidate(
-            movie_url,
-            resolved_iframes.get(movie_url, ""),
-            session_ctx.config.base_domain,
-        )
-        if resolved_video_url:
-            payload["videoUrl"] = resolved_video_url
-        if not payload.get("videoUrl"):
-            failures.append("Iframe kaynagi bulunamadi.")
+    if not payload.get("videoUrl"):
+        failures.append("Film URL'si bulunamadi.")
     return payload, failures
 
 
@@ -1061,9 +1045,9 @@ def process_movie_item(
             item.title,
             site_payload,
             detail_failures,
-            error="Film iframe kaynagi bulunamadi.",
+            error="Film URL'si bulunamadi.",
         )
-        logger.error("Film iframe kaynagi bulunamadi: %s", item.title)
+        logger.error("Film URL'si bulunamadi: %s", item.title)
         return MovieProcessResult(status="failed")
 
     should_process = (
