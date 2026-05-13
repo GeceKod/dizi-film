@@ -7,7 +7,15 @@ from pathlib import Path
 from typing import Any
 from urllib.parse import urlparse
 
-from domain_config import is_dizipal_host, load_base_domain, replace_dizipal_host
+from domain_config import (
+    extract_dizipal_imdb_slug,
+    imdb_title_url,
+    is_dizipal_host,
+    is_dizipal_url,
+    load_base_domain,
+    replace_dizipal_host,
+    vidmody_video_url,
+)
 
 
 DEFAULT_DATA_FILES = (
@@ -84,7 +92,25 @@ def update_value_domains(value: Any, base_domain: str) -> tuple[Any, int]:
 def normalize_direct_video_fields(record: dict[str, Any]) -> int:
     changes = 0
     content_url = record.get("url", "")
-    if record.get("type") == "film" and content_url and record.get("videoUrl") != content_url:
+    imdb_slug = extract_dizipal_imdb_slug(content_url)
+    if record.get("type") == "film" and imdb_slug:
+        desired_url = imdb_title_url(imdb_slug)
+        desired_video = vidmody_video_url(imdb_slug)
+        if record.get("url") != desired_url:
+            record["url"] = desired_url
+            changes += 1
+        if record.get("videoUrl") != desired_video:
+            record["videoUrl"] = desired_video
+            changes += 1
+        return changes
+
+    video_url = str(record.get("videoUrl", "") or "")
+    should_use_direct_url = (
+        content_url
+        and is_dizipal_url(content_url)
+        and (not video_url or "embed" in video_url.lower() or "iframe.php" in video_url.lower() or is_dizipal_url(video_url))
+    )
+    if record.get("type") == "film" and should_use_direct_url and record.get("videoUrl") != content_url:
         record["videoUrl"] = content_url
         changes += 1
 

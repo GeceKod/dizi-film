@@ -6,7 +6,14 @@ from pathlib import Path
 from typing import Any
 from urllib.parse import urljoin
 
-from domain_config import load_base_domain, replace_dizipal_host
+from domain_config import (
+    extract_dizipal_imdb_slug,
+    imdb_title_url,
+    is_dizipal_url,
+    load_base_domain,
+    replace_dizipal_host,
+    vidmody_video_url,
+)
 
 BASE_DOMAIN = load_base_domain()
 DATA_FILES = (
@@ -26,11 +33,29 @@ def normalize_record(record: dict[str, Any]) -> tuple[dict[str, Any], int]:
     changed = 0
     normalized = dict(record)
     content_url = normalize_site_url(normalized.get("url", ""))
+    imdb_slug = extract_dizipal_imdb_slug(content_url)
+    if normalized.get("type") == "film" and imdb_slug:
+        desired_url = imdb_title_url(imdb_slug)
+        desired_video = vidmody_video_url(imdb_slug)
+        if normalized.get("url") != desired_url:
+            normalized["url"] = desired_url
+            changed += 1
+        if normalized.get("videoUrl") != desired_video:
+            normalized["videoUrl"] = desired_video
+            changed += 1
+        return normalized, changed
+
     if content_url and normalized.get("url") != content_url:
         normalized["url"] = content_url
         changed += 1
 
-    if normalized.get("type") == "film" and content_url and normalized.get("videoUrl") != content_url:
+    video_url = str(normalized.get("videoUrl", "") or "")
+    should_use_direct_url = (
+        content_url
+        and is_dizipal_url(content_url)
+        and (not video_url or "embed" in video_url.lower() or "iframe.php" in video_url.lower() or is_dizipal_url(video_url))
+    )
+    if normalized.get("type") == "film" and should_use_direct_url and normalized.get("videoUrl") != content_url:
         normalized["videoUrl"] = content_url
         changed += 1
 

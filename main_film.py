@@ -19,7 +19,13 @@ from bs4 import BeautifulSoup
 from seleniumbase import SB
 import tmdbsimple as tmdb
 
-from domain_config import load_base_domain
+from domain_config import (
+    extract_dizipal_imdb_slug,
+    imdb_title_url,
+    is_dizipal_url,
+    load_base_domain,
+    vidmody_video_url,
+)
 from main_dizi import (
     close_imdb_browser,
     DEFAULT_USER_AGENT,
@@ -189,10 +195,18 @@ def load_state(path: Path) -> dict[str, Any]:
 def normalize_movie_record_urls(record: dict[str, Any], base_domain: str) -> dict[str, Any]:
     normalized = dict(record)
     direct_url = normalize_site_url(normalized.get("url", ""), base_domain)
+    imdb_slug = extract_dizipal_imdb_slug(direct_url)
+    if imdb_slug:
+        normalized["url"] = imdb_title_url(imdb_slug)
+        normalized["videoUrl"] = vidmody_video_url(imdb_slug)
+        return normalized
+
     if direct_url:
         normalized["url"] = direct_url
-        normalized["videoUrl"] = direct_url
-    elif normalized.get("videoUrl"):
+        video_url = normalized.get("videoUrl", "")
+        if is_dizipal_url(direct_url) and (not video_url or is_legacy_embed_url(video_url) or is_dizipal_url(video_url)):
+            normalized["videoUrl"] = direct_url
+    if normalized.get("videoUrl"):
         normalized["videoUrl"] = normalize_site_url(normalized["videoUrl"], base_domain)
     return normalized
 

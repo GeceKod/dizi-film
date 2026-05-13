@@ -6,7 +6,14 @@ from pathlib import Path
 from typing import Any
 from urllib.parse import urljoin
 
-from domain_config import load_base_domain, replace_dizipal_host
+from domain_config import (
+    extract_dizipal_imdb_slug,
+    imdb_title_url,
+    is_dizipal_url,
+    load_base_domain,
+    replace_dizipal_host,
+    vidmody_video_url,
+)
 
 DIZI_DOSYASI = Path(os.getenv("DIZI_DATA_FILE", "diziler.json"))
 FILM_DOSYASI = Path(os.getenv("FILM_DATA_FILE", "movies.json"))
@@ -75,10 +82,19 @@ def normalize_site_url(url: str | None, base_domain: str = BASE_DOMAIN) -> str:
 def normalize_direct_video_urls(record: dict[str, Any]) -> dict[str, Any]:
     payload = dict(record)
     content_url = normalize_site_url(payload.get("url", ""))
+    imdb_slug = extract_dizipal_imdb_slug(content_url)
+    if payload.get("type") == "film" and imdb_slug:
+        payload["url"] = imdb_title_url(imdb_slug)
+        payload["videoUrl"] = vidmody_video_url(imdb_slug)
+        return payload
+
     if content_url:
         payload["url"] = content_url
 
-    if payload.get("type") == "film" and content_url:
+    video_url = str(payload.get("videoUrl", "") or "")
+    if payload.get("type") == "film" and content_url and is_dizipal_url(content_url) and (
+        not video_url or "embed" in video_url.lower() or "iframe.php" in video_url.lower() or is_dizipal_url(video_url)
+    ):
         payload["videoUrl"] = content_url
 
     episodes: list[Any] = []

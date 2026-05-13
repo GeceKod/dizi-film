@@ -1,12 +1,14 @@
 from __future__ import annotations
 
 import os
+import re
 from pathlib import Path
 from urllib.parse import urlparse
 
 
 DEFAULT_BASE_DOMAIN = "https://dizipal.im"
 DEFAULT_DOMAIN_FILE = Path("dizipal_domain.txt")
+IMDB_ID_RE = re.compile(r"^tt\d+$", flags=re.IGNORECASE)
 
 
 def normalize_base_domain(value: str | None, fallback: str = DEFAULT_BASE_DOMAIN) -> str:
@@ -40,6 +42,27 @@ def is_dizipal_host(hostname: str | None) -> bool:
         return False
     normalized = hostname.lower().strip(".")
     return normalized.startswith("dizipal.") or normalized.startswith("www.dizipal.")
+
+
+def is_dizipal_url(url: str | None) -> bool:
+    if not url:
+        return False
+    return is_dizipal_host(urlparse(url).hostname)
+
+
+def extract_dizipal_imdb_slug(url: str | None) -> str:
+    if not url or not is_dizipal_url(url):
+        return ""
+    slug = urlparse(url).path.strip("/").split("/")[-1]
+    return slug if IMDB_ID_RE.fullmatch(slug or "") else ""
+
+
+def imdb_title_url(imdb_id: str) -> str:
+    return f"https://www.imdb.com/title/{imdb_id}/"
+
+
+def vidmody_video_url(imdb_id: str) -> str:
+    return f"https://vidmody.com/vs/{imdb_id}"
 
 
 def replace_dizipal_host(url: str, base_domain: str) -> str:
