@@ -145877,5 +145877,95 @@
     "cover_image": "https://image.tmdb.org/t/p/original/dTEbfFiaYupyhgFg9ZC4NpH5p8G.jpg",
     "trailer": "",
     "platform": "Netflix"
+  },
+  {
+    "type": "film",
+    "title": "Yılın Gelini",
+    "url": "https://dizipal.im/bride-of-the-year/",
+    "videoUrl": "https://dizipal.im/bride-of-the-year/",
+    "added_date": "15 Mayis, 2026",
+    "description": "Aciklama yok.",
+    "imdb": "0.0",
+    "imdb_id": "tt42192201",
+    "year": "2026",
+    "genres": [
+      "Komedi",
+      "Romantik"
+    ],
+    "cast": [
+      "Carine Rous",
+      "Bouwer Bosch",
+      "Armand Aucamp",
+      "Laura-lee Mostert",
+      "Lisa Tredoux",
+      "Hanli Rolfes",
+      "Terence Bridgett",
+      "Tobie Cronje",
+      "Woutrine Theron"
+    ],
+    "director": "Joshua Rous",
+    "poster": "https://image.tmdb.org/t/p/w500/geFc71rCYM8fErbROLY6n1LfAS6.jpg",
+    "cover_image": "https://image.tmdb.org/t/p/original/es6wAAA72qIKGecMggiRZNQK0fa.jpg",
+    "trailer": "",
+    "platform": "Platform Disi"
+  },
+  {
+    "type": "film",
+    "title": "Kaza",
+    "url": "https://dizipal.im/the-crash/",
+    "videoUrl": "https://dizipal.im/the-crash/",
+    "added_date": "15 Mayis, 2026",
+    "description": "Aciklama yok.",
+    "imdb": "7.3",
+    "imdb_id": "tt2499076",
+    "year": "2013",
+    "genres": [
+      "Belgesel"
+    ],
+    "cast": [
+      "Kevin Pearce",
+      "Shaun White",
+      "Scotty Lago",
+      "Jake Burton",
+      "Mason Aguirre",
+      "Danny Davis",
+      "Jack Mitrani"
+    ],
+    "director": "Lucy Walker",
+    "poster": "https://image.tmdb.org/t/p/w500/k2TCICq6OMmvbxLZ9Wm55ky73H8.jpg",
+    "cover_image": "https://image.tmdb.org/t/p/original/v9AghOkrVgoah0X9p1peshJY64W.jpg",
+    "trailer": "https://www.youtube.com/watch?v=2KkFZ-QC53Q",
+    "platform": "Platform Disi"
+  },
+  {
+    "type": "film",
+    "title": "Uykucu",
+    "url": "https://dizipal.im/uykucu/",
+    "videoUrl": "https://dizipal.im/uykucu/",
+    "added_date": "15 Mayis, 2026",
+    "description": "Ferman, “Masa” adlı gizli örgüt adına eski ajanları ortadan kaldıran soğukkanlı bir tetikçidir. Bir görev sırasında bir hedefi ortadan kaldırırken Saye ile karşılaşır ve beklenmedik şekilde ona aşık olur. Saye’yi öldürmek yerine örgüte kazandırmayı seçer. Bu karar, ikisinin de hayatında geri dönüşü olmayan bir yolun başlangıcı olur.",
+    "imdb": "6.7",
+    "imdb_id": "tt37536947",
+    "year": "2025",
+    "genres": [
+      "Aksiyon",
+      "Gerilim",
+      "Dram"
+    ],
+    "cast": [
+      "Çağatay Ulusoy",
+      "Elçin Sangu",
+      "Barış Falay",
+      "Ferit Kaya",
+      "Musa Uzunlar",
+      "Tamer Levent",
+      "Cengiz Bozkurt",
+      "Hüseyin Avni Danyal"
+    ],
+    "director": "Can Ulkay",
+    "poster": "https://image.tmdb.org/t/p/w500/jS3QZLD2zwcJYmulMESZnkfNlUD.jpg",
+    "cover_image": "https://image.tmdb.org/t/p/original/fOAIBZQOyqktxjpedHZKTDJegkt.jpg",
+    "trailer": "https://www.youtube.com/watch?v=LKWjfdEioaU",
+    "platform": "Platform Disi"
   }
 ]
