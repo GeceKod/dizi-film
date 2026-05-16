@@ -145972,5 +145972,40 @@
     "cover_image": "https://image.tmdb.org/t/p/original/fOAIBZQOyqktxjpedHZKTDJegkt.jpg",
     "trailer": "https://www.youtube.com/watch?v=LKWjfdEioaU",
     "platform": "Platform Disi"
+  },
+  {
+    "type": "film",
+    "title": "KARTAVYA",
+    "url": "https://dizipal.im/kartavya/",
+    "videoUrl": "https://dizipal.im/kartavya/",
+    "added_date": "16 Mayis, 2026",
+    "description": "Bir polis memuru, ailesinin güvenliği tehlikeye girip rahatsız edici tehditler artarken görevini yerine getirmek için ne kadar ileri gidebileceğine karar vermelidir.",
+    "imdb": "7.0",
+    "imdb_id": "tt39664733",
+    "year": "2026",
+    "genres": [
+      "Suç",
+      "Dram",
+      "Gerilim"
+    ],
+    "cast": [
+      "सैफ अली खान",
+      "रसिका दुग्गल",
+      "Sanjay Mishra",
+      "Saurabh Dwivedi",
+      "Zakir Hussain",
+      "Manish Chaudhary",
+      "Durgesh Kumar",
+      "Saharsh Kumar Shukla",
+      "Swastik Bhagat",
+      "Saurabh Abrol",
+      "Suraksha Gaire",
+      "Yudhvir Ahlawat"
+    ],
+    "director": "Pulkit",
+    "poster": "https://image.tmdb.org/t/p/w500/9VQvX7a05FgDKAiSGg71MHTXsyF.jpg",
+    "cover_image": "https://image.tmdb.org/t/p/original/mHm73HhpvGWfRkXNErcwc15Czrv.jpg",
+    "trailer": "https://www.youtube.com/watch?v=WnoY3M1eaeE",
+    "platform": "Netflix"
   }
 ]
