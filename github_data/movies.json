@@ -145633,18 +145633,22 @@
     "imdb_id": "tt40603309",
     "year": "2026",
     "genres": [
-      "Belgesel"
+      "Aksiyon"
     ],
     "cast": [
-      "Uma Thurman",
       "Ronda Rousey",
-      "Gina Carano"
+      "Gina Carano",
+      "Francis Ngannou",
+      "Philipe Lins",
+      "Nate Diaz",
+      "Mike Perry",
+      "Junior dos Santos"
     ],
     "director": "Jackie Decker",
-    "poster": "https://image.tmdb.org/t/p/w500/pVNvbDX9psQhmCvc37A3XKLZjEz.jpg",
-    "cover_image": "https://image.tmdb.org/t/p/original/k69rwfWXSJJzBJSvWdVawjzGLAs.jpg",
-    "trailer": "https://www.youtube.com/watch?v=cLpnircVSsk",
-    "platform": "Netflix"
+    "poster": "https://image.tmdb.org/t/p/w500/qunJJqUIgBJbxgqijmDfAlKT3AK.jpg",
+    "cover_image": "https://image.tmdb.org/t/p/original/6kfTCMluyikf6MRYZURZfx4Zsfh.jpg",
+    "trailer": "https://www.youtube.com/watch?v=g1fIeDbMtt0",
+    "platform": "Platform Disi"
   },
   {
     "type": "film",
