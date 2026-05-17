@@ -146011,5 +146011,51 @@
     "cover_image": "https://image.tmdb.org/t/p/original/mHm73HhpvGWfRkXNErcwc15Czrv.jpg",
     "trailer": "https://www.youtube.com/watch?v=WnoY3M1eaeE",
     "platform": "Netflix"
+  },
+  {
+    "type": "film",
+    "title": "Yiya Murano: Çay Saatinde Ölüm",
+    "url": "https://dizipal.im/yiya-murano-death-at-tea-time/",
+    "videoUrl": "https://dizipal.im/yiya-murano-death-at-tea-time/",
+    "added_date": "17 Mayis, 2026",
+    "description": "Aciklama yok.",
+    "imdb": "6.4",
+    "imdb_id": "tt41559856",
+    "year": "2026",
+    "genres": [
+      "Belgesel"
+    ],
+    "cast": [
+      "Martín Murano",
+      "Virginia Messi",
+      "Gabriela Boccalandro"
+    ],
+    "director": "Alejandro Hartmann",
+    "poster": "https://image.tmdb.org/t/p/w500/ma7BCNDfvndKg2mVRJqGJ83T9bp.jpg",
+    "cover_image": "https://image.tmdb.org/t/p/original/x6pJGUc9hXOEjvhtDZ0W8cPOzQy.jpg",
+    "trailer": "",
+    "platform": "Netflix"
+  },
+  {
+    "type": "film",
+    "title": "Jamie Vardy",
+    "url": "https://dizipal.im/jamie-vardy/",
+    "videoUrl": "https://dizipal.im/jamie-vardy/",
+    "added_date": "17 Mayis, 2026",
+    "description": "Yarı zamanlı futbolcuyken Premier Lig efsanesine dönüşen Jamie Vardy'nin eşi benzeri görülmemiş yolculuğunun ve tüm zorluklara rağmen zirveye yükselişinin öyküsüne tanık olun.",
+    "imdb": "8.0",
+    "imdb_id": "tt41777258",
+    "year": "2026",
+    "genres": [
+      "Belgesel"
+    ],
+    "cast": [
+      "Jamie Vardy"
+    ],
+    "director": "Jesse Vile",
+    "poster": "https://image.tmdb.org/t/p/w500/d0pODTh6FOwn87iOeXGb7nKOdNT.jpg",
+    "cover_image": "https://image.tmdb.org/t/p/original/weFG1yMIwVsjGr5YfdpltxpBh09.jpg",
+    "trailer": "https://www.youtube.com/watch?v=q7taU9-vOAo",
+    "platform": "Platform Disi"
   }
 ]
