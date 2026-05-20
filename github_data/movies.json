@@ -146064,16 +146064,23 @@
     "url": "https://dizipal.im/untold-uk-liverpools-miracle-of-lstanbul/",
     "videoUrl": "https://dizipal.im/untold-uk-liverpools-miracle-of-lstanbul/",
     "added_date": "19 Mayis, 2026",
-    "description": "Aciklama yok.",
+    "description": "Liverpool, 2005 Şampiyonlar Ligi finalinin devre arasına 3-0 yenik girmişti. Sonrasında yaşananlar ise oyuncuların bu belgeselde söylediği gibi, futbol tarihine geçti.",
     "imdb": "0.0",
-    "imdb_id": "",
-    "year": "",
-    "genres": [],
-    "cast": [],
-    "director": "",
-    "poster": "https://dizipal.im/wp-content/uploads/2026/05/oS1ad6L9ybHYEJLljmTkxn4ORDC.jpg",
-    "cover_image": "https://dizipal.im/wp-content/uploads/2026/05/oS1ad6L9ybHYEJLljmTkxn4ORDC.jpg",
-    "trailer": "",
-    "platform": "Platform Disi"
+    "imdb_id": "tt41801280",
+    "year": "2026",
+    "genres": [
+      "Belgesel",
+      "Tarih"
+    ],
+    "cast": [
+      "Jamie Carragher",
+      "Steven Gerrard",
+      "Rafael Benítez"
+    ],
+    "director": "Matthew Rudge",
+    "poster": "https://image.tmdb.org/t/p/w500/oS1ad6L9ybHYEJLljmTkxn4ORDC.jpg",
+    "cover_image": "https://image.tmdb.org/t/p/original/54SeexavwTPRSYtkkGks93LaR62.jpg",
+    "trailer": "https://www.youtube.com/watch?v=KlyNjng1SjU",
+    "platform": "Netflix"
   }
 ]
