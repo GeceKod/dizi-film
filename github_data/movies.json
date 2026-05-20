@@ -146082,5 +146082,38 @@
     "cover_image": "https://image.tmdb.org/t/p/original/54SeexavwTPRSYtkkGks93LaR62.jpg",
     "trailer": "https://www.youtube.com/watch?v=KlyNjng1SjU",
     "platform": "Netflix"
+  },
+  {
+    "type": "film",
+    "title": "Tom Clancy'den Jack Ryan: Hayalet Savaş",
+    "url": "https://dizipal.im/tom-clancys-jack-ryan-ghost-war/",
+    "videoUrl": "https://dizipal.im/tom-clancys-jack-ryan-ghost-war/",
+    "added_date": "20 Mayis, 2026",
+    "description": "Bu yeni filmde Jack Ryan, uluslararası gizli bir görevin ölümcül bir komployu ortaya çıkarmasıyla istemeyerek de olsa casusluk dünyasına geri döner. Zamana karşı yarışan Jack, başıboş bir karanlık operasyon birimine karşı çok riskli ve çok kişisel bir savaşta CIA arkadaşları Mike November ve James Greer ile keskin zekâlı MI6 ajanı Emma Marlow'a katılır.",
+    "imdb": "5.6",
+    "imdb_id": "tt34378301",
+    "year": "2026",
+    "genres": [
+      "Aksiyon",
+      "Gerilim",
+      "Dram"
+    ],
+    "cast": [
+      "John Krasinski",
+      "Sienna Miller",
+      "Wendell Pierce",
+      "Michael Kelly",
+      "Max Beesley",
+      "JJ Feild",
+      "Douglas Hodge",
+      "Betty Gabriel",
+      "Alex Brockdorff",
+      "Mckenna Bridger"
+    ],
+    "director": "Andrew Bernstein",
+    "poster": "https://image.tmdb.org/t/p/w500/6orkLLEy9odOEYNWfcH5oedF7yg.jpg",
+    "cover_image": "https://image.tmdb.org/t/p/original/dd31qJxOarrHyGZwYsCzOjobQzP.jpg",
+    "trailer": "https://www.youtube.com/watch?v=-4ZVFspRn3M",
+    "platform": "Platform Disi"
   }
 ]
