@@ -145562,7 +145562,7 @@
     "videoUrl": "https://dizipal.im/son-in-law/",
     "added_date": "2 Mayis, 2026",
     "description": "Jose Sanchez zorlu bir dönemin ardından etrafa korku salan bir siyasi figür haline gelir. Fakat bu kez ne hafızalara kazınan bıyığı ne de sivri dili onu kurtarmaya yetecektir.",
-    "imdb": "5.1",
+    "imdb": "5.7",
     "imdb_id": "tt40660080",
     "year": "2026",
     "genres": [
@@ -146114,6 +146114,72 @@
     "poster": "https://image.tmdb.org/t/p/w500/6orkLLEy9odOEYNWfcH5oedF7yg.jpg",
     "cover_image": "https://image.tmdb.org/t/p/original/dd31qJxOarrHyGZwYsCzOjobQzP.jpg",
     "trailer": "https://www.youtube.com/watch?v=-4ZVFspRn3M",
+    "platform": "Platform Disi"
+  },
+  {
+    "type": "film",
+    "title": "Önce Kadınlar",
+    "url": "https://dizipal.im/ladies-first/",
+    "videoUrl": "https://dizipal.im/ladies-first/",
+    "added_date": "22 Mayis, 2026",
+    "description": "Küstah ama karizmatik bir çapkının para, güç ve günübirlik ilişkilerle dolu hayatı, kadınların egemenliğindeki paralel bir dünyada uyanınca altüst olur.",
+    "imdb": "8.8",
+    "imdb_id": "tt34611082",
+    "year": "2026",
+    "genres": [
+      "Komedi"
+    ],
+    "cast": [
+      "Sacha Baron Cohen",
+      "Rosamund Pike",
+      "Tom Davis",
+      "Emily Mortimer",
+      "Weruche Opia",
+      "Charles Dance",
+      "Fiona Shaw",
+      "Richard E. Grant",
+      "Red Tennant",
+      "Kathryn Hunter",
+      "Kadiff Kirwan",
+      "Bill Paterson"
+    ],
+    "director": "Thea Sharrock",
+    "poster": "https://image.tmdb.org/t/p/w500/kjR56Yv17pbjTVBTMjqepvcus4f.jpg",
+    "cover_image": "https://image.tmdb.org/t/p/original/z1hekwU7a7FUP6XvqDwJjxAbrXJ.jpg",
+    "trailer": "https://www.youtube.com/watch?v=yeetI2DfbaE",
+    "platform": "Platform Disi"
+  },
+  {
+    "type": "film",
+    "title": "Adile Naşit",
+    "url": "https://dizipal.im/adile-nasit/",
+    "videoUrl": "https://dizipal.im/adile-nasit/",
+    "added_date": "22 Mayis, 2026",
+    "description": "Yeşilçam'ın efsane isimlerinden biri olan Adile Naşit'in hayatının farklı dönemlerini gözler önüne serecek.",
+    "imdb": "0.0",
+    "imdb_id": "tt36606532",
+    "year": "2025",
+    "genres": [
+      "Dram"
+    ],
+    "cast": [
+      "Meltem Kaptan",
+      "Özgürcan Çevik",
+      "Seda Bakan",
+      "Levent Can",
+      "Serhat Tutumluer",
+      "Bülent Seyran",
+      "Mehmet Avdan",
+      "Deniz Cengiz",
+      "Tarık Ündüz",
+      "Bora Akkaş",
+      "Şeyla Halis",
+      "Tülin Özen"
+    ],
+    "director": "Çağan Irmak",
+    "poster": "https://image.tmdb.org/t/p/w500/nIlaVCFJuMrIgAIPyHefHVExL3w.jpg",
+    "cover_image": "https://image.tmdb.org/t/p/original/ze70dN2RVtfLms86dV1Eo0j4Vyq.jpg",
+    "trailer": "https://www.youtube.com/watch?v=R52kwIkWTEs",
     "platform": "Platform Disi"
   }
 ]
