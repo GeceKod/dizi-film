@@ -145629,7 +145629,7 @@
     "videoUrl": "https://dizipal.im/countdown-rousey-vs-carano/",
     "added_date": "6 Mayis, 2026",
     "description": "Aciklama yok.",
-    "imdb": "6.5",
+    "imdb": "6.3",
     "imdb_id": "tt40603309",
     "year": "2026",
     "genres": [
@@ -146186,5 +146186,68 @@
     "cover_image": "https://image.tmdb.org/t/p/original/ze70dN2RVtfLms86dV1Eo0j4Vyq.jpg",
     "trailer": "https://www.youtube.com/watch?v=R52kwIkWTEs",
     "platform": "Platform Disi"
+  },
+  {
+    "type": "film",
+    "title": "Kutup adamı",
+    "url": "https://dizipal.im/poolman/",
+    "videoUrl": "https://dizipal.im/poolman/",
+    "added_date": "24 Mayis, 2026",
+    "description": "Poolman, günlerini Tahitian Tiki apartman bloğunun havuzuyla ilgilenerek ve memleketini yaşanacak daha iyi bir yer haline getirmek için mücadele ederek geçiren, Los Angeles yerlisi Darren Barrenman'ın hikayesini konu ediyor. Femme fatale June Del Rey tarafından şaibeli bir iş anlaşmasının ardındaki gerçeği ortaya çıkarmakla görevlendirilen Darren, yozlaşmış bir politikacı ve açgözlü bir arazi geliştiriciyle mücadele etmek için arkadaşlarından yardım ister. Darren'in araştırması, sevgili şehri ve kendisi hakkında gizli bir gerçeği ortaya çıkarır.",
+    "imdb": "4.3",
+    "imdb_id": "tt18077924",
+    "year": "2024",
+    "genres": [
+      "Gizem",
+      "Komedi"
+    ],
+    "cast": [
+      "Chris Pine",
+      "Annette Bening",
+      "Danny DeVito",
+      "DeWanda Wise",
+      "Jennifer Jason Leigh",
+      "Stephen Tobolowsky",
+      "Clancy Brown",
+      "John Ortiz",
+      "Ray Wise",
+      "Juliet Mills",
+      "Aflamu Johnson",
+      "Armie Hicks Jr."
+    ],
+    "director": "Chris Pine",
+    "poster": "https://image.tmdb.org/t/p/w500/vVz4Rh4j6FQTq9eva3xEvCMumAh.jpg",
+    "cover_image": "https://image.tmdb.org/t/p/original/81mBCIvDLNzIxTNWg1nG1OXufJe.jpg",
+    "trailer": "https://www.youtube.com/watch?v=Xrrxay3-fk8",
+    "platform": "Netflix"
+  },
+  {
+    "type": "film",
+    "title": "Motorcu",
+    "url": "https://dizipal.im/biker/",
+    "videoUrl": "https://dizipal.im/biker/",
+    "added_date": "24 Mayis, 2026",
+    "description": "Deneyimli bir motokrosçu, bıraktığı bu zorlu spora geri dönerken çetin bir rekabet ve sınırlarını zorlayan babasıyla yüzleşir.",
+    "imdb": "6.2",
+    "imdb_id": "tt31593809",
+    "year": "2026",
+    "genres": [
+      "Macera",
+      "Dram"
+    ],
+    "cast": [
+      "Sharwanand",
+      "Dr. Rajasekhar",
+      "Malavika Nair",
+      "Atul Kulkarni",
+      "Brahmaji",
+      "Dayanand Reddy",
+      "Shashank"
+    ],
+    "director": "abhilash reddy",
+    "poster": "https://image.tmdb.org/t/p/w500/uNN0DqB7fwGeX3uNhTfQzzKhgTP.jpg",
+    "cover_image": "https://image.tmdb.org/t/p/original/yrsWvYxnmA7ntxZtO9K0OInjyRA.jpg",
+    "trailer": "https://www.imdb.com/video/vi756271897/",
+    "platform": "Netflix"
   }
 ]
