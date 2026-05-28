@@ -146249,5 +146249,42 @@
     "cover_image": "https://image.tmdb.org/t/p/original/yrsWvYxnmA7ntxZtO9K0OInjyRA.jpg",
     "trailer": "https://www.imdb.com/video/vi756271897/",
     "platform": "Netflix"
+  },
+  {
+    "type": "film",
+    "title": "Süper Mario Galaksi Filmi",
+    "url": "https://dizipal.im/the-super-mario-galaxy-movie/",
+    "videoUrl": "https://dizipal.im/the-super-mario-galaxy-movie/",
+    "added_date": "28 Mayis, 2026",
+    "description": "Mario, Luigi ve arkadaşları, bu kez Mantar Krallığı’nın dışına çıkarak galaksiler arasında geçen bir yolculuğa katılır. Farklı gezegenlerde ilerleyen ekip, yeni karakterlerle karşılaşırken evrendeki dengeyi tehdit eden bir planla da yüzleşir. Bowser ve Bowser Jr.’ın kontrolü ele geçirme girişimi, Mario ve ekibini yıldızlar arası bir mücadeleye sürükler. Yol boyunca karşılarına çıkan engeller ve ittifaklar, bu kez çok daha büyük bir tehdide karşı birlikte hareket etmelerini gerektirir.",
+    "imdb": "8.0",
+    "imdb_id": "tt28650488",
+    "year": "2026",
+    "genres": [
+      "Aile",
+      "Komedi",
+      "Macera",
+      "Fantastik",
+      "Animasyon"
+    ],
+    "cast": [
+      "Chris Pratt",
+      "Anya Taylor-Joy",
+      "Charlie Day",
+      "Jack Black",
+      "Donald Glover",
+      "Benny Safdie",
+      "Brie Larson",
+      "Keegan-Michael Key",
+      "Glen Powell",
+      "Luis Guzmán",
+      "Issa Rae",
+      "Kevin Michael Richardson"
+    ],
+    "director": "Michael Jelenic",
+    "poster": "https://image.tmdb.org/t/p/w500/hoA55UeOCYnO2EkX93EFa2e6g1i.jpg",
+    "cover_image": "https://image.tmdb.org/t/p/original/9Z2uDYXqJrlmePznQQJhL6d92Rq.jpg",
+    "trailer": "https://www.youtube.com/watch?v=En5QZmL5R1s",
+    "platform": "Platform Disi"
   }
 ]
