@@ -145077,9 +145077,9 @@
     "imdb_id": "tt18259538",
     "year": "2026",
     "genres": [
-      "Animasyon",
       "Aksiyon",
       "Macera",
+      "Animasyon",
       "Fantastik"
     ],
     "cast": [
@@ -146425,5 +146425,127 @@
     "cover_image": "https://image.tmdb.org/t/p/original/sm3ErHMXQLaNdo74vbIa1JRXIXS.jpg",
     "trailer": "https://www.youtube.com/watch?v=SZZTWO4_wto",
     "platform": "Google Play Movies"
+  },
+  {
+    "type": "film",
+    "title": "Sürgü",
+    "url": "https://dizipal.im/poldi/",
+    "videoUrl": "https://dizipal.im/poldi/",
+    "added_date": "4 Haziran, 2026",
+    "description": "Aciklama yok.",
+    "imdb": "0.0",
+    "imdb_id": "tt42456008",
+    "year": "2026",
+    "genres": [
+      "Belgesel"
+    ],
+    "cast": [
+      "Lukas Podolski"
+    ],
+    "director": "Nicolas Berse",
+    "poster": "https://image.tmdb.org/t/p/w500/ylgaqq0NdSlnrBRtWMePYvDlTDa.jpg",
+    "cover_image": "https://image.tmdb.org/t/p/original/8hUPAKKxU20sq8oyAUnK19zCzsi.jpg",
+    "trailer": "https://www.youtube.com/watch?v=COUkUkLAIII",
+    "platform": "Platform Disi"
+  },
+  {
+    "type": "film",
+    "title": "Milky☆Subway: Galaktik Sınırlı Ekspres – Film",
+    "url": "https://dizipal.im/milky%e2%98%86subway-the-galactic-limited-express-the-movie/",
+    "videoUrl": "https://dizipal.im/milky%e2%98%86subway-the-galactic-limited-express-the-movie/",
+    "added_date": "4 Haziran, 2026",
+    "description": "Aciklama yok.",
+    "imdb": "8.8",
+    "imdb_id": "tt39228706",
+    "year": "2026",
+    "genres": [
+      "Animasyon",
+      "Aksiyon",
+      "Macera",
+      "Komedi",
+      "Bilim-Kurgu"
+    ],
+    "cast": [
+      "寺澤百花",
+      "永瀬アンナ",
+      "Mikako Komatsu",
+      "金元寿子",
+      "小市眞琴",
+      "内山昂輝",
+      "山谷祥生",
+      "藤原由林",
+      "小野賢章",
+      "ロバートウォーターマン"
+    ],
+    "director": "亀山陽平",
+    "poster": "https://image.tmdb.org/t/p/w500/p2wClSPUcs0NidsNBueaTBmGkJd.jpg",
+    "cover_image": "https://image.tmdb.org/t/p/original/wG2VyZvBjXwuZUvqK00UcUNIpCG.jpg",
+    "trailer": "https://www.youtube.com/watch?v=5aYkjZYbWX8",
+    "platform": "Netflix"
+  },
+  {
+    "type": "film",
+    "title": "anne kız kardeş",
+    "url": "https://dizipal.im/maa-behen/",
+    "videoUrl": "https://dizipal.im/maa-behen/",
+    "added_date": "4 Haziran, 2026",
+    "description": "Aciklama yok.",
+    "imdb": "0.0",
+    "imdb_id": "tt33538438",
+    "year": "2026",
+    "genres": [
+      "Komedi",
+      "Gerilim"
+    ],
+    "cast": [
+      "Madhuri Dixit",
+      "Triptii Dimri",
+      "रवि किशन",
+      "Dharna Durga",
+      "Jatin Sarna",
+      "Geetanjali Kulkarni",
+      "Arunoday Singh",
+      "Shardul Bhardwaj",
+      "Paresh Rawal",
+      "Shrivardhan Trivedi",
+      "Vijay Maurya",
+      "Rrama Sharma"
+    ],
+    "director": "Suresh Triveni",
+    "poster": "https://image.tmdb.org/t/p/w500/dpQIeEunpgj0C4rngb6OFb4zSd1.jpg",
+    "cover_image": "https://image.tmdb.org/t/p/original/3QEwa9vZFC8PyZgFOKYPZx55nv8.jpg",
+    "trailer": "https://www.youtube.com/watch?v=rSTk9KgrJ3w",
+    "platform": "Platform Disi"
+  },
+  {
+    "type": "film",
+    "title": "DİSKO.",
+    "url": "https://dizipal.im/d-i-s-c-o/",
+    "videoUrl": "https://dizipal.im/d-i-s-c-o/",
+    "added_date": "4 Haziran, 2026",
+    "description": "D.I.S.C.O. istihbarat teşkilatının uzun zamandır gizlilikle yürüttüğü operasyon, Ajan Ertan yüzünden başarısız olur. Teşkilattan uzaklaştırma alan Ertan, eşi Seda ile birlikte Kıbrıs'a tatile gider. Burada yolu Bandırma Fön Birinci'si Zafer ve eşi Aynur ile kesişir. Ertan'ın ajan olduğun öğrenen Zafer'in susmak için tek şartı vardır. Ertan'ın yarım kalan operasyonunu birlikte bitirmek. Çünkü teşkilatın peşinde olduğu örgüt aynı oteldedir ve operasyonun kaderi Ertan'ın elindedir. Hayatında saha ajanlığı yapmamış olan Ertan, Zafer'i mecburen dahil ederek operasyona girişir.",
+    "imdb": "7.8",
+    "imdb_id": "tt39105882",
+    "year": "2026",
+    "genres": [
+      "Aksiyon",
+      "Komedi"
+    ],
+    "cast": [
+      "Giray Altınok",
+      "Kerem Özdoğan",
+      "Özge Özacar",
+      "Yıldız Çağrı Atiksoy",
+      "Saygın Soysal",
+      "Devrim Yakut",
+      "İrem Sak",
+      "Şükrü Özyıldız",
+      "Cosimo Fusco"
+    ],
+    "director": "Ömer Faruk Sorak",
+    "poster": "https://image.tmdb.org/t/p/w500/zNjm76IFBxiXMZ7ldWrVSudWeqo.jpg",
+    "cover_image": "https://image.tmdb.org/t/p/original/l437c1NjyPl6jL1qZla7WeUlxFi.jpg",
+    "trailer": "https://www.youtube.com/watch?v=yu1stXiioGU",
+    "platform": "Platform Disi"
   }
 ]
