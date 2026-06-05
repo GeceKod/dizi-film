@@ -146547,5 +146547,26 @@
     "cover_image": "https://image.tmdb.org/t/p/original/l437c1NjyPl6jL1qZla7WeUlxFi.jpg",
     "trailer": "https://www.youtube.com/watch?v=yu1stXiioGU",
     "platform": "Platform Disi"
+  },
+  {
+    "type": "film",
+    "title": "Rachel Nickell Cinayeti",
+    "url": "https://dizipal.im/the-murder-of-rachel-nickell/",
+    "videoUrl": "https://dizipal.im/the-murder-of-rachel-nickell/",
+    "added_date": "5 Haziran, 2026",
+    "description": "Genç bir anne güpegündüz Londra'daki Wimbledon Parkı'nda çocuğunun gözleri önünde öldürülür. Bu belgesel yıllar süren bir cinayet vakasını inceliyor.",
+    "imdb": "0.0",
+    "imdb_id": "tt42192165",
+    "year": "2026",
+    "genres": [
+      "Belgesel",
+      "Suç"
+    ],
+    "cast": [],
+    "director": "Lucy Bowden",
+    "poster": "https://image.tmdb.org/t/p/w500/db9nxdSqZ8Mh6RDRreF1HFsz9hx.jpg",
+    "cover_image": "https://image.tmdb.org/t/p/original/yKeYZOmBMQUMKpMlJJF8q4riYpl.jpg",
+    "trailer": "https://www.youtube.com/watch?v=Vj5uaeZTKRM",
+    "platform": "Platform Disi"
   }
 ]
