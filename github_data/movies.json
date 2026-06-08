@@ -146695,5 +146695,70 @@
     "cover_image": "https://image.tmdb.org/t/p/original/5fA3ko0ZHkysz1aNO78jRsey4k4.jpg",
     "trailer": "https://www.youtube.com/watch?v=diZ49dvJyrU",
     "platform": "Platform Disi"
+  },
+  {
+    "type": "film",
+    "title": "Bodrum Seferi",
+    "url": "https://dizipal.im/bodrum-seferi/",
+    "videoUrl": "https://dizipal.im/bodrum-seferi/",
+    "added_date": "8 Haziran, 2026",
+    "description": "Sefer, anasız babasız büyümüş, askerlik dışında köyünden hiç çıkmamış biraz saf ama zeki de bir karakterdir. Rüyalarında lüks bir otelin havuz başında, belki de hayatında göremeyeceği kadar güzel kızlarla dans ederken kendisini görür. Bir gün gazetede rüyasındaki yerin Bodrum olduğunu öğrenir. Heyecanla “Buldum!” diye sevinir, fakat büyük bir sorun vardır, Sefer'in parası yoktur. Onu sevenlerin yardımı ile para bulunur ve yola çıkar. Sefer Bodrum’a vardığında telefonda sorduğu “Her şey dahil” kavramını tüm Bodrum için geçerli sanır. Bu yanlış anlamadan dolayı başına her türlü belayı açar ve gazetelerin manşetlerini süsler.",
+    "imdb": "0.0",
+    "imdb_id": "tt29191385",
+    "year": "2024",
+    "genres": [
+      "Komedi"
+    ],
+    "cast": [
+      "Sarp Bozkurt",
+      "Serhat Boylu",
+      "Tarık Papuççuoğlu",
+      "İrfan Kangı",
+      "Sedef Şahin",
+      "Suzan Kardeş",
+      "Ali İpin",
+      "Asuman Dabak",
+      "Kahraman Sivri",
+      "Ebru Kural",
+      "Can Verel",
+      "Soner Türker"
+    ],
+    "director": "Recep Akdağ",
+    "poster": "https://image.tmdb.org/t/p/w500/e9w54Le5zqKAYKSPhPYFTtE1vXG.jpg",
+    "cover_image": "https://dizipal.im/wp-content/uploads/2026/06/e9w54Le5zqKAYKSPhPYFTtE1vXG.jpg",
+    "trailer": "https://www.youtube.com/watch?v=JA2txiQryzw",
+    "platform": "TV+"
+  },
+  {
+    "type": "film",
+    "title": "Baba Beni Güldürsene",
+    "url": "https://dizipal.im/baba-beni-guldursene/",
+    "videoUrl": "https://dizipal.im/baba-beni-guldursene/",
+    "added_date": "8 Haziran, 2026",
+    "description": "Sıkıcı hayatını sakarlıklarıyla zorlaştıran baba Murat ve üstün potansiyelli kızı, okulda sosyal sorunlar yaşayan ve ötekileştirilen Ayşenaz, babasıyla da keyifli vakit geçiremez. Kızının kendisini sıkıcı bulduğunu öğrenen Murat, eğlenceli ve komik biri olmaya çalışırken bocalar. İkilinin yaşadığı zorlu ve tehlikeli bir macera, birbirlerini daha iyi tanımalarına aracılık edecektir.",
+    "imdb": "0.0",
+    "imdb_id": "tt34447607",
+    "year": "2024",
+    "genres": [
+      "Komedi",
+      "Aile"
+    ],
+    "cast": [
+      "Ahmet Kürşat Öçalan",
+      "Aylin Akpınar",
+      "Merve Sevi",
+      "Levent Özdilek",
+      "Ceyhun Fersoy",
+      "Tolga Canbeyli",
+      "Kaan Alp Dayı",
+      "Ali Semi Sefil",
+      "Arven Beren Kuşatman",
+      "Ela Şafak"
+    ],
+    "director": "Emrah Aguş",
+    "poster": "https://image.tmdb.org/t/p/w500/guiGYGiUQFh6QWbpqtiLjGQR6ia.jpg",
+    "cover_image": "https://image.tmdb.org/t/p/original/gkfHBqMWedt15joiTdHDxOQYo1n.jpg",
+    "trailer": "https://www.youtube.com/watch?v=yTPTtxtcg3E",
+    "platform": "Platform Disi"
   }
 ]
