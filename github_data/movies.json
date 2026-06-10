@@ -146760,5 +146760,76 @@
     "cover_image": "https://image.tmdb.org/t/p/original/gkfHBqMWedt15joiTdHDxOQYo1n.jpg",
     "trailer": "https://www.youtube.com/watch?v=yTPTtxtcg3E",
     "platform": "Platform Disi"
+  },
+  {
+    "type": "film",
+    "title": "Cesedinin Üzerinde",
+    "url": "https://dizipal.im/over-your-dead-body/",
+    "videoUrl": "https://dizipal.im/over-your-dead-body/",
+    "added_date": "10 Haziran, 2026",
+    "description": "Aciklama yok.",
+    "imdb": "6.8",
+    "imdb_id": "tt34685692",
+    "year": "2026",
+    "genres": [
+      "Aksiyon",
+      "Komedi",
+      "Gerilim"
+    ],
+    "cast": [
+      "Samara Weaving",
+      "Jason Segel",
+      "Timothy Olyphant",
+      "Juliette Lewis",
+      "Paul Guilfoyle",
+      "Keith Jardine",
+      "Jake Curran",
+      "Nikolai Kinski",
+      "Kayla Jenee Radomski",
+      "Danusia Samal",
+      "Jennifer Amaka Pettersson",
+      "Yoon Cha-Lee"
+    ],
+    "director": "Jorma Taccone",
+    "poster": "https://image.tmdb.org/t/p/w500/kZCauMzAt9eMAhLMopCqnFw1Q5k.jpg",
+    "cover_image": "https://image.tmdb.org/t/p/original/sb76azrAXr9U13uEQxNP5e3fujY.jpg",
+    "trailer": "https://www.youtube.com/watch?v=pGxKTIegUZ4",
+    "platform": "Platform Disi"
+  },
+  {
+    "type": "film",
+    "title": "Kötülüğün Rengi: Siyah",
+    "url": "https://dizipal.im/colors-of-evil-black/",
+    "videoUrl": "https://dizipal.im/colors-of-evil-black/",
+    "added_date": "10 Haziran, 2026",
+    "description": "Sakin bir kasabada genç bir çocuk ortadan kaybolur. Kasabaya yeni atanan savcı, bu olay ile eski bir kayıp vakası arasında beklenmedik bağlantılar keşfetmeye başlayacaktır.",
+    "imdb": "7.0",
+    "imdb_id": "tt38681832",
+    "year": "2026",
+    "genres": [
+      "Gerilim",
+      "Gizem",
+      "Suç",
+      "Dram"
+    ],
+    "cast": [
+      "Jakub Gierszał",
+      "Marianna Zydek",
+      "Zdzisław Wardejn",
+      "Andrzej Chyra",
+      "Robert Gonera",
+      "Beata Ścibakówna",
+      "Piotr Żurawski",
+      "Julian Świeżewski",
+      "Adam Bobik",
+      "Róża Łukaszewicz",
+      "Bartosz Mikulak",
+      "Dorota Ruśkowska"
+    ],
+    "director": "Adrian Panek",
+    "poster": "https://image.tmdb.org/t/p/w500/v6J7FYPywQFF8ANoRRtceqIGpDM.jpg",
+    "cover_image": "https://image.tmdb.org/t/p/original/2D3W3Jp0VYsLhXTEfnvhbMvQEzk.jpg",
+    "trailer": "",
+    "platform": "Platform Disi"
   }
 ]
