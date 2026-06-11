@@ -146830,5 +146830,102 @@
     "cover_image": "https://image.tmdb.org/t/p/original/2D3W3Jp0VYsLhXTEfnvhbMvQEzk.jpg",
     "trailer": "https://www.youtube.com/watch?v=3Evy3t63mnk",
     "platform": "Platform Disi"
+  },
+  {
+    "type": "film",
+    "title": "Michael",
+    "url": "https://dizipal.im/michael/",
+    "videoUrl": "https://dizipal.im/michael/",
+    "added_date": "11 Haziran, 2026",
+    "description": "Michael Jackson'a gerçek hayattaki yeğeni Jaafar Jackson'ın hayat verdiği filmde, onu tüm zamanların en büyük şovmeni haline getiren en ikonik performansları da dahil olmak üzere Michael'ın hayatının tüm yönleri gözler önüne seriliyor.",
+    "imdb": "8.5",
+    "imdb_id": "tt11378946",
+    "year": "2026",
+    "genres": [
+      "Müzik",
+      "Dram"
+    ],
+    "cast": [
+      "Jaafar Jackson",
+      "Colman Domingo",
+      "Nia Long",
+      "Juliano Krue Valdi",
+      "Miles Teller",
+      "KeiLyn Durrel Jones",
+      "Kendrick Sampson",
+      "Joseph David-Jones",
+      "Rhyan Hill",
+      "Jamal Henderson",
+      "Trey Horton",
+      "Jessica Sula"
+    ],
+    "director": "Antoine Fuqua",
+    "poster": "https://image.tmdb.org/t/p/w500/zm0KAbOjlt9eR5y7vDiL2dEOwMl.jpg",
+    "cover_image": "https://image.tmdb.org/t/p/original/xBT0oNq6rsTFv4SxG5uGRIEOrq6.jpg",
+    "trailer": "https://www.youtube.com/watch?v=GYQa5UvwQ8g",
+    "platform": "Platform Disi"
+  },
+  {
+    "type": "film",
+    "title": "Kötü Huy",
+    "url": "https://dizipal.im/bad-behaviour/",
+    "videoUrl": "https://dizipal.im/bad-behaviour/",
+    "added_date": "11 Haziran, 2026",
+    "description": "Kötü Huy, ruhani lider Elon'un liderliğindeki bir inzivada aydınlanma arayan ve aynı zamanda dublör sanatçısı kızı Dylan'la yakın ama çalkantılı ilişkisini sürdüren eski bir çocuk aktris olan Lucy’nin hayatına odaklanıyor.",
+    "imdb": "4.8",
+    "imdb_id": "tt21221240",
+    "year": "2023",
+    "genres": [
+      "Dram",
+      "Komedi"
+    ],
+    "cast": [
+      "Jennifer Connelly",
+      "Alice Englert",
+      "Ben Whishaw",
+      "Ana Scotney",
+      "Dasha Nekrasova",
+      "Karan Gill",
+      "Marlon Williams",
+      "Alistair Sewell",
+      "Beulah Koale",
+      "Kahu Wesling MacGregor",
+      "Gabe McDonnell",
+      "Mel Odedra"
+    ],
+    "director": "Alice Englert",
+    "poster": "https://image.tmdb.org/t/p/w500/s9Gev2eDPnYeoS1B2QwqSqXBHYb.jpg",
+    "cover_image": "https://image.tmdb.org/t/p/original/qsgFLKDFzpFf3Lit2jYngR5Oaf5.jpg",
+    "trailer": "https://www.youtube.com/watch?v=5ZZKbORntck",
+    "platform": "Amazon Prime Video"
+  },
+  {
+    "type": "film",
+    "title": "Erken Kış",
+    "url": "https://dizipal.im/erken-kis/",
+    "videoUrl": "https://dizipal.im/erken-kis/",
+    "added_date": "11 Haziran, 2026",
+    "description": "İstanbul'da bir fabrika müdürü olan Ferhat ve bir banka müdürü olan Handan, Gürcü ve Ukrayna kökenli genç bir sanatçı olan Lia ile taşıyıcı annelik yoluyla çocuk sahibi olmaya karar verirler. Kızları Ada doğduktan kısa bir süre sonra, Rusya ile Ukrayna arasında savaş patlak verir. Bu nedenle Lia, Ferhat ve Handan ile İstanbul'da bir süre daha kalmak zorunda kalır. Taşıyıcı anneliğin kendisini Avrupa'ya götürecek formül olduğuna inanan Lia, Ada'dan ayrılmak istememektedir.",
+    "imdb": "0.0",
+    "imdb_id": "tt38953092",
+    "year": "2025",
+    "genres": [
+      "Dram"
+    ],
+    "cast": [
+      "Timuçin Esen",
+      "Leyla Tanlar",
+      "Nastya Bogdanova",
+      "İdil Yener",
+      "Murat Kılıç",
+      "Umay Anadolu Kaboğlu",
+      "Atakan Yılmaz",
+      "Tea Dolidze"
+    ],
+    "director": "Özcan Alper",
+    "poster": "https://image.tmdb.org/t/p/w500/qVJ6BlqCMuA8UqWxyla3HxpGroD.jpg",
+    "cover_image": "https://image.tmdb.org/t/p/original/d83m7WTVV9xFuyjvdbFjN9mSxgi.jpg",
+    "trailer": "",
+    "platform": "Platform Disi"
   }
 ]
