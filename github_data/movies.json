@@ -147122,5 +147122,67 @@
     "cover_image": "https://image.tmdb.org/t/p/original/oGD1dZvojZssnd9Ua6RUalEEHQu.jpg",
     "trailer": "https://www.youtube.com/watch?v=fzW61JgRbNk",
     "platform": "Netflix"
+  },
+  {
+    "type": "film",
+    "title": "Culpa Tuya: Londra",
+    "url": "https://dizipal.im/your-fault-london/",
+    "videoUrl": "https://dizipal.im/your-fault-london/",
+    "added_date": "18 Haziran, 2026",
+    "description": "Nick ve Noah, aşklarının en büyük sınavıyla karşı karşıya: Noah, Oxford Üniversitesi'ndeki yeni hayatına adım atarken Nick, Londra'da kalıp babasının şirketinde çalışmak zorundadır. Mesafe ve artan baskılarla kuşatılan ikili; kıskançlık, hırs ve onları ayırmaya kararlı güçler karşısında ilişkilerinin her şeye rağmen ayakta kalabileceğini kanıtlamak için her riski göze almak zorundadır.",
+    "imdb": "7.8",
+    "imdb_id": "tt36958376",
+    "year": "2026",
+    "genres": [
+      "Romantik",
+      "Dram"
+    ],
+    "cast": [
+      "Asha Banks",
+      "Matthew Broome",
+      "Louisa Binder",
+      "Joel Nankervis",
+      "Scarlett Rayner",
+      "Orlando Norman"
+    ],
+    "director": "Dani Girdwood",
+    "poster": "https://image.tmdb.org/t/p/w500/iBav680sIufAk0bUN6voI6gLTAg.jpg",
+    "cover_image": "https://image.tmdb.org/t/p/original/wQOhbCP6H8bO5ddlXDZT207orew.jpg",
+    "trailer": "https://www.youtube.com/watch?v=A3ZbjkDxYUs",
+    "platform": "Platform Disi"
+  },
+  {
+    "type": "film",
+    "title": "Ölümcül Uçuş",
+    "url": "https://dizipal.im/flight-risk/",
+    "videoUrl": "https://dizipal.im/flight-risk/",
+    "added_date": "18 Haziran, 2026",
+    "description": "Bir hava mareşali eşliğinde bir firariyi mahkemeye götüren bir pilotun hikâyesi anlatılıyor. Alaska'nın vahşi doğasını geçerken gerilimler artar ve güven sarsılır çünkü uçaktaki hiç kimse göründüğü gibi değildir.",
+    "imdb": "5.9",
+    "imdb_id": "tt10078772",
+    "year": "2025",
+    "genres": [
+      "Aksiyon",
+      "Gerilim"
+    ],
+    "cast": [
+      "Mark Wahlberg",
+      "Michelle Dockery",
+      "Topher Grace",
+      "Leah Remini",
+      "Maaz Ali",
+      "Paul Ben-Victor",
+      "Eilise Patton",
+      "Savanah Joeckel",
+      "Monib Abhat",
+      "Senor Pablo",
+      "Mark 'Cowboy' Schotz",
+      "Milko Kadikov"
+    ],
+    "director": "Mel Gibson",
+    "poster": "https://image.tmdb.org/t/p/w500/9xejLLz5QCPto0eR7od8FZn2DLt.jpg",
+    "cover_image": "https://image.tmdb.org/t/p/original/hwlyY7LJdEFbCPaGNXiskKKmJ5X.jpg",
+    "trailer": "https://www.youtube.com/watch?v=ojC9JBuccJA",
+    "platform": "Platform Disi"
   }
 ]
