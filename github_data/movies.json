@@ -147184,5 +147184,104 @@
     "cover_image": "https://image.tmdb.org/t/p/original/hwlyY7LJdEFbCPaGNXiskKKmJ5X.jpg",
     "trailer": "https://www.youtube.com/watch?v=ojC9JBuccJA",
     "platform": "Platform Disi"
+  },
+  {
+    "type": "film",
+    "title": "Isabelle'e Sesli Mesaj",
+    "url": "https://dizipal.im/voicemails-for-isabelle/",
+    "videoUrl": "https://dizipal.im/voicemails-for-isabelle/",
+    "added_date": "21 Haziran, 2026",
+    "description": "Genç bir kadının ölen kız kardeşine bıraktığı, komik itiraflar içeren sesli mesajlar yanlışlıkla bir yabancının telefonuna yönlendirilir ve bu kişi, uzaktan kadına âşık olur.",
+    "imdb": "7.5",
+    "imdb_id": "tt10375624",
+    "year": "2026",
+    "genres": [
+      "Romantik",
+      "Komedi"
+    ],
+    "cast": [
+      "Zoey Deutch",
+      "Nick Robinson",
+      "Ciara Bravo",
+      "Nick Offerman",
+      "Leah McKendrick",
+      "Harry Shum Jr.",
+      "Lukas Gage",
+      "Toby Sandeman",
+      "Tanis Dolman",
+      "Gil Bellows",
+      "Alice Comer",
+      "Iris Everly"
+    ],
+    "director": "Leah McKendrick",
+    "poster": "https://image.tmdb.org/t/p/w500/pR0RQIy51Fqjy5zBkBILdyZdUID.jpg",
+    "cover_image": "https://image.tmdb.org/t/p/original/7wwzkJ8it0LO76JBN2NCYqzrCZw.jpg",
+    "trailer": "https://www.youtube.com/watch?v=9mi3YVYm3ZU",
+    "platform": "Netflix"
+  },
+  {
+    "type": "film",
+    "title": "Kocalar İş Başında",
+    "url": "https://dizipal.im/husbands-in-action/",
+    "videoUrl": "https://dizipal.im/husbands-in-action/",
+    "added_date": "21 Haziran, 2026",
+    "description": "Bir dedektif, eski karısını kaçıranları yakalamak için onun yeni kocasıyla iş birliği yapar. Tuhaf ikili, çılgın bir kurtarma görevi için farklılıklarını geride bırakabilecek mi?",
+    "imdb": "6.6",
+    "imdb_id": "tt36876775",
+    "year": "2026",
+    "genres": [
+      "Komedi",
+      "Aksiyon"
+    ],
+    "cast": [
+      "진선규",
+      "공명",
+      "김지석",
+      "윤경호",
+      "강한나",
+      "이다희",
+      "전소민",
+      "윤아"
+    ],
+    "director": "박규태",
+    "poster": "https://image.tmdb.org/t/p/w500/A01Ca3GfoUZ192ebgHHj6MYOG35.jpg",
+    "cover_image": "https://image.tmdb.org/t/p/original/zZQQ5dd7jq1PfUnWTT9qH4RMf5a.jpg",
+    "trailer": "https://www.youtube.com/watch?v=PSJgwm2xcbI",
+    "platform": "Netflix"
+  },
+  {
+    "type": "film",
+    "title": "Aşırı Makyaj: Homer Sürümü",
+    "url": "https://dizipal.im/extreme-makeover-homer-edition/",
+    "videoUrl": "https://dizipal.im/extreme-makeover-homer-edition/",
+    "added_date": "21 Haziran, 2026",
+    "description": "Aciklama yok.",
+    "imdb": "7.6",
+    "imdb_id": "tt43140112",
+    "year": "2026",
+    "genres": [
+      "Animasyon",
+      "Komedi",
+      "Aile"
+    ],
+    "cast": [
+      "Dan Castellaneta",
+      "Julie Kavner",
+      "Nancy Cartwright",
+      "Yeardley Smith",
+      "Harry Shearer",
+      "Hank Azaria",
+      "Betty Gilpin",
+      "Jon Hamm",
+      "Laufey",
+      "Tegan Quin",
+      "Sara Quin",
+      "Kevin Michael Richardson"
+    ],
+    "director": "Matthew Nastuk",
+    "poster": "https://image.tmdb.org/t/p/w500/vim76mMXig00YRxN2iGYJASoGkP.jpg",
+    "cover_image": "https://image.tmdb.org/t/p/original/mGhUQkhlzwReHlZFXDBavtjpjwK.jpg",
+    "trailer": "https://www.youtube.com/watch?v=uL_1MjLDkeU",
+    "platform": "Platform Disi"
   }
 ]
