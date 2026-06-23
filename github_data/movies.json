@@ -147283,5 +147283,23 @@
     "cover_image": "https://image.tmdb.org/t/p/original/mGhUQkhlzwReHlZFXDBavtjpjwK.jpg",
     "trailer": "https://www.youtube.com/watch?v=uL_1MjLDkeU",
     "platform": "Platform Disi"
+  },
+  {
+    "type": "film",
+    "title": "Şişman",
+    "url": "https://dizipal.im/sisman/",
+    "videoUrl": "https://dizipal.im/sisman/",
+    "added_date": "23 Haziran, 2026",
+    "description": "Aciklama yok.",
+    "imdb": "6.0",
+    "imdb_id": "",
+    "year": "2025",
+    "genres": [],
+    "cast": [],
+    "director": "",
+    "poster": "https://image.tmdb.org/t/p/w500/wJZzjVci9RjWDFw4Zb9IpsTHFi7.jpg",
+    "cover_image": "https://dizipal.im/wp-content/uploads/2026/06/1DZGN3ECSpxoNnu2FDHN26BLWOu.webp",
+    "trailer": "",
+    "platform": "Platform Disi"
   }
 ]
