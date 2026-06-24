@@ -147307,5 +147307,40 @@
     "cover_image": "https://dizipal.im/wp-content/uploads/2026/06/1DZGN3ECSpxoNnu2FDHN26BLWOu.webp",
     "trailer": "https://www.youtube.com/watch?v=C_UIEXGHCwg",
     "platform": "Platform Disi"
+  },
+  {
+    "type": "film",
+    "title": "Gece Devriyesi",
+    "url": "https://dizipal.im/night-patrol/",
+    "videoUrl": "https://dizipal.im/night-patrol/",
+    "added_date": "24 Haziran, 2026",
+    "description": "Afroamerika kökenli bir Los Angeles Polis Departmanı (LAPD) memuru, yerel bir özel birimle ilgili korkunç bir sırrı öğrenince, yerel sokak çeteleriyle olan anlaşmazlıklarının üstesinden gelmek zorunda kalır.",
+    "imdb": "5.3",
+    "imdb_id": "tt8637438",
+    "year": "2026",
+    "genres": [
+      "Korku",
+      "Gizem",
+      "Aksiyon"
+    ],
+    "cast": [
+      "Jermaine Fowler",
+      "Justin Long",
+      "RJ Cyler",
+      "Freddie Gibbs",
+      "Phil Brooks",
+      "Dermot Mulroney",
+      "YG",
+      "Nicki Micheaux",
+      "Flying Lotus",
+      "Jon Oswald",
+      "Mike Ferguson",
+      "Evan Shafran"
+    ],
+    "director": "Ryan Prows",
+    "poster": "https://image.tmdb.org/t/p/w500/rNqLzACU9ez2ehDalTFDPjZiC4G.jpg",
+    "cover_image": "https://image.tmdb.org/t/p/original/vHvVt2Lovn4G6of9u3pHEQE2CxI.jpg",
+    "trailer": "https://www.youtube.com/watch?v=8J_pMGZScB8",
+    "platform": "Platform Disi"
   }
 ]
