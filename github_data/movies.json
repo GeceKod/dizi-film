@@ -147256,7 +147256,7 @@
     "videoUrl": "https://dizipal.im/extreme-makeover-homer-edition/",
     "added_date": "21 Haziran, 2026",
     "description": "Aciklama yok.",
-    "imdb": "7.8",
+    "imdb": "7.7",
     "imdb_id": "tt43140112",
     "year": "2026",
     "genres": [
@@ -147290,16 +147290,22 @@
     "url": "https://dizipal.im/sisman/",
     "videoUrl": "https://dizipal.im/sisman/",
     "added_date": "23 Haziran, 2026",
-    "description": "Aciklama yok.",
+    "description": "Sevgilisi tarafından aldatılan Havva, ölen annesinin yarım kalan sergisini tamamlamaya karar verir. Ancak annesinin son isteğini yerine getirebilmesi için onun gelinliğine sığması gerekmektedir ve bunun için 45 kilo vermelidir. Başarısız diyetler ve tükenmişlik arasında savrulan Havva, ablası ve arkadaşlarının desteğiyle kendini sorguladığı kara mizah dolu bir yolculuğa çıkar. Bu süreçte, insanın taşıdığı en ağır yükün her zaman bedeni olmadığını fark etmeye başlar.",
     "imdb": "6.0",
     "imdb_id": "",
     "year": "2025",
-    "genres": [],
-    "cast": [],
+    "genres": [
+      "Komedi"
+    ],
+    "cast": [
+      "Sarp Levendoğlu",
+      "Zeynep Coşkun",
+      "Sadi Celil Cengiz"
+    ],
     "director": "",
     "poster": "https://image.tmdb.org/t/p/w500/wJZzjVci9RjWDFw4Zb9IpsTHFi7.jpg",
     "cover_image": "https://dizipal.im/wp-content/uploads/2026/06/1DZGN3ECSpxoNnu2FDHN26BLWOu.webp",
-    "trailer": "",
+    "trailer": "https://www.youtube.com/watch?v=C_UIEXGHCwg",
     "platform": "Platform Disi"
   }
 ]
