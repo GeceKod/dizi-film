@@ -147412,5 +147412,38 @@
     "cover_image": "https://image.tmdb.org/t/p/original/t6O6XWelu27BD0OmIDCCufZZT6d.jpg",
     "trailer": "https://www.youtube.com/watch?v=lfPvpQSHLhM",
     "platform": "Platform Disi"
+  },
+  {
+    "type": "film",
+    "title": "Bebekler",
+    "url": "https://dizipal.im/babes/",
+    "videoUrl": "https://dizipal.im/babes/",
+    "added_date": "25 Haziran, 2026",
+    "description": "BEBEKLER, New York'ta birlikte büyümüş ve artık yetişkinliğin farklı evrelerinde olan ayrılmaz çocukluk arkadaşları Eden (Ilana Glazer) ve Dawn'ı (Michelle Buteau) konu alıyor. Kaygısız bir bekâr olan Eden, tek gecelik bir ilişkinin ardından kendi başına bebek sahibi olmaya karar verdiğinde, arkadaşlıkları büyük bir sınavla karşı karşıya kalır. BEBEKLER, kadın arkadaşlığının karmaşıklığını kahkaha, gözyaşı ve doğum sancılarıyla harmanlayarak anlatıyor. Ilana Glazer ve Josh Rabinowitz'in birlikte yazdıkları ve Pamela Adlon'un yönettiği BEBEKLER, arkadaşlık bağları ile yetişkinliğin ve ebeveyn olmanın karmaşık, öngörülemeyen zorlukları hakkında eğlenceli ve samimi bir komedi.",
+    "imdb": "5.9",
+    "imdb_id": "tt21276958",
+    "year": "2024",
+    "genres": [
+      "Komedi"
+    ],
+    "cast": [
+      "Ilana Glazer",
+      "Michelle Buteau",
+      "John Carroll Lynch",
+      "Oliver Platt",
+      "Sandra Bernhard",
+      "Stephan James",
+      "Hasan Minhaj",
+      "Keith Lucas",
+      "Kenneth Lucas",
+      "Caleb Mermelstein-Knox",
+      "Elena Ouspenskaia",
+      "Josh Rabinowitz"
+    ],
+    "director": "Pamela Adlon",
+    "poster": "https://image.tmdb.org/t/p/w500/zP2wDnzbDtJKFIC2EckcZXL3Xo9.jpg",
+    "cover_image": "https://image.tmdb.org/t/p/original/sCKmDHLISohzL4EDfApRVDttsEB.jpg",
+    "trailer": "https://www.youtube.com/watch?v=E2ReABAgaDA",
+    "platform": "Netflix"
   }
 ]
