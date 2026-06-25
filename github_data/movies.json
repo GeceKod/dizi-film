@@ -147343,5 +147343,74 @@
     "cover_image": "https://image.tmdb.org/t/p/original/vHvVt2Lovn4G6of9u3pHEQE2CxI.jpg",
     "trailer": "https://www.youtube.com/watch?v=8J_pMGZScB8",
     "platform": "Platform Disi"
+  },
+  {
+    "type": "film",
+    "title": "Dante'nin Elinden",
+    "url": "https://dizipal.im/in-the-hand-of-dante/",
+    "videoUrl": "https://dizipal.im/in-the-hand-of-dante/",
+    "added_date": "25 Haziran, 2026",
+    "description": "Bir yazar, Dante'nin \"İlahî Komedya\"sının orijinal kopyasını çalmak için bir mafya babasına yardım ederken bir yandan da 14. yüzyılda bu şaheserin yaratılış öyküsünü izleriz.",
+    "imdb": "3.3",
+    "imdb_id": "tt1333644",
+    "year": "2026",
+    "genres": [
+      "Dram",
+      "Suç"
+    ],
+    "cast": [
+      "Oscar Isaac",
+      "Gal Gadot",
+      "Gerard Butler",
+      "John Malkovich",
+      "Louis Cancelmi",
+      "Sabrina Impacciatore",
+      "Franco Nero",
+      "Benjamin Clementine",
+      "Paolo Bonacelli",
+      "Martin Scorsese",
+      "Al Pacino",
+      "Jason Momoa"
+    ],
+    "director": "Julian Schnabel",
+    "poster": "https://image.tmdb.org/t/p/w500/nPPIufTBnzEg0d7NoR5RLL1oPra.jpg",
+    "cover_image": "https://image.tmdb.org/t/p/original/6pb3DTtHYh6ChqsmX9yFEX9GXVt.jpg",
+    "trailer": "https://www.youtube.com/watch?v=cXA3Zgsky18",
+    "platform": "Platform Disi"
+  },
+  {
+    "type": "film",
+    "title": "Bir Koyun Polisiyesi",
+    "url": "https://dizipal.im/the-sheep-detectives/",
+    "videoUrl": "https://dizipal.im/the-sheep-detectives/",
+    "added_date": "25 Haziran, 2026",
+    "description": "George Hardy, her gece çok sevdiği koyunlarına anlayamayacaklarını düşünmesine rağmen dedektif romanları okuyan bir çobandır.  Ancak gizemli bir olay çiftlik hayatını alt üst edince koyunlar dedektif olmaları gerektiğinin farkına varırlar. İpuçlarını takip edip şüphelileri araştırırken koyunların bile suç çözebileceklerini kanıtlarlar.",
+    "imdb": "7.5",
+    "imdb_id": "tt32565993",
+    "year": "2026",
+    "genres": [
+      "Komedi",
+      "Aile",
+      "Gizem"
+    ],
+    "cast": [
+      "Hugh Jackman",
+      "Julia Louis-Dreyfus",
+      "Emma Thompson",
+      "Nicholas Braun",
+      "Chris O'Dowd",
+      "Bryan Cranston",
+      "Nicholas Galitzine",
+      "Molly Gordon",
+      "Tosin Cole",
+      "Hong Chau",
+      "Regina Hall",
+      "Patrick Stewart"
+    ],
+    "director": "Kyle Balda",
+    "poster": "https://image.tmdb.org/t/p/w500/8UgINK1QibxQPkgCYZCoYXDeOcC.jpg",
+    "cover_image": "https://image.tmdb.org/t/p/original/t6O6XWelu27BD0OmIDCCufZZT6d.jpg",
+    "trailer": "https://www.youtube.com/watch?v=lfPvpQSHLhM",
+    "platform": "Platform Disi"
   }
 ]
