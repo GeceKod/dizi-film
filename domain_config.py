@@ -6,7 +6,7 @@ from pathlib import Path
 from urllib.parse import urlparse
 
 
-DEFAULT_BASE_DOMAIN = "https://dizipal.bil"
+DEFAULT_BASE_DOMAIN = "https://dizipal.bid"
 DEFAULT_DOMAIN_FILE = Path("dizipal_domain.txt")
 IMDB_ID_RE = re.compile(r"^tt\d+$", flags=re.IGNORECASE)
 
