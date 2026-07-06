@@ -1530,19 +1530,32 @@ def bootstrap_session(config: AppConfig) -> tuple[dict[str, str], str, str]:
                     # Cloudflare iframe'inin yuklenmesini bekle
                     time.sleep(3)
                     
-                    # 1. Yontem: SeleniumBase yerlesik GUI click
-                    if hasattr(sb, "uc_gui_click_captcha"):
+                    # 1. Yontem: En guncel SeleniumBase handle metodu (varsa)
+                    if hasattr(sb, "uc_gui_handle_captcha"):
+                        sb.uc_gui_handle_captcha()
+                        time.sleep(2)
+                    # 2. Yontem: Eski GUI click metodu
+                    elif hasattr(sb, "uc_gui_click_captcha"):
                         sb.uc_gui_click_captcha()
                         time.sleep(2)
                     
-                    # 2. Yontem: Manuel Turnstile/Cloudflare checkbox tiklama (Fallback)
+                    # 3. Yontem: Manuel Turnstile/Cloudflare checkbox tiklama (Agresif uc_click ile)
                     try:
                         if sb.is_element_present('iframe[src*="challenge-platform"]'):
                             sb.switch_to_frame('iframe[src*="challenge-platform"]')
+                            
+                            click_target = None
                             if sb.is_element_visible('input[type="checkbox"]'):
-                                sb.click('input[type="checkbox"]')
-                            elif sb.is_element_visible('.cb-c'): # bazi turnstile surumleri
-                                sb.click('.cb-c')
+                                click_target = 'input[type="checkbox"]'
+                            elif sb.is_element_visible('.cb-c'):
+                                click_target = '.cb-c'
+                                
+                            if click_target:
+                                if hasattr(sb, "uc_click"):
+                                    sb.uc_click(click_target)
+                                else:
+                                    sb.click(click_target)
+                                    
                             sb.switch_to_default_content()
                     except Exception:
                         sb.switch_to_default_content()
