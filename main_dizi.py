@@ -1510,7 +1510,7 @@ def bootstrap_session(config: AppConfig) -> tuple[dict[str, str], str, str]:
         deadline = time.time() + config.selenium_wait_seconds
         page_html = ""
         items: list[SeriesListItem] = []
-        captcha_attempted = False
+        captcha_attempt_count = 0
         retried_open = False
 
         while time.time() < deadline:
@@ -1524,15 +1524,34 @@ def bootstrap_session(config: AppConfig) -> tuple[dict[str, str], str, str]:
                 break
 
             challenge_detected = is_cloudflare_challenge(page_html)
-            if challenge_detected and not captcha_attempted and hasattr(sb, "uc_gui_click_captcha"):
+            if challenge_detected and captcha_attempt_count < 3:
+                captcha_attempt_count += 1
                 try:
-                    sb.uc_gui_click_captcha()
-                    captcha_attempted = True
-                    time.sleep(2)
+                    # Cloudflare iframe'inin yuklenmesini bekle
+                    time.sleep(3)
+                    
+                    # 1. Yontem: SeleniumBase yerlesik GUI click
+                    if hasattr(sb, "uc_gui_click_captcha"):
+                        sb.uc_gui_click_captcha()
+                        time.sleep(2)
+                    
+                    # 2. Yontem: Manuel Turnstile/Cloudflare checkbox tiklama (Fallback)
+                    try:
+                        if sb.is_element_present('iframe[src*="challenge-platform"]'):
+                            sb.switch_to_frame('iframe[src*="challenge-platform"]')
+                            if sb.is_element_visible('input[type="checkbox"]'):
+                                sb.click('input[type="checkbox"]')
+                            elif sb.is_element_visible('.cb-c'): # bazi turnstile surumleri
+                                sb.click('.cb-c')
+                            sb.switch_to_default_content()
+                    except Exception:
+                        sb.switch_to_default_content()
+                        pass
+
+                    time.sleep(3)
                     continue
                 except Exception as exc:
-                    logger.warning("Captcha tiklama denemesi basarisiz: %s", exc)
-                    captcha_attempted = True
+                    logger.warning("Captcha tiklama denemesi basarisiz (%s/3): %s", captcha_attempt_count, exc)
 
             if not retried_open and time.time() + 4 < deadline:
                 try:
