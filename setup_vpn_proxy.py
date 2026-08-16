@@ -71,9 +71,16 @@ def main():
     env["PROXY_IFACE"] = "wg0"
     env["PROXY_BIND_IP"] = "172.16.82.2"
 
+    # Write DNS resolver for tunnel
+    try:
+        with open("/etc/resolv.conf", "w") as resolv:
+            resolv.write("nameserver 8.8.8.8\n")
+    except Exception as e:
+        print(f"[!] resolv.conf error: {e}")
+
     proxy_log = open("/tmp/proxy.log", "w")
     subprocess.Popen([sys.executable, "proxy_server.py"], stdout=proxy_log, stderr=proxy_log, env=env)
-    time.sleep(2)
+    time.sleep(5)
 
     # 7. Ev IP'si Cikis Testi
     print("[*] Proxy uzerinden ev interneti cikis testi yapiliyor...")
