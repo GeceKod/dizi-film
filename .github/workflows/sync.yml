@@ -27,7 +27,7 @@ jobs:
       - name: Install system packages
         run: |
           sudo apt-get update
-          sudo apt-get install --no-install-recommends -y xvfb python3-tk python3-dev scrot libx11-dev libxtst-dev sstp-client ppp tinyproxy
+          sudo apt-get install --no-install-recommends -y xvfb python3-tk python3-dev scrot libx11-dev libxtst-dev wireguard wireguard-tools resolvconf tinyproxy
 
       - name: Install Python dependencies
         run: |
@@ -40,12 +40,9 @@ jobs:
           mkdir -p github_data
           mkdir -p logs
 
-      - name: Connect Keenetic SSTP & Setup Proxy
-        env:
-          SSTP_USER: ${{ secrets.SSTP_USER }}
-          SSTP_PASS: ${{ secrets.SSTP_PASS }}
+      - name: Connect Keenetic WireGuard & Setup Home Proxy
         run: |
-          sudo -E python setup_vpn_proxy.py
+          sudo python setup_vpn_proxy.py
 
       - name: Run series sync
         env:
