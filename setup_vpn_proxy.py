@@ -1,7 +1,7 @@
 import os
 import subprocess
-import time
 import sys
+import time
 
 WG_CONFIG = """[Interface]
 PrivateKey = Ypkcs0S9LcpFWJTUt/JoyCEQCLgon0YsB5OlQnsiD9c=
@@ -15,9 +15,11 @@ AllowedIPs = 0.0.0.0/0
 PersistentKeepalive = 25
 """
 
+
 def run_cmd(cmd, check=True):
     print(f"[*] Calistiriliyor: {' '.join(cmd) if isinstance(cmd, list) else cmd}")
     return subprocess.run(cmd, shell=isinstance(cmd, str), check=check, capture_output=True, text=True)
+
 
 def main():
     print("==================================================")
@@ -41,49 +43,24 @@ def main():
     print(show_res.stdout or show_res.stderr)
 
     # 3. Policy Routing (Split Tunnel) yapilandir
-    # Runner baglantisi kopmasin diye sadece 172.16.82.2 kaynakli paketler wg0'a gitsin
     run_cmd("ip route flush table 200", check=False)
     run_cmd("ip rule del from 172.16.82.2 table 200", check=False)
     run_cmd("ip route add default dev wg0 table 200", check=False)
     run_cmd("ip rule add from 172.16.82.2 table 200", check=False)
 
-    # 4. Tinyproxy'yi 172.16.82.2 uzerinden cikis yapacak sekilde ayarla
-    print("[*] Tinyproxy yapilandiriliyor...")
-    run_cmd(["pkill", "tinyproxy"], check=False)
-    os.makedirs("/etc/tinyproxy", exist_ok=True)
-    tiny_conf = """User tinyproxy
-Group tinyproxy
-Port 8888
-Listen 127.0.0.1
-Timeout 600
-DefaultErrorFile "/usr/share/tinyproxy/default.html"
-StatFile "/usr/share/tinyproxy/stats.html"
-LogFile "/var/log/tinyproxy/tinyproxy.log"
-LogLevel Info
-PidFile "/run/tinyproxy/tinyproxy.pid"
-MaxClients 100
-MinSpareServers 5
-MaxSpareServers 20
-StartServers 10
-MaxRequestsPerChild 0
-Allow 127.0.0.1
-ViaProxyName "tinyproxy"
-Bind 172.16.82.2
-"""
-    with open("/etc/tinyproxy/tinyproxy.conf", "w", encoding="utf-8") as f:
-        f.write(tiny_conf)
-
-    run_cmd(["systemctl", "restart", "tinyproxy"], check=False)
-    subprocess.Popen(["tinyproxy", "-c", "/etc/tinyproxy/tinyproxy.conf"])
-    time.sleep(3)
+    # 4. Proxy Sunucusunu Arka Planda Baslat
+    print("[*] proxy_server.py arka planda baslatiliyor...")
+    subprocess.Popen([sys.executable, "proxy_server.py"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    time.sleep(2)
 
     # 5. Ev IP'si Cikis Testi
-    print("[*] Proxy uzerinden cikis testi yapiliyor...")
+    print("[*] Proxy uzerinden ev interneti cikis testi yapiliyor...")
     test_res = run_cmd("curl -s --max-time 15 -x http://127.0.0.1:8888 https://ipinfo.io/json", check=False)
     print("==================================================")
     print("=== Ev Interneti (Static IP) Cikis Bilgisi ===")
     print(test_res.stdout or test_res.stderr or "IP bilgisi alinamadi")
     print("==================================================")
+
 
 if __name__ == "__main__":
     main()
