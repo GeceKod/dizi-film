@@ -45,5 +45,3 @@ jobs:
           SSTP_USER: ${{ secrets.SSTP_USER }}
           SSTP_PASS: ${{ secrets.SSTP_PASS }}
         run: |
-          echo "SSTP VPN tuneli modeme baglaniyor (nodefaultroute)..."
-          sudo sstpc --log-level 2 --log-lineno --tls-ext --cert-warn \
