@@ -26,42 +26,9 @@ def get_interface_ip(ifname):
     return None
 
 
-def connect_sstp(user, password, host="95.70.160.57:443"):
-    print(f"[*] SSTP VPN yapilandiriliyor ({host})...")
-    os.makedirs("/etc/ppp/peers", exist_ok=True)
-    peer_config = f"""pty "sstpc --nolaunchpppd --log-level 2 --log-lineno --tls-ext --cert-warn {host}"
-user "{user}"
-password "{password}"
-require-mschap-v2
-noauth
-noipdefault
-usepeerdns
-nodefaultroute
-persist
-maxfail 5
-debug
-dump
-logfile /tmp/sstp.log
-"""
-    with open("/etc/ppp/peers/keenetic", "w", encoding="utf-8") as f:
-        f.write(peer_config)
-    os.chmod("/etc/ppp/peers/keenetic", 0o600)
-
-    print("[*] SSTP baglantisi baslatiliyor (pppd call keenetic)...")
-    subprocess.Popen(["pppd", "call", "keenetic"])
-
-    for i in range(1, 20):
-        ip = get_interface_ip("ppp0")
-        if ip:
-            print(f"[+] SSTP baglantisi basarili! ppp0 IP: {ip}")
-            return "ppp0", ip
-        time.sleep(2)
-    return None, None
-
-
 def main():
     print("==================================================")
-    print("[*] Keenetic VPN & Split-Tunnel Proxy Baslatiliyor")
+    print("[*] Keenetic SSTP VPN & Split-Tunnel Proxy")
     print("==================================================")
 
     # 1. Linux sysctl ayarlarini yap
@@ -69,49 +36,88 @@ def main():
     run_cmd("sysctl -w net.ipv4.conf.default.rp_filter=0", check=False)
     run_cmd("sysctl -w net.ipv4.ip_forward=1", check=False)
 
+    # 2. Hosts dosyasina SNI icin domain-IP eslesmesi ekle
+    with open("/etc/hosts", "a") as f:
+        f.write("\n95.70.160.57 oktay2617.keenetic.link\n")
+
     user = os.getenv("SSTP_USER", "github").strip()
     password = os.getenv("SSTP_PASS", "").strip()
 
-    iface = None
-    bind_ip = None
+    if not user or not password:
+        print("[!] HATA: SSTP_USER veya SSTP_PASS bulunamadi!")
+        sys.exit(1)
 
-    if user and password:
-        iface, bind_ip = connect_sstp(user, password, host="95.70.160.57:443")
-        if not iface:
-            print("[!] 95.70.160.57:443 ile baglanti alinamadi, KeenDNS deneniyor...")
-            iface, bind_ip = connect_sstp(user, password, host="oktay2617.keenetic.link:443")
+    # Onceki pppd ve sstpc kaliplarini temizle
+    run_cmd("pkill -9 pppd || true", check=False)
+    run_cmd("pkill -9 sstpc || true", check=False)
+    time.sleep(1)
 
-    if not iface:
+    print("[*] SSTP VPN baslatiliyor (oktay2617.keenetic.link:443)...")
+    sstp_cmd = [
+        "sstpc",
+        "--log-level", "2",
+        "--log-lineno",
+        "--tls-ext",
+        "--cert-warn",
+        "--user", user,
+        "--password", password,
+        "oktay2617.keenetic.link:443",
+        "--",
+        "require-mschap-v2",
+        "refuse-pap",
+        "refuse-eap",
+        "refuse-mschap",
+        "noauth",
+        "noipdefault",
+        "nodefaultroute",
+        "usepeerdns",
+        "name", user,
+        "logfile", "/tmp/sstp.log",
+        "debug",
+        "dump",
+    ]
+
+    subprocess.Popen(sstp_cmd)
+
+    ppp_ip = None
+    for i in range(1, 30):
+        ppp_ip = get_interface_ip("ppp0")
+        if ppp_ip:
+            print(f"[+] SSTP VPN Baglantisi Basarili! ppp0 IP: {ppp_ip}")
+            break
+        print(f"[*] SSTP bekleniyor ({i}/30)...")
+        time.sleep(2)
+
+    if not ppp_ip:
         print("[!] SSTP baglantisi kurulamadi. /tmp/sstp.log icerigi:")
         if os.path.exists("/tmp/sstp.log"):
             with open("/tmp/sstp.log", "r") as f:
                 print(f.read())
         sys.exit(1)
 
-    run_cmd(f"sysctl -w net.ipv4.conf.{iface}.rp_filter=0", check=False)
+    run_cmd("sysctl -w net.ipv4.conf.ppp0.rp_filter=0", check=False)
 
-    # 2. Policy Routing (Split Tunnel) yapilandir
+    # 3. Policy Routing (Split Tunnel) yapilandir
     run_cmd("ip route flush table 200", check=False)
-    run_cmd(f"ip rule del from {bind_ip} table 200", check=False)
-    run_cmd(f"ip route add default dev {iface} table 200", check=False)
-    run_cmd(f"ip rule add from {bind_ip} table 200", check=False)
+    run_cmd(f"ip rule del from {ppp_ip} table 200", check=False)
+    run_cmd("ip route add default dev ppp0 table 200", check=False)
+    run_cmd(f"ip rule add from {ppp_ip} table 200", check=False)
 
-    # 3. Port 8888 temizligi ve Proxy baslatma
-    print(f"[*] Port 8888 temizleniyor ve proxy_server.py ({iface} / {bind_ip}) baslatiliyor...")
+    # 4. Port 8888 temizligi ve Proxy baslatma
+    print(f"[*] Port 8888 temizleniyor ve proxy_server.py (ppp0 / {ppp_ip}) baslatiliyor...")
     run_cmd("fuser -k 8888/tcp || true", check=False)
     run_cmd("pkill -f proxy_server.py || true", check=False)
-    run_cmd("pkill -f tinyproxy || true", check=False)
     time.sleep(1)
 
     env = os.environ.copy()
-    env["PROXY_IFACE"] = iface
-    env["PROXY_BIND_IP"] = bind_ip
+    env["PROXY_IFACE"] = "ppp0"
+    env["PROXY_BIND_IP"] = ppp_ip
 
     proxy_log = open("/tmp/proxy.log", "w")
     subprocess.Popen([sys.executable, "proxy_server.py"], stdout=proxy_log, stderr=proxy_log, env=env)
     time.sleep(2)
 
-    # 4. Ev IP'si Cikis Testi
+    # 5. Ev IP'si Cikis Testi
     print("[*] Proxy uzerinden ev interneti cikis testi yapiliyor...")
     test_res = run_cmd("curl -s --max-time 15 -x http://127.0.0.1:8888 https://ipinfo.io/json", check=False)
 
