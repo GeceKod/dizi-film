@@ -48,4 +48,4 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y sstp-client ppp
           echo "SSTP VPN baglantisi baslatiliyor..."
-          sudo sstpc --log-level 2 --cert-warn --user "$SSTP_USER" --password "$SSTP_PASS" oktay2617.keenetic.link:443 noauth usepeerdns defaultroute replacedefaultroute name "$SSTP_USER" &
+          sudo sstpc --log-level 2 --tls-ext --cert-warn --user "$SSTP_USER" --password "$SSTP_PASS" oktay2617.keenetic.link require-mschap-v2 noauth noipdefault defaultroute replacedefaultroute usepeerdns name "$SSTP_USER" &
