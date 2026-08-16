@@ -44,8 +44,3 @@ jobs:
         env:
           SSTP_USER: ${{ secrets.SSTP_USER }}
           SSTP_PASS: ${{ secrets.SSTP_PASS }}
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y sstp-client ppp
-          
-          # 1. Routing loop onleme: KeenDNS sunucusuna giden rotayi sabitle
