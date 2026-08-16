@@ -70,7 +70,11 @@ def main():
     run_cmd("curl -s --max-time 10 --interface wg0 https://ipinfo.io/json", check=False)
 
     # 7. Proxy Sunucusunu Root Yetkisiyle Arka Planda Baslat
-    print("[*] proxy_server.py arka planda baslatiliyor...")
+    print("[*] Port 8888 temizleniyor ve proxy_server.py arka planda baslatiliyor...")
+    run_cmd("fuser -k 8888/tcp || true", check=False)
+    run_cmd("pkill -f proxy_server.py || true", check=False)
+    run_cmd("pkill -f tinyproxy || true", check=False)
+    time.sleep(1)
     proxy_log = open("/tmp/proxy.log", "w")
     subprocess.Popen([sys.executable, "proxy_server.py"], stdout=proxy_log, stderr=proxy_log)
     time.sleep(2)
