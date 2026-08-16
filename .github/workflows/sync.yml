@@ -45,3 +45,5 @@ jobs:
           SSTP_USER: ${{ secrets.SSTP_USER }}
           SSTP_PASS: ${{ secrets.SSTP_PASS }}
         run: |
+          set -e
+          echo "Adim 1: Secret kontrolu..."
