@@ -771,7 +771,8 @@ def resolve_iframe_urls_with_browser(
         len(unique_urls),
     )
 
-    with SB(uc=not headless, headless=headless) as sb:
+    proxy_url = os.getenv("HTTP_PROXY") or os.getenv("HTTPS_PROXY") or None
+    with SB(uc=not headless, headless=headless, proxy=proxy_url) as sb:
         apply_browser_cookies(sb, base_domain, wait_seconds, cookies)
         for index, url in enumerate(unique_urls, start=1):
             try:
@@ -1488,7 +1489,8 @@ class SessionContext:
 
 def bootstrap_session(config: AppConfig) -> tuple[dict[str, str], str, str]:
     logger.info("SeleniumBase ile otomatik Cloudflare oturumu alinacak.")
-    with SB(uc=True, headless=config.selenium_headless) as sb:
+    proxy_url = os.getenv("HTTP_PROXY") or os.getenv("HTTPS_PROXY") or None
+    with SB(uc=True, headless=config.selenium_headless, proxy=proxy_url) as sb:
         target_url = f"{config.base_domain}/diziler/"
         reconnect_time = max(3, min(6, config.selenium_wait_seconds // 4 or 3))
 
@@ -1507,6 +1509,11 @@ def bootstrap_session(config: AppConfig) -> tuple[dict[str, str], str, str]:
                         pass
 
         open_target()
+        try:
+            sb.set_window_size(1920, 1080)
+        except Exception:
+            pass
+
         deadline = time.time() + config.selenium_wait_seconds
         page_html = ""
         items: list[SeriesListItem] = []
@@ -1524,38 +1531,30 @@ def bootstrap_session(config: AppConfig) -> tuple[dict[str, str], str, str]:
                 break
 
             challenge_detected = is_cloudflare_challenge(page_html)
-            if challenge_detected and captcha_attempt_count < 3:
+            if challenge_detected and captcha_attempt_count < 8:
                 captcha_attempt_count += 1
                 try:
-                    # Cloudflare iframe'inin yuklenmesini bekle
                     time.sleep(3)
                     
-                    # 1. Yontem: En guncel SeleniumBase handle metodu (varsa)
+                    # 1. Yontem: SeleniumBase yerlesik GUI handle metodu
                     if hasattr(sb, "uc_gui_handle_captcha"):
                         sb.uc_gui_handle_captcha()
                         time.sleep(2)
-                    # 2. Yontem: Eski GUI click metodu
                     elif hasattr(sb, "uc_gui_click_captcha"):
                         sb.uc_gui_click_captcha()
                         time.sleep(2)
                     
-                    # 3. Yontem: Manuel Turnstile/Cloudflare checkbox tiklama (Agresif uc_click ile)
+                    # 2. Yontem: Manuel Turnstile/Cloudflare checkbox tiklama
                     try:
                         if sb.is_element_present('iframe[src*="challenge-platform"]'):
                             sb.switch_to_frame('iframe[src*="challenge-platform"]')
-                            
-                            click_target = None
-                            if sb.is_element_visible('input[type="checkbox"]'):
-                                click_target = 'input[type="checkbox"]'
-                            elif sb.is_element_visible('.cb-c'):
-                                click_target = '.cb-c'
-                                
-                            if click_target:
-                                if hasattr(sb, "uc_click"):
-                                    sb.uc_click(click_target)
-                                else:
-                                    sb.click(click_target)
-                                    
+                            for sel in ['input[type="checkbox"]', '.cb-c', '#challenge-stage input', 'span.mark']:
+                                if sb.is_element_visible(sel):
+                                    if hasattr(sb, "uc_click"):
+                                        sb.uc_click(sel)
+                                    else:
+                                        sb.click(sel)
+                                    break
                             sb.switch_to_default_content()
                     except Exception:
                         sb.switch_to_default_content()
@@ -1564,7 +1563,7 @@ def bootstrap_session(config: AppConfig) -> tuple[dict[str, str], str, str]:
                     time.sleep(3)
                     continue
                 except Exception as exc:
-                    logger.warning("Captcha tiklama denemesi basarisiz (%s/3): %s", captcha_attempt_count, exc)
+                    logger.warning("Captcha tiklama denemesi (%s/8): %s", captcha_attempt_count, exc)
 
             if not retried_open and time.time() + 4 < deadline:
                 try:
