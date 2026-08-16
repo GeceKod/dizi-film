@@ -27,7 +27,7 @@ jobs:
       - name: Install system packages
         run: |
           sudo apt-get update
-          sudo apt-get install --no-install-recommends -y xvfb python3-tk python3-dev scrot libx11-dev libxtst-dev wireguard wireguard-tools resolvconf tinyproxy
+          sudo apt-get install --no-install-recommends -y xvfb python3-tk python3-dev scrot libx11-dev libxtst-dev wireguard wireguard-tools resolvconf
 
       - name: Install Python dependencies
         run: |
