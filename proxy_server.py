@@ -11,6 +11,11 @@ PROXY_PORT = 8888
 SO_BINDTODEVICE = 25
 
 
+def log(msg):
+    sys.stderr.write(f"[PROXY] {msg}\n")
+    sys.stderr.flush()
+
+
 def forward(src, dst):
     try:
         while True:
@@ -39,11 +44,11 @@ def create_bound_socket():
     try:
         sock.setsockopt(socket.SOL_SOCKET, SO_BINDTODEVICE, b"wg0\0")
     except Exception as e:
-        print(f"[!] SO_BINDTODEVICE hatasi: {e}", file=sys.stderr)
+        log(f"SO_BINDTODEVICE hatasi: {e}")
     try:
         sock.bind((BIND_IP, 0))
     except Exception as e:
-        print(f"[!] bind hatasi ({BIND_IP}): {e}", file=sys.stderr)
+        log(f"bind hatasi ({BIND_IP}): {e}")
     sock.settimeout(15)
     return sock
 
@@ -64,6 +69,7 @@ def handle_client(client_sock):
 
         method = parts[0].upper()
         target = parts[1]
+        log(f"Istek geldi: {method} {target}")
 
         if method == "CONNECT":
             # HTTPS Tunnel
@@ -73,8 +79,10 @@ def handle_client(client_sock):
             else:
                 host, port = target, 443
 
+            log(f"Hedefe baglaniliyor (CONNECT): {host}:{port} dev wg0...")
             remote_sock = create_bound_socket()
             remote_sock.connect((host, port))
+            log(f"Hedefe baglandi: {host}:{port}")
             client_sock.sendall(b"HTTP/1.1 200 Connection Established\r\n\r\n")
 
             t1 = threading.Thread(target=forward, args=(client_sock, remote_sock), daemon=True)
@@ -92,8 +100,10 @@ def handle_client(client_sock):
             if parsed.query:
                 path += f"?{parsed.query}"
 
+            log(f"Hedefe baglaniliyor (HTTP): {host}:{port} dev wg0...")
             remote_sock = create_bound_socket()
             remote_sock.connect((host, port))
+            log(f"Hedefe baglandi: {host}:{port}")
 
             modified_req = f"{method} {path} HTTP/1.1\r\n".encode("latin1") + b"\r\n".join(lines[1:])
             remote_sock.sendall(modified_req)
@@ -105,6 +115,7 @@ def handle_client(client_sock):
             t1.join()
             t2.join()
     except Exception as exc:
+        log(f"Baglanti hatasi: {exc}")
         try:
             client_sock.close()
         except Exception:
@@ -116,7 +127,7 @@ def main():
     server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     server.bind((PROXY_HOST, PROXY_PORT))
     server.listen(128)
-    print(f"[+] Proxy Server aktif: {PROXY_HOST}:{PROXY_PORT} -> wg0 ({BIND_IP})")
+    log(f"Proxy Server aktif: {PROXY_HOST}:{PROXY_PORT} -> wg0 ({BIND_IP})")
     while True:
         client_sock, _ = server.accept()
         t = threading.Thread(target=handle_client, args=(client_sock,), daemon=True)
