@@ -3,39 +3,39 @@ name: Scheduled Sync
 on:
   workflow_dispatch:
   schedule:
-    - cron: "*/30 * * * *"   # Her 30 dakikada bir çalışır
+    - cron: "*/30 * * * *"   # Her 30 dakikada bir otomatik çalışır
 
 permissions:
-  contents: write            # Repo’ye push yapabilmek için
+  contents: write            # commit yapabilmek için
 
 jobs:
   sync:
     runs-on: ubuntu-latest
 
     steps:
-      # ----------------------------------------------------
-      # 1️⃣ Kodu checkout et
-      # ----------------------------------------------------
+      # -------------------------------------------------
+      # 1️⃣ Kod checkout
+      # -------------------------------------------------
       - name: Checkout
         uses: actions/checkout@v4
 
-      # ----------------------------------------------------
-      # 2️⃣ Python ortamını kur
-      # ----------------------------------------------------
+      # -------------------------------------------------
+      # 2️⃣ Python ortamı
+      # -------------------------------------------------
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
-      # ----------------------------------------------------
-      # 3️⃣ Chrome / Xvfb kur (headless Selenium)
-      # ----------------------------------------------------
+      # -------------------------------------------------
+      # 3️⃣ Chrome (Selenium) ve Xvfb
+      # -------------------------------------------------
       - name: Setup Chrome
         uses: browser-actions/setup-chrome@v1
 
-      # ----------------------------------------------------
-      # 4️⃣ Sistem bağımlılıklarını kur
-      # ----------------------------------------------------
+      # -------------------------------------------------
+      # 4️⃣ Sistem paketleri (wireguard + gerekli libs)
+      # -------------------------------------------------
       - name: Install system packages
         run: |
           sudo apt-get update
@@ -46,15 +46,13 @@ jobs:
             scrot \
             libx11-dev \
             libxtst-dev \
-            sstp-client \
-            ppp \
             wireguard \
             wireguard-tools \
             resolvconf
 
-      # ----------------------------------------------------
-      # 5️⃣ Python bağımlılıklarını kur
-      # ----------------------------------------------------
+      # -------------------------------------------------
+      # 5️⃣ Python bağımlılıkları
+      # -------------------------------------------------
       - name: Install Python dependencies
         run: |
           python -m pip install --upgrade pip
@@ -62,28 +60,43 @@ jobs:
             beautifulsoup4 requests tmdbsimple deep-translator
           python -m seleniumbase install chromedriver
 
-      # ----------------------------------------------------
-      # 6️⃣ Çıktı ve log klasörlerini oluştur
-      # ----------------------------------------------------
+      # -------------------------------------------------
+      # 6️⃣ Çıktı / log klasörleri
+      # -------------------------------------------------
       - name: Prepare folders
         run: |
           mkdir -p github_data
           mkdir -p logs
 
-      # ----------------------------------------------------
-      # 7️⃣ Keenetic WireGuard VPN ve ev proxy’yi başlat
-      # ----------------------------------------------------
+      # -------------------------------------------------
+      # 7️⃣ VPN + ev‑proxy (root ile)
+      # -------------------------------------------------
       - name: Connect Keenetic VPN & Setup Home Proxy
         env:
-          # SSTP kimlik bilgileri (eğer SSTP kullanacaksanız)
+          # SSTP kimlik bilgileri (eğer SSTP ihtiyacınız yoksa boş bırakabilirsiniz)
           SSTP_USER: ${{ secrets.SSTP_USER }}
           SSTP_PASS: ${{ secrets.SSTP_PASS }}
         run: |
           sudo -E python setup_vpn_proxy.py
 
-      # ----------------------------------------------------
-      # 8️⃣ Dizi senkronizasyonu (proxy üzerinden)
-      # ----------------------------------------------------
+      # -------------------------------------------------
+      # 8️⃣ Proxy log / dinleme kontrol (debug)
+      # -------------------------------------------------
+      - name: Show proxy log (debug)
+        if: always()
+        run: |
+          echo "=== /tmp/proxy.log ==="
+          cat /tmp/proxy.log || echo "Log yok (proxy muhtemelen çökmüş)."
+
+      - name: Check proxy listening port
+        if: always()
+        run: |
+          echo "=== ss -ltnp (port 8888) ==="
+          ss -ltnp | grep 8888 || echo "Port 8888 dinlenmiyor."
+
+      # -------------------------------------------------
+      # 9️⃣ Dizi senkronizasyonu (proxy üzerinden)
+      # -------------------------------------------------
       - name: Run series sync
         env:
           HTTP_PROXY: "http://127.0.0.1:8888"
@@ -98,9 +111,9 @@ jobs:
           xvfb-run --auto-servernum --server-args="-screen 0 1920x1080x24" \
             python -X utf8 main_dizi.py
 
-      # ----------------------------------------------------
-      # 9️⃣ Film senkronizasyonu (proxy üzerinden)
-      # ----------------------------------------------------
+      # -------------------------------------------------
+      # 🔟 Film senkronizasyonu (proxy üzerinden)
+      # -------------------------------------------------
       - name: Run movie sync
         env:
           HTTP_PROXY: "http://127.0.0.1:8888"
@@ -115,9 +128,9 @@ jobs:
           xvfb-run --auto-servernum --server-args="-screen 0 1920x1080x24" \
             python -X utf8 main_film.py
 
-      # ----------------------------------------------------
-      # 🔀 Çıktı dosyalarını birleştir
-      # ----------------------------------------------------
+      # -------------------------------------------------
+      # 🧩 Çıktı dosyalarını birleştir
+      # -------------------------------------------------
       - name: Merge outputs
         env:
           DIZI_DATA_FILE: github_data/diziler.json
@@ -126,9 +139,9 @@ jobs:
         run: |
           python -X utf8 json_birlestir.py
 
-      # ----------------------------------------------------
-      # 📦 Oluşan verileri repo’ya commit et
-      # ----------------------------------------------------
+      # -------------------------------------------------
+      # 📤 Oluşan verileri repo’ya commit et
+      # -------------------------------------------------
       - name: Commit generated data
         run: |
           git config user.name "github-actions[bot]"
@@ -141,12 +154,19 @@ jobs:
             git push
           fi
 
-      # ----------------------------------------------------
-      # 📤 Logları artefakt olarak sakla (her zaman)
-      # ----------------------------------------------------
+      # -------------------------------------------------
+      # 📂 Log ve proxy artefaktlarını sakla (her zaman)
+      # -------------------------------------------------
       - name: Upload logs
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: sync-logs
           path: logs/
+
+      - name: Upload proxy log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: proxy-log
+          path: /tmp/proxy.log
