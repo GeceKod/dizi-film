@@ -41,11 +41,11 @@ jobs:
           mkdir -p logs
 
       - name: Setup SSTP VPN (Keenetic)
+        env:
+          SSTP_USER: ${{ secrets.SSTP_USER }}
+          SSTP_PASS: ${{ secrets.SSTP_PASS }}
         run: |
           sudo apt-get update
           sudo apt-get install -y sstp-client ppp
           echo "SSTP VPN baglantisi baslatiliyor..."
-          sudo sstpc --log-level 2 --user "${{ secrets.SSTP_USER }}" --password "${{ secrets.SSTP_PASS }}" oktay2617.keenetic.link noauth usepeerdns defaultroute replacedefaultroute name "${{ secrets.SSTP_USER }}" &
-          
-          for i in {1..20}; do
-            if ip addr show ppp0 >/dev/null 2>&1; then
+          sudo sstpc --log-level 2 --cert-warn --user "$SSTP_USER" --password "$SSTP_PASS" oktay2617.keenetic.link:443 noauth usepeerdns defaultroute replacedefaultroute name "$SSTP_USER" &
