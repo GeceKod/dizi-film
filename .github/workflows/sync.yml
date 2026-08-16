@@ -44,3 +44,7 @@ jobs:
         env:
           SSTP_USER: ${{ secrets.SSTP_USER }}
           SSTP_PASS: ${{ secrets.SSTP_PASS }}
+        run: |
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends -y sstp-client ppp
+          sudo systemctl stop NetworkManager.service 2>/dev/null || true
